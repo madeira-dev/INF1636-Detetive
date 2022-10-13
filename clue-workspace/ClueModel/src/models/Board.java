@@ -1,6 +1,6 @@
 package models;
 
-class Board {
+public class Board {
 	private static volatile Board instance = null;
 	
 	private Board() {}
@@ -18,12 +18,5 @@ class Board {
 		return instance;
 	}
 }
+
 // this is the implementation of double checked locking singleton
-
-
-// facade pattern says: "just provide a unified and simplified
-// interface to a set of interfaces in a subsystem, therefore it
-// hides the complexities of the subsystem from the client"
-
-// every Abstract Factory is a type of facade
-// implement facade for cards class?
