@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Arrays;
+
 public class Board {
 	Cell[][] cells;
 	int width;
@@ -52,5 +54,35 @@ public class Board {
 	}
 	public void set_character(String character, int x, int y){
 		cells[x][y].aloca_personagem(character);
+	}
+
+	public Cell get_cell(int x, int y){
+		return cells[x][y];
+	}
+	public Cell[] gen_moves(Cell[] origins, int depth, int last){
+		int added = 0;
+		if(depth == 0){
+			return origins;
+		}
+		for(int i=0; i < last; i++){
+			Cell cell = origins[i];
+			if(cells[cell.get_x() + 1][cell.get_y()].is_free()){
+				origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
+				added++;
+			}
+			if(cells[cell.get_x() - 1][cell.get_y()].is_free()){
+				origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
+				added++;
+			}
+			if(cells[cell.get_x()][cell.get_y() + 1].is_free()){
+				origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
+				added++;
+			}
+			if(cells[cell.get_x()][cell.get_y()-1].is_free()){
+				origins[last + added] = cells[cell.get_x()][cell.get_y() - 1];
+				added++;
+			}
+		}
+		return gen_moves(origins, depth-1, last + added);
 	}
 }

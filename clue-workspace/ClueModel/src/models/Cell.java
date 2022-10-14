@@ -33,4 +33,16 @@ public class Cell{
         this.comodo = comodo;
     }
     public void aloca_personagem(String personagem){this.personagem = personagem;}
+    public int get_x(){
+        return x;
+    }
+    public int get_y(){
+        return y;
+    }
+    public boolean is_free(){
+        return !fora_do_mapa;
+    }
+    public void print_coord(){
+        System.out.printf("(%d, %d)\n", x, y);
+    }
 }
