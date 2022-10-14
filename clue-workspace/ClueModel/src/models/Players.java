@@ -10,17 +10,16 @@ public class Players implements PlayerFactory {
 	private int y;
 	private Cards cardsArr[] = new Cards[0];
 	
+	public Players (String name, String character) {
+		this.name = name;
+		this.character = character;
+	}
+	
 	@Override
 	public String getName() { return this.name; }
-	
-	@Override
-	public void setName(String name) { this.name = name; }
-	
+		
 	@Override
 	public String getCharacter() { return this.character; }
-
-	@Override
-	public void setCharacter(String character) { this.character = character; }
 	
 	@Override
 	public void addCard(Cards _card) {
