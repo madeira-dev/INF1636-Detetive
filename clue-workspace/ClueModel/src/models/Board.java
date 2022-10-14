@@ -1,7 +1,9 @@
 package models;
 
 public class Board {
-	public Cell[][] cells;
+	Cell[][] cells;
+	int width;
+	int height;
 	private static volatile Board instance = null;
 	
 	private Board() {}
@@ -20,6 +22,8 @@ public class Board {
 	}
 
 	public void generate_grid(int width, int height){
+		this.width = width;
+		this.height = height;
 		cells = new Cell[width][height];
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -30,6 +34,16 @@ public class Board {
 			}
 		}
 	}
+
+	public void print_board(){
+		for(int i=0; i < width; i++){
+			for(int j=0; j < height; j++){
+				cells[i][j].print();
+			}
+			System.out.print("\n");
+		}
+	}
+
 }
 
 // this is the implementation of double-checked locking singleton

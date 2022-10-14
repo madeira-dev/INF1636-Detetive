@@ -9,10 +9,14 @@ public class Cell{
         personagem = "";
         comodo = false;
         comodo_canto = false;
-        fora_do_mapa = true;
+        fora_do_mapa = false;
     }
     public void print(){
-        System.out.printf("Personagem: %s\nComodo? %b\nComodo Canto? %b\nFora do mapa? %b\n", personagem,
-                comodo, comodo_canto, fora_do_mapa);
+        if(fora_do_mapa){
+            System.out.print("X ");
+        }
+        else{
+            System.out.print(". ");
+        }
     }
 }
