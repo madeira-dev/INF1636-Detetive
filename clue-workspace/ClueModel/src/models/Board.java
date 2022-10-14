@@ -7,7 +7,6 @@ public class Board {
 	private static volatile Board instance = null;
 	
 	private Board() {}
-	
 	public static Board getInstance() {
 		if (instance == null) {
 			
@@ -20,7 +19,6 @@ public class Board {
 		}
 		return instance;
 	}
-
 	public void generate_grid(int width, int height){
 		this.width = width;
 		this.height = height;
@@ -41,7 +39,6 @@ public class Board {
 			}
 		}
 	}
-
 	public void print_board(){
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -50,7 +47,12 @@ public class Board {
 			System.out.print("\n");
 		}
 	}
-
+	public void set_room(String comodo, int x, int y){
+		cells[x][y].vira_comodo(comodo);
+	}
+	public void set_character(String character, int x, int y){
+		cells[x][y].aloca_personagem(character);
+	}
 }
 
 // this is the implementation of double-checked locking singleton
