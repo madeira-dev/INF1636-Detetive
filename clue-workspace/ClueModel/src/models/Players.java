@@ -8,17 +8,16 @@ public class Players implements PlayerFactory {
 	private String character;
 	private Cards cardsArr[] = new Cards[0];
 	
+	public Players (String name, String character) {
+		this.name = name;
+		this.character = character;
+	}
+	
 	@Override
 	public String getName() { return this.name; }
-	
-	@Override
-	public void setName(String name) { this.name = name; }
-	
+		
 	@Override
 	public String getCharacter() { return this.character; }
-
-	@Override
-	public void setCharacter(String character) { this.character = character; }
 	
 	@Override
 	public void addCard(Cards _card) {
@@ -27,21 +26,4 @@ public class Players implements PlayerFactory {
 		
 		cardsArr = newArray;
 	}
-
-//	private static volatile Players instance = null;
-//	
-//	private Players() {}
-//	
-//	public static Players getInstance() {
-//		if (instance == null) {
-//			
-////			making thread safe
-//			synchronized (Players.class) {
-////				check again as multiple threads can reach above step
-//				if (instance == null)
-//					instance = new Players();
-//			}
-//		}
-//		return instance;
-//	}
 }
