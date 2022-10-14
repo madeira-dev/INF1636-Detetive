@@ -10,7 +10,7 @@ public class Main {
 		b.set_room("Hotel", 3, 3);
 		b.set_character("Mordomo James", 7, 7);
 		b.print_board();
-		Cell a = b.get_cell(5, 5);
+		Cell a = b.get_cell(7, 7);
 		Cell[] moves = new Cell[1000];
 		moves[0] = a;
 		moves = b.gen_moves(moves, 2, 1);

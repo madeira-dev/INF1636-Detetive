@@ -66,19 +66,19 @@ public class Board {
 		}
 		for(int i=0; i < last; i++){
 			Cell cell = origins[i];
-			if(cells[cell.get_x() + 1][cell.get_y()].is_free()){
+			if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
 				origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
 				added++;
 			}
-			if(cells[cell.get_x() - 1][cell.get_y()].is_free()){
+			if(cells[cell.get_x() - 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() - 1][cell.get_y()])){
 				origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
 				added++;
 			}
-			if(cells[cell.get_x()][cell.get_y() + 1].is_free()){
+			if(cells[cell.get_x()][cell.get_y() + 1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() + 1])){
 				origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
 				added++;
 			}
-			if(cells[cell.get_x()][cell.get_y()-1].is_free()){
+			if(cells[cell.get_x()][cell.get_y()-1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() - 1])){
 				origins[last + added] = cells[cell.get_x()][cell.get_y() - 1];
 				added++;
 			}
