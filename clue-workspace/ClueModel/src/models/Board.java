@@ -3,13 +3,15 @@ package models;
 import java.util.Arrays;
 
 public class Board {
-	Cards[] arquivo_secreto;
+	Players[] players;
+	Cards[] arquivo_confidencial;
 	Cell[][] cells;
 	int width;
 	int height;
 	private static volatile Board instance = null;
 	
-	private Board() {}
+	private Board(
+	) {}
 	public static Board getInstance() {
 		if (instance == null) {
 			
@@ -85,5 +87,8 @@ public class Board {
 			}
 		}
 		return gen_moves(origins, depth-1, last + added);
+	}
+	public void gera_arquivo(){
+		arquivo_confidencial = Componentes.arquivo_confidencial();
 	}
 }

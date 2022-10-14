@@ -4,7 +4,7 @@ import models.Cards;
 
 public class Componentes{
 	
-	public Cards[] personagens_cartas(){
+	public static Cards[] personagens_cartas(){
 	Cards[] personagens = {
       new Cards("Srta. Scarlett"),
       new Cards("Reverendo Green"),
@@ -16,7 +16,7 @@ public class Componentes{
     	return personagens;
 	}
 	
-	public Cards[] armas_cartas() {
+	public static Cards[] armas_cartas() {
 		
 	Cards[] armas_cartas = {
       new Cards("Corda"),
@@ -29,7 +29,7 @@ public class Componentes{
 	return armas_cartas;
 	
 	}
-	public Cards[] comodos_cartas() {
+	public static Cards[] comodos_cartas() {
 		
 		Cards[] comodos_cartas = {
 	      new Cards("Billard Room"),
@@ -57,7 +57,7 @@ public class Componentes{
 		return val;
 	}
 
-	public Cards[] arquivo_confidencial()
+	public static Cards[] arquivo_confidencial()
 	{
 		Random result = new Random();
 		Cards[] arquivo = new Cards[3];
