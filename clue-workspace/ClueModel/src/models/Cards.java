@@ -3,27 +3,18 @@ package models;
 public class Cards implements CardFactory {
 	
 	private String name;
+<<<<<<< HEAD
 	public Cards(String name) {this.name=name;}
+=======
+
+	public Cards (String name) {
+		this.name = name;
+	}
+
+>>>>>>> b501ba8a56edcb25c85c5f5fdff56d779f9bd940
 	@Override
 	public String getName() { return this.name; }
 	
 	@Override
-	public void setName(String name) { this.name = name; }
-	
-//	private static volatile Cards instance = null;
-//	
-//	private Cards() {}
-//	
-//	public static Cards getInstance() {
-//		if (instance == null) {
-//			
-////			making thread safe
-//			synchronized (Cards.class) {
-////				check again as multiple threads can reach above step
-//				if (instance == null)
-//					instance = new Cards();
-//			}
-//		}
-//		return instance;
-//	}
+	public void setName(String name) { this.name = name;}
 }
