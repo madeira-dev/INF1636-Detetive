@@ -54,5 +54,3 @@ public class Board {
 		cells[x][y].aloca_personagem(character);
 	}
 }
-
-// this is the implementation of double-checked locking singleton

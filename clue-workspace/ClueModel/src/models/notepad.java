@@ -1,4 +1,9 @@
 package models;
+<<<<<<< HEAD
+=======
+
+import java.util.Arrays;
+>>>>>>> 51c9b2c69e30d85c4bef3b548a21ffea51e2d6ee
 
 public class notepad {
 
@@ -11,11 +16,11 @@ public class notepad {
 	//	ordem dos comodos no array: <não tem os nomes dos comodos ainda>
 	private Boolean[] rooms = {false, false, false, false, false, false, false, false, false};
 
-	public void printWeapons() { System.out.println(this.weapons); }
+	public void printWeapons() { System.out.println(Arrays.toString(this.weapons)); }
 	
-	public void printSuspects() { System.out.println(this.suspects); }
+	public void printSuspects() { System.out.println(Arrays.toString(this.suspects)); }
 	
-	public void printRooms() { System.out.println(this.rooms); }
+	public void printRooms() { System.out.println(Arrays.toString(this.rooms)); }
 	
 	public Boolean[] setTrue(Boolean[] arr, int index) { arr[index] = true; return arr; }
 	
