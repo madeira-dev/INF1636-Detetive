@@ -28,4 +28,8 @@ public class Players implements PlayerFactory {
 		
 		cardsArr = newArray;
 	}
+	public void move(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
 }
