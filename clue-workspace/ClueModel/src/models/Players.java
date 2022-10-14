@@ -6,8 +6,8 @@ public class Players implements PlayerFactory {
 	
 	private String name;
 	private String character;
-	private int x;
-	private int y;
+
+	private Cell cell;
 	private Cards cardsArr[] = new Cards[0];
 	
 	public Players (String name, String character) {
@@ -28,8 +28,7 @@ public class Players implements PlayerFactory {
 		
 		cardsArr = newArray;
 	}
-	public void move(int x, int y){
-		this.x = x;
-		this.y = y;
+	public void move_to(Cell destination){
+		this.cell = destination;
 	}
 }
