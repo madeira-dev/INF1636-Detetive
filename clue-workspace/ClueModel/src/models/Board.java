@@ -1,6 +1,7 @@
 package models;
 
 public class Board {
+	public Cell[][] cells;
 	private static volatile Board instance = null;
 	
 	private Board() {}
@@ -17,6 +18,18 @@ public class Board {
 		}
 		return instance;
 	}
+
+	public void generate_grid(int width, int height){
+		cells = new Cell[width][height];
+		for(int i=0; i < width; i++){
+			for(int j=0; j < height; j++){
+				this.cells[i][j] = new Cell();
+				if(i == 0 || j == 0 || i == width-1 || j == height-1){
+					this.cells[i][j].fora_do_mapa = true;
+				}
+			}
+		}
+	}
 }
 
-// this is the implementation of double checked locking singleton
+// this is the implementation of double-checked locking singleton
