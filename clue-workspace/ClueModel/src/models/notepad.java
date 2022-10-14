@@ -1,9 +1,6 @@
 package models;
-<<<<<<< HEAD
-=======
 
 import java.util.Arrays;
->>>>>>> 51c9b2c69e30d85c4bef3b548a21ffea51e2d6ee
 
 public class notepad {
 
