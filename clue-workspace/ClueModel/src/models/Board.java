@@ -3,7 +3,8 @@ package models;
 import java.util.Arrays;
 
 public class Board {
-	Players[] players;
+	Player[] players;
+	int num_players;
 	Cards[] arquivo_confidencial;
 	Cell[][] cells;
 	int width;
@@ -11,7 +12,7 @@ public class Board {
 	private static volatile Board instance = null;
 	
 	private Board(
-	) {}
+	) {num_players = 0;}
 	public static Board getInstance() {
 		if (instance == null) {
 			
@@ -90,5 +91,12 @@ public class Board {
 	}
 	public void gera_arquivo(){
 		arquivo_confidencial = Componentes.arquivo_confidencial();
+	}
+	public void init_players(int num){
+		players = new Player[num];
+	}
+	public void add_player(String name, String character){
+		players[num_players] = new Player(name, character);
+		num_players++;
 	}
 }

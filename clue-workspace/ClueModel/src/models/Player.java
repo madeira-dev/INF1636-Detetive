@@ -2,7 +2,7 @@ package models;
 
 import java.util.Arrays;
 
-public class Players implements PlayerFactory {
+public class Player implements PlayerFactory {
 	
 	private String name;
 	private String character;
@@ -10,7 +10,7 @@ public class Players implements PlayerFactory {
 	private Cell cell;
 	private Cards cardsArr[] = new Cards[0];
 	
-	public Players (String name, String character) {
+	public Player (String name, String character) {
 		this.name = name;
 		this.character = character;
 	}
