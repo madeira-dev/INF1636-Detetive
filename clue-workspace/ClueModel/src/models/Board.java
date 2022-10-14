@@ -3,6 +3,7 @@ package models;
 import java.util.Arrays;
 
 public class Board {
+	Cards[] arquivo_secreto;
 	Cell[][] cells;
 	int width;
 	int height;
