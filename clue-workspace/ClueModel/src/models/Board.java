@@ -44,7 +44,7 @@ public class Board {
 	public void print_board(){
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
-				cells[i][j].print();
+				cells[j][i].print();
 			}
 			System.out.print("\n");
 		}
