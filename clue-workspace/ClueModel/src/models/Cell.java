@@ -4,12 +4,16 @@ import java.util.Objects;
 
 public class Cell{
     private String personagem;
+    private int x;
+    private int y;
     private String comodo;
     private boolean fora_do_mapa;
-    public Cell(){
+    public Cell(int x, int y){
         personagem = "";
         comodo = "";
         fora_do_mapa = false;
+        this.x = x;
+        this.y = y;
     }
     public void print(){
         if(fora_do_mapa){
