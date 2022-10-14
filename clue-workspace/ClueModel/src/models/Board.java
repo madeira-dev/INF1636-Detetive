@@ -29,8 +29,15 @@ public class Board {
 			for(int j=0; j < height; j++){
 				this.cells[i][j] = new Cell();
 				if(i == 0 || j == 0 || i == width-1 || j == height-1){
-					this.cells[i][j].fora_do_mapa = true;
+					this.cells[i][j].tira_do_mapa();
 				}
+			}
+		}
+	}
+	public void snip(int x, int y, int width, int height){
+		for(int i=x; i < x + width; i++){
+			for(int j=y; j < y + height; j++){
+				cells[i][j].tira_do_mapa();
 			}
 		}
 	}

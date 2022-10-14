@@ -19,4 +19,8 @@ public class Cell{
             System.out.print(". ");
         }
     }
+
+    public void tira_do_mapa(){
+        this.fora_do_mapa = true;
+    }
 }
