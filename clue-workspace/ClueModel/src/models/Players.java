@@ -6,6 +6,8 @@ public class Players implements PlayerFactory {
 	
 	private String name;
 	private String character;
+	private int x;
+	private int y;
 	private Cards cardsArr[] = new Cards[0];
 	
 	@Override
