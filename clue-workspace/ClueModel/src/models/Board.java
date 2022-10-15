@@ -50,6 +50,9 @@ public class Board {
 			}
 		}
 	}
+	public int getNum_players(){
+		return num_players;
+	}
 	public void print_board(){
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -104,6 +107,11 @@ public class Board {
 		players[num_players] = new Player(name, character);
 		num_players++;
 	}
+	public void set_neighbors(){
+		for(int i=0; i < num_players; i++){
+			players[i].setVizinho(players[(i + 1) % num_players]);
+		}
+	}
 	public void deal_cards(){
 		int i = 0;
 		boolean[] ja_usado = new boolean[18];
@@ -150,5 +158,21 @@ public class Board {
 			}
 		}
 
+	}
+	public Card[] guess(Player guesser, Card[] cards){
+		Player temp = guesser.getVizinho();
+		Card[] options = new Card[0];
+		while (!Objects.equals(temp.getName(), guesser.getName())){
+			options = temp.possui_algum(cards);
+			System.out.printf("%s pode mostrar\n", temp.getName());
+			for(Card c: options){
+				System.out.println(c.getName());
+			}
+			if(options.length != 0){
+				return options;
+			}
+			temp = temp.getVizinho();
+		}
+		return options;
 	}
 }
