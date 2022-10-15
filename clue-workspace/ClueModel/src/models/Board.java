@@ -5,12 +5,12 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Board {
-	Player[] players;
-	int num_players;
-	Card[] arquivo_confidencial;
-	Cell[][] cells;
-	int width;
-	int height;
+	private Player[] players;
+	private int num_players;
+	private Card[] arquivo_confidencial;
+	private Cell[][] cells;
+	private int width;
+	private int height;
 	private static volatile Board instance = null;
 	
 	private Board(
@@ -102,6 +102,12 @@ public class Board {
 		set_room("Billard Room",1,13);
 		set_room("Billard Room",5,16);
 
+		set_character("Coronel Mustard",8,25);
+		set_character("Srta. Scarlett",17,0);
+		set_character("Reverendo Green",9,25);
+		set_character("Srta. Peacock",14,25);
+		set_character("Professor Plum",0,6);
+		set_character("Srta. White",0,19);
 	}
 	public void generate_grid(int width, int height){
 		cells = new Cell[width][height];
@@ -139,7 +145,6 @@ public class Board {
 	public void set_character(String character, int x, int y){
 		cells[x][y].aloca_personagem(character);
 	}
-
 	public Cell get_cell(int x, int y){
 		return cells[x][y];
 	}
@@ -279,12 +284,10 @@ public class Board {
 		}
 		return options;
 	}
-
 	public void configura_passagem(int x1, int x2, int y1, int y2){
 		cells[x1][y1].configura_passagem(cells[x2][y2]);
 		cells[x2][y2].configura_passagem(cells[x1][y1]);
 	}
-
 	public int[][] get_coord_room(String nome){
 		int [][] coords = new int[2][0];
 		switch (nome){
