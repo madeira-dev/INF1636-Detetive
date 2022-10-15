@@ -156,15 +156,12 @@ public class Board {
 		Player aux = new Player("Aux","Aux");
 
 		for(int i=0, j=0 ; i<num_players; i++, j++){
-			if(players[i].getName() == "Srta. Scarlett"){
+			if(Objects.equals(players[i].getName(), "Srta. Scarlett")){
 				aux = players[i];
 				players[i] = players[0];
 				players[0] = players[i];
 			}
 		}
-
-
-
 	}
 
 

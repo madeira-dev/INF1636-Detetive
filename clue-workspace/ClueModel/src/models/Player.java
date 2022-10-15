@@ -48,4 +48,10 @@ public class Player implements PlayerFactory {
 		}
 		return possui;
 	}
+
+	public int valida_chute() {
+
+	}
 }
+
+
