@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Board {
 	Player[] players;
@@ -100,6 +101,36 @@ public class Board {
 		num_players++;
 	}
 	public void deal_cards(){
-		Card[] todas;
+		int i = 0;
+		Card[] cards = new Card[18];
+		Card[] suspeitos = Componentes.personagens_cartas();
+		Card[] armas = Componentes.armas_cartas();
+		Card[] locais = Componentes.comodos_cartas();
+
+		for(Card sus : suspeitos){
+			if(sus != arquivo_confidencial[1]){
+				cards[i] = sus;
+				i++;
+			}
+		}
+		for(Card arma : armas){
+			if(arma != arquivo_confidencial[0]){
+				cards[i] = arma;
+				i++;
+			}
+		}
+		for(Card local : locais){
+			if(local != arquivo_confidencial[2]){
+				cards[i] = local;
+				i++;
+			}
+		}
+
+		Random result = new Random();
+		int val;
+		for(int j=0; j < 18; j++){
+			val = result.nextInt(18);
+
+		}
 	}
 }
