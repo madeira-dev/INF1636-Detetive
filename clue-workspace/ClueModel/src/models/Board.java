@@ -306,6 +306,12 @@ public class Board {
 				coords[2] = new int[]{9, 20};
 				coords[3] = new int[]{16, 20};
 			}
+			case("Hall"):{
+				coords = Arrays.copyOf(coords, 3);
+				coords[0] = new int[]{10, 4};
+				coords[1] = new int[]{13, 6};
+				coords[2] = new int[]{12, 6};
+			}
 		}
 		return coords;
 	}
