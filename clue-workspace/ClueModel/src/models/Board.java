@@ -44,11 +44,15 @@ public class Board {
 		deal_cards();
 		//Study
 		snip(1, 1, 7, 4);
-		set_room("Study", 7, 4);
+		set_room("Study",7,4);
+		configura_passagem(7,20,4,19);
 		//Hall
 		snip(10, 1, 6, 6);
 		snip(9, 1, 1, 1);
 		snip(16, 1, 1, 1);
+		set_room("Hall",10,4);
+		set_room("Hall",13,6);
+		set_room("Hall",12,6);
 		//Lounge
 		snip(18, 1, 7, 6);
 		set_room("Lounge", 18, 6);
@@ -84,11 +88,14 @@ public class Board {
 		set_room("Ball Room", 10, 18);
 		set_room("Ball Room", 9, 20);
 		set_room("Ball Room", 16, 20);
+
 		//Conservatory
 		snip(1,20,5,5);
 		snip(6,21,1,4);
 		set_room("Conservatory", 5, 20);
 		snip(7,24,1,1);
+		configura_passagem(5,18,20,16);
+
 		//Billard Room
 		snip(1,13,5,5);
 		snip(1,18,1,1);
