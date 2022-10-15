@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Player implements PlayerFactory {
 	private Player vizinho;
-	private String name;
-	private String character;
+	private final String name;
+	private final String character;
 
 	private Cell cell;
 	private Card[] cardsArr = new Card[0];
@@ -28,13 +28,10 @@ public class Player implements PlayerFactory {
 	
 	@Override
 	public void addCard(Card _card) {
-		Card newArray[] = Arrays.copyOf(cardsArr, cardsArr.length + 1);
+		Card[] newArray = Arrays.copyOf(cardsArr, cardsArr.length + 1);
 		newArray[cardsArr.length] = _card;
 		
 		cardsArr = newArray;
-	}
-	public void move_to(Cell destination){
-		this.cell = destination;
 	}
 	public Card[] possui_algum(Card[] cards){
 		Card[] possui = new Card[0];
@@ -54,5 +51,11 @@ public class Player implements PlayerFactory {
 	}
 	public Player getVizinho(){
 		return this.vizinho;
+	}
+	public Cell get_cell(){
+		return cell;
+	}
+	public void set_cell(Cell c){
+		cell = c;
 	}
 }

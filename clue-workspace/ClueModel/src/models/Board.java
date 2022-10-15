@@ -9,8 +9,8 @@ public class Board {
 	private int num_players;
 	private Card[] arquivo_confidencial;
 	private Cell[][] cells;
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 	private static volatile Board instance = null;
 	
 	private Board(
@@ -29,8 +29,13 @@ public class Board {
 		}
 		return instance;
 	}
-	public Player[] getPlayers(){
-		return players;
+	public Player get_player_by_name(String name){
+		for(Player p: players){
+			if(Objects.equals(p.getName(), name)){
+				return p;
+			}
+		}
+		return null;
 	}
 	public void init_all(){
 		generate_grid(width, height);
@@ -127,9 +132,7 @@ public class Board {
 			}
 		}
 	}
-	public int getNum_players(){
-		return num_players;
-	}
+
 	public void print_board(){
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -268,7 +271,13 @@ public class Board {
 		}
 
 	}
+	public void move_player(Player player, Cell destination){
+		player.set_cell(destination);
+
+	}
 	public Card[] guess(Player guesser, Card[] cards){
+		Player acusado = get_player_by_name(cards[1].getName());
+		move_player(acusado, guesser.get_cell());
 		Player temp = guesser.getVizinho();
 		Card[] options = new Card[0];
 		while (!Objects.equals(temp.getName(), guesser.getName())){
@@ -290,66 +299,57 @@ public class Board {
 	}
 	public int[][] get_coord_room(String nome){
 		int [][] coords = new int[2][0];
-		switch (nome){
-			case("Study"):{
+		switch (nome) {
+			case ("Study") -> {
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{7, 4};
-				break;
 			}
-			case("Lounge"):{
+			case ("Lounge") -> {
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{18, 6};
-				break;
 
 			}
-			case("Library"):{
+			case ("Library") -> {
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{7, 9};
 				coords[1] = new int[]{4, 11};
-				break;
 
 			}
-			case("Dining Room"):{
+			case ("Dining Room") -> {
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{18, 10};
 				coords[1] = new int[]{17, 13};
-				break;
 
 			}
-			case("Kitchen"):{
+			case ("Kitchen") -> {
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{20, 19};
-				break;
 
 			}
-			case("Conservatory"):{
+			case ("Conservatory") -> {
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{5, 20};
-				break;
 
 			}
-			case("Billard Room"):{
+			case ("Billard Room") -> {
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{1, 13};
 				coords[1] = new int[]{5, 16};
-				break;
 
 			}
-			case("Ball Room"):{
+			case ("Ball Room") -> {
 				coords = Arrays.copyOf(coords, 4);
 				coords[0] = new int[]{15, 18};
 				coords[1] = new int[]{10, 18};
 				coords[2] = new int[]{9, 20};
 				coords[3] = new int[]{16, 20};
-				break;
 
 			}
-			case("Hall"):{
+			case ("Hall") -> {
 				coords = Arrays.copyOf(coords, 3);
 				coords[0] = new int[]{10, 4};
 				coords[1] = new int[]{13, 6};
 				coords[2] = new int[]{12, 6};
-				break;
 
 			}
 		}
