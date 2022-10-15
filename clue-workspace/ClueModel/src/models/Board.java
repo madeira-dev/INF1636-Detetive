@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Board {
 	Player[] players;
 	int num_players;
-	Cards[] arquivo_confidencial;
+	Card[] arquivo_confidencial;
 	Cell[][] cells;
 	int width;
 	int height;
@@ -98,5 +98,8 @@ public class Board {
 	public void add_player(String name, String character){
 		players[num_players] = new Player(name, character);
 		num_players++;
+	}
+	public void deal_cards(){
+		Card[] todas;
 	}
 }

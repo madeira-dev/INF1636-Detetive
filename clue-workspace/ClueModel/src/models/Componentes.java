@@ -1,46 +1,46 @@
 package models;
 import java.util.Random;
-import models.Cards;
+import models.Card;
 
 public class Componentes{
 	
-	public static Cards[] personagens_cartas(){
-	Cards[] personagens = {
-      new Cards("Srta. Scarlett"),
-      new Cards("Reverendo Green"),
-      new Cards("Srta. Peacock"),
-      new Cards("Professor Plum"),
-      new Cards("Coronel Mustard"),
-      new Cards("Srta. White")
+	public static Card[] personagens_cartas(){
+	Card[] personagens = {
+      new Card("Srta. Scarlett"),
+      new Card("Reverendo Green"),
+      new Card("Srta. Peacock"),
+      new Card("Professor Plum"),
+      new Card("Coronel Mustard"),
+      new Card("Srta. White")
       };
     	return personagens;
 	}
 	
-	public static Cards[] armas_cartas() {
+	public static Card[] armas_cartas() {
 		
-	Cards[] armas_cartas = {
-      new Cards("Corda"),
-      new Cards("Cano de Chumbo"),
-      new Cards("Faca"),
-      new Cards("Chave Inglesa"),
-      new Cards("Castiçal"),
-      new Cards("Revolver")
+	Card[] armas_cartas = {
+      new Card("Corda"),
+      new Card("Cano de Chumbo"),
+      new Card("Faca"),
+      new Card("Chave Inglesa"),
+      new Card("Castiçal"),
+      new Card("Revolver")
     };
 	return armas_cartas;
 	
 	}
-	public static Cards[] comodos_cartas() {
+	public static Card[] comodos_cartas() {
 		
-		Cards[] comodos_cartas = {
-	      new Cards("Billard Room"),
-	      new Cards("Library"),
-	      new Cards("Study"),
-	      new Cards("Hall"),
-	      new Cards("Lounge"),
-	      new Cards("Dining Room"),
-	      new Cards("Kitchen"),
-	      new Cards("Ball Room"),
-	      new Cards("Conservatory")
+		Card[] comodos_cartas = {
+	      new Card("Billard Room"),
+	      new Card("Library"),
+	      new Card("Study"),
+	      new Card("Hall"),
+	      new Card("Lounge"),
+	      new Card("Dining Room"),
+	      new Card("Kitchen"),
+	      new Card("Ball Room"),
+	      new Card("Conservatory")
 	    };
     
 		return comodos_cartas;
@@ -57,14 +57,14 @@ public class Componentes{
 		return val;
 	}
 
-	public static Cards[] arquivo_confidencial()
+	public static Card[] arquivo_confidencial()
 	{
 		Random result = new Random();
-		Cards[] arquivo = new Cards[3];
+		Card[] arquivo = new Card[3];
 		int index_suspeito,index_comodo,index_arma;
-		Cards[]armas = armas_cartas();
-		Cards[]personagens = personagens_cartas();
-		Cards[]comodos = comodos_cartas();
+		Card[]armas = armas_cartas();
+		Card[]personagens = personagens_cartas();
+		Card[]comodos = comodos_cartas();
 		
 		index_suspeito = result.nextInt(6);
 		index_arma = result.nextInt(6);

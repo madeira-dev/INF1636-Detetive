@@ -8,7 +8,7 @@ public class Player implements PlayerFactory {
 	private String character;
 
 	private Cell cell;
-	private Cards cardsArr[] = new Cards[0];
+	private Card cardsArr[] = new Card[0];
 	
 	public Player (String name, String character) {
 		this.name = name;
@@ -22,8 +22,8 @@ public class Player implements PlayerFactory {
 	public String getCharacter() { return this.character; }
 	
 	@Override
-	public void addCard(Cards _card) {
-		Cards newArray[] = Arrays.copyOf(cardsArr, cardsArr.length + 1);
+	public void addCard(Card _card) {
+		Card newArray[] = Arrays.copyOf(cardsArr, cardsArr.length + 1);
 		newArray[cardsArr.length] = _card;
 		
 		cardsArr = newArray;

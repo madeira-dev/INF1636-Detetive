@@ -6,6 +6,6 @@ public interface PlayerFactory {
 	
 	public String getCharacter();
 
-	public void addCard(Cards _card);
+	public void addCard(Card _card);
 
 }
