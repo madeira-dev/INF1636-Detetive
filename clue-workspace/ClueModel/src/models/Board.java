@@ -62,7 +62,7 @@ public class Board {
 		snip(7, 8, 1, 3);
 		snip(1, 5, 1, 1);
 		set_room("Library", 7, 9);
-		set_room("Library", 3, 11);
+		set_room("Library", 4, 11);
 
 		//Meio do Mapa
 		snip(10, 8, 5, 7);
@@ -144,16 +144,36 @@ public class Board {
 		return cells[x][y];
 	}
 	public Cell[] gen_moves(Cell[] origins, int depth, int last){
+		boolean primeira_iteracao = false;
+		int[][] temp;
 		int added = 0;
 		if(depth == 0){
 			return origins;
 		}
+		if(last == 1){
+			primeira_iteracao = true;
+			if(!Objects.equals(origins[0].getComodo(), "")){
+				if(origins[0].get_passagem() != null){
+					origins[last + added] = origins[0].get_passagem();
+					last++;
+				}
+				temp = get_coord_room(origins[0].getComodo());
+				for (int[] coord: temp){
+					origins[last + added] = cells[coord[0]][coord[1]];
+					last++;
+				}
+			}
+		}
+
 		for(int i=0; i < last; i++){
 			Cell cell = origins[i];
-			if(!Objects.equals(cell.getComodo(), "")){
+			if(!Objects.equals(cell.getComodo(), "") && !primeira_iteracao){
 				continue;
 			}
-			if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
+			if(cell.get_passagem() != null && cell != origins[0]){
+				continue;
+			}
+				if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
 				// Exceção porta lounge
 				if(!(cell.get_x() == 17 && cell.get_y() == 6)){
 					origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
@@ -271,33 +291,46 @@ public class Board {
 			case("Study"):{
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{7, 4};
+				break;
 			}
 			case("Lounge"):{
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{18, 6};
+				break;
+
 			}
 			case("Library"):{
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{7, 9};
-				coords[1] = new int[]{10, 11};
+				coords[1] = new int[]{4, 11};
+				break;
+
 			}
 			case("Dining Room"):{
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{18, 10};
 				coords[1] = new int[]{17, 13};
+				break;
+
 			}
 			case("Kitchen"):{
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{20, 19};
+				break;
+
 			}
 			case("Conservatory"):{
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{5, 20};
+				break;
+
 			}
 			case("Billard Room"):{
 				coords = Arrays.copyOf(coords, 2);
 				coords[0] = new int[]{1, 13};
 				coords[1] = new int[]{5, 16};
+				break;
+
 			}
 			case("Ball Room"):{
 				coords = Arrays.copyOf(coords, 4);
@@ -305,12 +338,16 @@ public class Board {
 				coords[1] = new int[]{10, 18};
 				coords[2] = new int[]{9, 20};
 				coords[3] = new int[]{16, 20};
+				break;
+
 			}
 			case("Hall"):{
 				coords = Arrays.copyOf(coords, 3);
 				coords[0] = new int[]{10, 4};
 				coords[1] = new int[]{13, 6};
 				coords[2] = new int[]{12, 6};
+				break;
+
 			}
 		}
 		return coords;

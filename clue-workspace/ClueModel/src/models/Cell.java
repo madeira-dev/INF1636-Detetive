@@ -31,6 +31,9 @@ public class Cell{
     public void tira_do_mapa(){
         this.fora_do_mapa = true;
     }
+    public Cell get_passagem(){
+        return passagem_secreta;
+    }
     public void vira_comodo(String comodo) {
         this.comodo = comodo;
     }
