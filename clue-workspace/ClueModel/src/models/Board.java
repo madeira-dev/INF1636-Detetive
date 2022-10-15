@@ -136,17 +136,9 @@ public class Board {
 
 	public void order_to_play(){
 		Player aux = new Player("Aux","Aux");
-		//Acho q n precisa dessa String
-		String order_in_game[] = { //ordem de jogada dos players ordenada no array
-				"Srta. Scarlett",
-				"Reverendo Green",
-				"Srta. Peacock",
-				"Professor Plum",
-				"Coronel Mustard",
-				"Srta. White"
-		};
+
 		for(int i=0, j=0 ; i<num_players; i++, j++){
-			if(players[i].getName() == order_in_game[i]){
+			if(players[i].getName() == "Srta. Scarlett"){
 				aux = players[i];
 				players[i] = players[0];
 				players[0] = players[i];
