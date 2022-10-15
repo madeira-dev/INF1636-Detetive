@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class Board {
@@ -25,6 +26,9 @@ public class Board {
 			}
 		}
 		return instance;
+	}
+	public Player[] getPlayers(){
+		return players;
 	}
 	public void generate_grid(int width, int height){
 		this.width = width;
@@ -102,35 +106,49 @@ public class Board {
 	}
 	public void deal_cards(){
 		int i = 0;
+		boolean[] ja_usado = new boolean[18];
 		Card[] cards = new Card[18];
 		Card[] suspeitos = Componentes.personagens_cartas();
 		Card[] armas = Componentes.armas_cartas();
 		Card[] locais = Componentes.comodos_cartas();
 
 		for(Card sus : suspeitos){
-			if(sus != arquivo_confidencial[1]){
+			if(!Objects.equals(sus.getName(), arquivo_confidencial[1].getName())){
 				cards[i] = sus;
 				i++;
 			}
 		}
 		for(Card arma : armas){
-			if(arma != arquivo_confidencial[0]){
+			if(!Objects.equals(arma.getName(), arquivo_confidencial[0].getName())){
 				cards[i] = arma;
 				i++;
 			}
 		}
 		for(Card local : locais){
-			if(local != arquivo_confidencial[2]){
+			if(!Objects.equals(local.getName(), arquivo_confidencial[2].getName())){
 				cards[i] = local;
 				i++;
 			}
+		}
+		for(int j=0; j < 18; j++){
+			ja_usado[j] = false;
 		}
 
 		Random result = new Random();
 		int val;
 		for(int j=0; j < 18; j++){
 			val = result.nextInt(18);
-
+			while (true){
+				if(!ja_usado[val]){
+					players[j % num_players].addCard(cards[val]);
+					ja_usado[val] = true;
+					break;
+				}
+				else{
+					val = (val + 1) % 18;
+				}
+			}
 		}
+
 	}
 }

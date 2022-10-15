@@ -8,13 +8,17 @@ public class Player implements PlayerFactory {
 	private String character;
 
 	private Cell cell;
-	private Card cardsArr[] = new Card[0];
+	private Card[] cardsArr = new Card[0];
 	
 	public Player (String name, String character) {
 		this.name = name;
 		this.character = character;
 	}
-	
+
+	@Override
+	public Card[] getCardsArr(){
+		return cardsArr;
+	}
 	@Override
 	public String getName() { return this.name; }
 		

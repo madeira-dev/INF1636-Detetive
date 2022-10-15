@@ -10,4 +10,5 @@ public class Card implements CardFactory {
 	@Override
 	public String getName() { return this.name; }
 
+
 }
