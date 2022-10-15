@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Player implements PlayerFactory {
 	
@@ -8,13 +9,17 @@ public class Player implements PlayerFactory {
 	private String character;
 
 	private Cell cell;
-	private Card cardsArr[] = new Card[0];
+	private Card[] cardsArr = new Card[0];
 	
 	public Player (String name, String character) {
 		this.name = name;
 		this.character = character;
 	}
-	
+
+	@Override
+	public Card[] getCardsArr(){
+		return cardsArr;
+	}
 	@Override
 	public String getName() { return this.name; }
 		
@@ -30,5 +35,17 @@ public class Player implements PlayerFactory {
 	}
 	public void move_to(Cell destination){
 		this.cell = destination;
+	}
+	public Card[] possui_algum(Card[] cards){
+		Card[] possui = new Card[0];
+		for(Card c : cardsArr){
+			for(Card card : cards){
+				if(Objects.equals(c.getName(), card.getName())){
+					possui = Arrays.copyOf(possui, possui.length + 1);
+					possui[possui.length - 1] = c;
+				}
+			}
+		}
+		return possui;
 	}
 }
