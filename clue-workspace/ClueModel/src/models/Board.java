@@ -14,7 +14,9 @@ public class Board {
 	private static volatile Board instance = null;
 	
 	private Board(
-	) {num_players = 0;}
+	) {num_players = 0;
+		this.width = 26;
+		this.height = 26;}
 	public static Board getInstance() {
 		if (instance == null) {
 			
@@ -30,9 +32,31 @@ public class Board {
 	public Player[] getPlayers(){
 		return players;
 	}
+	public void init_all(){
+		generate_grid(width, height);
+		init_players(3);
+		add_player("Thiago", "Coronel Mustard");
+		add_player("Rafael", "Professor Plum");
+		add_player("Madeira", "Srta. Scarlett");
+		set_neighbors();
+
+		gera_arquivo();
+		deal_cards();
+
+		snip(1, 1, 7, 4);
+		snip(10, 1, 6, 6);
+		snip(9, 1, 1, 1);
+		snip(16, 1, 1, 1);
+		snip(18, 1, 7, 6);
+		snip(1, 7, 7, 5);
+		snip(8, 8, 1, 3);
+		snip(1, 5, 1, 1);
+		snip(10, 8, 5, 7);
+		snip(17, 10, 8, 6);
+		snip(24, 9, 1, 1);
+		snip(24, 7, 1, 1);
+	}
 	public void generate_grid(int width, int height){
-		this.width = width;
-		this.height = height;
 		cells = new Cell[width][height];
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -174,5 +198,10 @@ public class Board {
 			temp = temp.getVizinho();
 		}
 		return options;
+	}
+
+	public void configura_passagem(int x1, int x2, int y1, int y2){
+		cells[x1][y1].configura_passagem(cells[x2][y2]);
+		cells[x2][y2].configura_passagem(cells[x1][y1]);
 	}
 }

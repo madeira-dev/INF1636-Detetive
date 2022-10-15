@@ -7,6 +7,7 @@ public class Cell{
     private int x;
     private int y;
     private String comodo;
+    private Cell passagem_secreta;
     private boolean fora_do_mapa;
     public Cell(int x, int y){
         personagem = "";
@@ -14,6 +15,7 @@ public class Cell{
         fora_do_mapa = false;
         this.x = x;
         this.y = y;
+        passagem_secreta = null;
     }
     public void print(){
         if(fora_do_mapa){
@@ -33,6 +35,9 @@ public class Cell{
         this.comodo = comodo;
     }
     public void aloca_personagem(String personagem){this.personagem = personagem;}
+    public void configura_passagem(Cell cell){
+        passagem_secreta = cell;
+    }
     public int get_x(){
         return x;
     }
