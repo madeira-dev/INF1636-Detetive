@@ -21,18 +21,19 @@ public class Main {
 			System.out.println();
 		}
 		Card [] palpite = new Card[3];
-		palpite[0] = Componentes.comodos_cartas()[0];
-		palpite[1] = Componentes.armas_cartas()[1];
-		palpite[2] = Componentes.personagens_cartas()[3];
+		palpite[0] = Componentes.armas_cartas()[1];
+		palpite[1] = Componentes.personagens_cartas()[3];
+		palpite[2] = Componentes.comodos_cartas()[0];
 
 		System.out.printf("Jogador 1 vai fazer o palpite:\n");
 		for(Card p: palpite){
 			System.out.println(p.getName());
 		}
+
+		b.chuta_palpite(palpite);
 		System.out.println();
 		Card[] options = b.guess(b.getPlayers()[0], palpite);
 	}
 
 }
-// casssa
-// escrevi e sai correndo pau no cu de quem ta lendo
+

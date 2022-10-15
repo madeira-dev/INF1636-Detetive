@@ -175,4 +175,18 @@ public class Board {
 		}
 		return options;
 	}
+
+	public boolean chuta_palpite (Card[] palpite) {
+		System.out.printf("\nArquivo Confidencial:\n%s\n%s\n%s\n",arquivo_confidencial[0].getName(),
+				arquivo_confidencial[1].getName(),arquivo_confidencial[2].getName());
+		if(Objects.equals(palpite[0].getName(), arquivo_confidencial[0].getName())
+				&& Objects.equals(palpite[1].getName(), arquivo_confidencial[1].getName())
+				&& Objects.equals(palpite[2].getName(), arquivo_confidencial[2].getName())){
+			return true; //jogador acertou o palpite
+		}
+		else {
+			return false;
+		}
+	}
 }
+
