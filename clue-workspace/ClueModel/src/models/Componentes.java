@@ -56,7 +56,6 @@ public class Componentes{
 		
 		return val;
 	}
-
 	public static Card[] arquivo_confidencial()
 	{
 		Random result = new Random();

@@ -48,6 +48,9 @@ public class Cell{
     public boolean is_free(){
         return !fora_do_mapa;
     }
+    public String getComodo(){
+        return comodo;
+    }
     public void print_coord(){
         System.out.printf("(%d, %d)\n", x, y);
     }

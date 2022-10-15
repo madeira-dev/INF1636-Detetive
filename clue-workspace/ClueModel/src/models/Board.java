@@ -104,6 +104,9 @@ public class Board {
 		}
 		for(int i=0; i < last; i++){
 			Cell cell = origins[i];
+			if(!Objects.equals(cell.getComodo(), "")){
+				continue;
+			}
 			if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
 				origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
 				added++;
@@ -205,5 +208,16 @@ public class Board {
 	public void configura_passagem(int x1, int x2, int y1, int y2){
 		cells[x1][y1].configura_passagem(cells[x2][y2]);
 		cells[x2][y2].configura_passagem(cells[x1][y1]);
+	}
+
+	public int[][] get_coord_room(String nome){
+		int [][] coords = new int[2][0];
+		switch (nome){
+			case("Study"):{
+				coords = Arrays.copyOf(coords, 1);
+				coords[0] = new int[]{7, 4};
+			}
+		}
+		return coords;
 	}
 }
