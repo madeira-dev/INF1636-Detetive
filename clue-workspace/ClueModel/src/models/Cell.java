@@ -49,18 +49,21 @@ public class Cell{
     public void configura_passagem(Cell cell){
         passagem_secreta = cell;
     }
+    // Getters
     public int get_x(){
         return x;
     }
     public int get_y(){
         return y;
     }
-    public boolean is_free(){
-        return !fora_do_mapa && Objects.equals(personagem, "");
-    }
     public String getComodo(){
         return comodo;
     }
+    // Checa se o espaço é válida
+    public boolean is_free(){
+        return !fora_do_mapa && Objects.equals(personagem, "");
+    }
+    // Usado para debug
     public void print_coord(){
         System.out.printf("(%d, %d)\n", x, y);
     }
