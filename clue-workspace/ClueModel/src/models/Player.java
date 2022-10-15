@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Player implements PlayerFactory {
-	
+	private Player vizinho;
 	private String name;
 	private String character;
 
@@ -49,9 +49,10 @@ public class Player implements PlayerFactory {
 		return possui;
 	}
 
-	public int valida_chute() {
-
+	public void setVizinho(Player vizinho) {
+		this.vizinho = vizinho;
+	}
+	public Player getVizinho(){
+		return this.vizinho;
 	}
 }
-
-
