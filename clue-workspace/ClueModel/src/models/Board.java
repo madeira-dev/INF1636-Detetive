@@ -44,6 +44,7 @@ public class Board {
 		deal_cards();
 		//Study
 		snip(1, 1, 7, 4);
+		set_room("Study", 7, 4);
 		//Hall
 		snip(10, 1, 6, 6);
 		snip(9, 1, 1, 1);
@@ -148,16 +149,25 @@ public class Board {
 				continue;
 			}
 			if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
-				origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
-				added++;
+				// Exceção porta lounge
+				if(!(cell.get_x() == 17 && cell.get_y() == 6)){
+					origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
+					added++;
+				}
 			}
 			if(cells[cell.get_x() - 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() - 1][cell.get_y()])){
-				origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
-				added++;
+				// Exceção porta study
+				if(!(cell.get_x() == 8 && cell.get_y() == 4)){
+					origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
+					added++;
+				}
 			}
 			if(cells[cell.get_x()][cell.get_y() + 1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() + 1])){
-				origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
-				added++;
+				// Exceção porta conservatory
+				if(!(cell.get_x() == 5 && cell.get_y() == 19)){
+					origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
+					added++;
+				}
 			}
 			if(cells[cell.get_x()][cell.get_y()-1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() - 1])){
 				origins[last + added] = cells[cell.get_x()][cell.get_y() - 1];
