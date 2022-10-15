@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
+// Implementação lógica do tabuleiro (Precisa ser conectado a uma interface gráfica!!)
 public class Board {
 	private Player[] players;
 	private int num_players;
@@ -29,14 +30,16 @@ public class Board {
 		}
 		return instance;
 	}
-	public Player get_player_by_name(String name){
+	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
+	public Player get_player_by_character(String name){
 		for(Player p: players){
-			if(Objects.equals(p.getName(), name)){
+			if(Objects.equals(p.getCharacter(), name)){
 				return p;
 			}
 		}
 		return null;
 	}
+	// Inicializa o tabuleiro com base na imagem fornecida
 	public void init_all(){
 		generate_grid(width, height);
 		init_players(3);
@@ -114,7 +117,15 @@ public class Board {
 		set_character("Professor Plum",0,6);
 		set_character("Srta. White",0,19);
 	}
-	public void generate_grid(int width, int height){
+	// Funções usadas para configurar lógica do tabuleiro
+	private void init_players(int num){
+		players = new Player[num];
+	}
+	private void add_player(String name, String character){
+		players[num_players] = new Player(name, character);
+		num_players++;
+	}
+	private void generate_grid(int width, int height){
 		cells = new Cell[width][height];
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -125,106 +136,26 @@ public class Board {
 			}
 		}
 	}
-	public void snip(int x, int y, int width, int height){
+	private void snip(int x, int y, int width, int height){
 		for(int i=x; i < x + width; i++){
 			for(int j=y; j < y + height; j++){
 				cells[i][j].tira_do_mapa();
 			}
 		}
 	}
-
-	public void print_board(){
-		for(int i=0; i < width; i++){
-			for(int j=0; j < height; j++){
-				cells[j][i].print();
-			}
-			System.out.print("\n");
-		}
-	}
-	public void set_room(String comodo, int x, int y){
+	private void set_room(String comodo, int x, int y){
 		cells[x][y].vira_comodo(comodo);
 		cells[x][y].coloca_no_mapa();
 	}
-	public void set_character(String character, int x, int y){
+	private void set_character(String character, int x, int y){
 		cells[x][y].aloca_personagem(character);
 	}
-	public Cell get_cell(int x, int y){
-		return cells[x][y];
-	}
-	public Cell[] gen_moves(Cell[] origins, int depth, int last){
-		boolean primeira_iteracao = false;
-		int[][] temp;
-		int added = 0;
-		if(depth == 0){
-			return origins;
-		}
-		if(last == 1){
-			primeira_iteracao = true;
-			if(!Objects.equals(origins[0].getComodo(), "")){
-				if(origins[0].get_passagem() != null){
-					origins[last + added] = origins[0].get_passagem();
-					last++;
-				}
-				temp = get_coord_room(origins[0].getComodo());
-				for (int[] coord: temp){
-					origins[last + added] = cells[coord[0]][coord[1]];
-					last++;
-				}
-			}
-		}
-
-		for(int i=0; i < last; i++){
-			Cell cell = origins[i];
-			if(!Objects.equals(cell.getComodo(), "") && !primeira_iteracao){
-				continue;
-			}
-			if(cell.get_passagem() != null && cell != origins[0]){
-				continue;
-			}
-				if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
-				// Exceção porta lounge
-				if(!(cell.get_x() == 17 && cell.get_y() == 6)){
-					origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
-					added++;
-				}
-			}
-			if(cells[cell.get_x() - 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() - 1][cell.get_y()])){
-				// Exceção porta study
-				if(!(cell.get_x() == 8 && cell.get_y() == 4)){
-					origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
-					added++;
-				}
-			}
-			if(cells[cell.get_x()][cell.get_y() + 1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() + 1])){
-				// Exceção porta conservatory
-				if(!(cell.get_x() == 5 && cell.get_y() == 19)){
-					origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
-					added++;
-				}
-			}
-			if(cells[cell.get_x()][cell.get_y()-1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() - 1])){
-				origins[last + added] = cells[cell.get_x()][cell.get_y() - 1];
-				added++;
-			}
-		}
-		return gen_moves(origins, depth-1, last + added);
-	}
-	public void gera_arquivo(){
-		arquivo_confidencial = Componentes.arquivo_confidencial();
-	}
-	public void init_players(int num){
-		players = new Player[num];
-	}
-	public void add_player(String name, String character){
-		players[num_players] = new Player(name, character);
-		num_players++;
-	}
-	public void set_neighbors(){
+	private void set_neighbors(){
 		for(int i=0; i < num_players; i++){
 			players[i].setVizinho(players[(i + 1) % num_players]);
 		}
 	}
-	public void deal_cards(){
+	private void deal_cards(){
 		int i = 0;
 		boolean[] ja_usado = new boolean[18];
 		Card[] cards = new Card[18];
@@ -271,33 +202,131 @@ public class Board {
 		}
 
 	}
+	private void configura_passagem(int x1, int x2, int y1, int y2){
+		cells[x1][y1].configura_passagem(cells[x2][y2]);
+		cells[x2][y2].configura_passagem(cells[x1][y1]);
+	}
+	private void gera_arquivo(){
+		arquivo_confidencial = Componentes.arquivo_confidencial();
+	}
+	// Printa tabuleiro (usada para debug apenas)
+	public void print_board(){
+		for(int i=0; i < width; i++){
+			for(int j=0; j < height; j++){
+				cells[j][i].print();
+			}
+			System.out.print("\n");
+		}
+	}
+	// Getter
+	public Cell get_cell(int x, int y){
+		return cells[x][y];
+	}
+	// Gera movimentos
+	public Cell[] gen_moves(Cell[] origins, int depth, int last){
+		boolean primeira_iteracao = false;
+		int[][] temp;
+		int added = 0;
+		// Se restam 0 passos, retornamos
+		if(depth == 0){
+			return origins;
+		}
+		// Se é o primeiro passo da iteração, temos algumas considerações
+		if(last == 1){
+			primeira_iteracao = true;
+			if(!Objects.equals(origins[0].getComodo(), "")){
+				if(origins[0].get_passagem() != null){
+					// Se é um cômodo com passagem secreta, adiciona na lista
+					origins[last + added] = origins[0].get_passagem();
+					last++;
+				}
+				// Se é um cômodo, adiciona todas as saídas possíveis na lista
+				temp = get_coord_room(origins[0].getComodo());
+				for (int[] coord: temp){
+					origins[last + added] = cells[coord[0]][coord[1]];
+					last++;
+				}
+			}
+		}
+		for(int i=0; i < last; i++){
+			Cell cell = origins[i];
+			// Se chegamos num cômodo, não podemos continuar andando
+			if(!Objects.equals(cell.getComodo(), "") && !primeira_iteracao){
+				continue;
+			}
+			// Se chegamos de uma passagem secreta, não podemos continuar andando
+			if(cell.get_passagem() != null && cell != origins[0]){
+				continue;
+			}
+			// Checa direita
+			if(cells[cell.get_x() + 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() + 1][cell.get_y()])){
+				// Exceção porta lounge
+				if(!(cell.get_x() == 17 && cell.get_y() == 6)){
+					origins[last + added] = cells[cell.get_x() + 1][cell.get_y()];
+					added++;
+				}
+			}
+			// Checa esquerda
+			if(cells[cell.get_x() - 1][cell.get_y()].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x() - 1][cell.get_y()])){
+				// Exceção porta study
+				if(!(cell.get_x() == 8 && cell.get_y() == 4)){
+					origins[last + added] = cells[cell.get_x() - 1][cell.get_y()];
+					added++;
+				}
+			}
+			// Checa embaixo
+			if(cells[cell.get_x()][cell.get_y() + 1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() + 1])){
+				// Exceção porta conservatory
+				if(!(cell.get_x() == 5 && cell.get_y() == 19)){
+					origins[last + added] = cells[cell.get_x()][cell.get_y() + 1];
+					added++;
+				}
+			}
+			// Checa em cima
+			if(cells[cell.get_x()][cell.get_y()-1].is_free() && !Arrays.asList(origins).contains(cells[cell.get_x()][cell.get_y() - 1])){
+				origins[last + added] = cells[cell.get_x()][cell.get_y() - 1];
+				added++;
+			}
+		}
+		// Chama recursivamente com 1 passo a menos
+		return gen_moves(origins, depth-1, last + added);
+	}
+	// Move jogador
 	public void move_player(Player player, Cell destination){
 		player.set_cell(destination);
 
 	}
+	// Palpite
 	public Card[] guess(Player guesser, Card[] cards){
-		Player acusado = get_player_by_name(cards[1].getName());
-		move_player(acusado, guesser.get_cell());
+		// Move o acusado para a sala
+		Player acusado = get_player_by_character(cards[1].getName());
+		if(acusado != null){
+			move_player(acusado, guesser.get_cell());
+		}
+
+
 		Player temp = guesser.getVizinho();
 		Card[] options = new Card[0];
+		// Se chegamos de novo no palpitador, encerramos o loop
 		while (!Objects.equals(temp.getName(), guesser.getName())){
+			// Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
 			options = temp.possui_algum(cards);
+			// Debug
 			System.out.printf("%s pode mostrar\n", temp.getName());
 			for(Card c: options){
 				System.out.println(c.getName());
 			}
+			// Se o jogador pode mostrar algo, encerramos
 			if(options.length != 0){
 				return options;
 			}
+			// Se não, avançamos para o próximo
 			temp = temp.getVizinho();
 		}
 		return options;
 	}
-	public void configura_passagem(int x1, int x2, int y1, int y2){
-		cells[x1][y1].configura_passagem(cells[x2][y2]);
-		cells[x2][y2].configura_passagem(cells[x1][y1]);
-	}
-	public int[][] get_coord_room(String nome){
+	// Consulta onde estão as portas de cada cômodo (usada na movimentação)
+	private int[][] get_coord_room(String nome){
 		int [][] coords = new int[2][0];
 		switch (nome) {
 			case ("Study") -> {

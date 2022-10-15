@@ -15,6 +15,7 @@ public class Main {
 			}
 			m.print_coord();
 		}
+
 	}
 
 }
