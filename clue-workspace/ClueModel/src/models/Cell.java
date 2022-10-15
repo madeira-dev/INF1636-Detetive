@@ -34,6 +34,7 @@ public class Cell{
     public void vira_comodo(String comodo) {
         this.comodo = comodo;
     }
+    public void coloca_no_mapa(){this.fora_do_mapa = false;}
     public void aloca_personagem(String personagem){this.personagem = personagem;}
     public void configura_passagem(Cell cell){
         passagem_secreta = cell;

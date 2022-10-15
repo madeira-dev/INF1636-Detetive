@@ -55,6 +55,7 @@ public class Board {
 		snip(17, 10, 8, 6);
 		snip(24, 9, 1, 1);
 		snip(24, 7, 1, 1);
+		set_room("Study", 7, 4);
 	}
 	public void generate_grid(int width, int height){
 		cells = new Cell[width][height];
@@ -87,6 +88,7 @@ public class Board {
 	}
 	public void set_room(String comodo, int x, int y){
 		cells[x][y].vira_comodo(comodo);
+		cells[x][y].coloca_no_mapa();
 	}
 	public void set_character(String character, int x, int y){
 		cells[x][y].aloca_personagem(character);
