@@ -42,20 +42,60 @@ public class Board {
 
 		gera_arquivo();
 		deal_cards();
-
+		//Study
 		snip(1, 1, 7, 4);
+		//Hall
 		snip(10, 1, 6, 6);
 		snip(9, 1, 1, 1);
 		snip(16, 1, 1, 1);
+		//Lounge
 		snip(18, 1, 7, 6);
-		snip(1, 7, 7, 5);
-		snip(8, 8, 1, 3);
+		set_room("Lounge", 18, 6);
+
+		//Library
+		snip(1, 7, 6, 5);
+		snip(7, 8, 1, 3);
 		snip(1, 5, 1, 1);
+		set_room("Library", 7, 9);
+		set_room("Library", 3, 11);
+
+		//Meio do Mapa
 		snip(10, 8, 5, 7);
+
+		//Dining Room
 		snip(17, 10, 8, 6);
 		snip(24, 9, 1, 1);
 		snip(24, 7, 1, 1);
-		set_room("Study", 7, 4);
+		snip(20,16,5,1);
+		set_room("Dining Room", 18, 10);
+		set_room("Dining Room", 17, 13);
+
+		//Kitchen
+		snip(24,17,1,1);
+		snip(19,19,6,6);
+		snip(18,24,1,1);
+		snip(16,23,1,1);
+		set_room("Kitchen", 20, 19);
+		//Ball Room
+		snip(9,18,8,6);
+		snip(11,24,4,1);
+		set_room("Ball Room", 15, 18);
+		set_room("Ball Room", 10, 18);
+		set_room("Ball Room", 9, 20);
+		set_room("Ball Room", 16, 20);
+		//Conservatory
+		snip(1,20,5,5);
+		snip(6,21,1,4);
+		set_room("Conservatory", 5, 20);
+		snip(7,24,1,1);
+		//Billard Room
+		snip(1,13,5,5);
+		snip(1,18,1,1);
+		set_room("Billard Room",1,13);
+		set_room("Billard Room",5,16);
+
+
+
 	}
 	public void generate_grid(int width, int height){
 		cells = new Cell[width][height];
