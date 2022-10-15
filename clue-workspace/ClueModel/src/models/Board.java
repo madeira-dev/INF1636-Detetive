@@ -95,8 +95,6 @@ public class Board {
 		set_room("Billard Room",1,13);
 		set_room("Billard Room",5,16);
 
-
-
 	}
 	public void generate_grid(int width, int height){
 		cells = new Cell[width][height];
@@ -266,6 +264,40 @@ public class Board {
 			case("Study"):{
 				coords = Arrays.copyOf(coords, 1);
 				coords[0] = new int[]{7, 4};
+			}
+			case("Lounge"):{
+				coords = Arrays.copyOf(coords, 1);
+				coords[0] = new int[]{18, 6};
+			}
+			case("Library"):{
+				coords = Arrays.copyOf(coords, 2);
+				coords[0] = new int[]{7, 9};
+				coords[1] = new int[]{10, 11};
+			}
+			case("Dining Room"):{
+				coords = Arrays.copyOf(coords, 2);
+				coords[0] = new int[]{18, 10};
+				coords[1] = new int[]{17, 13};
+			}
+			case("Kitchen"):{
+				coords = Arrays.copyOf(coords, 1);
+				coords[0] = new int[]{20, 19};
+			}
+			case("Conservatory"):{
+				coords = Arrays.copyOf(coords, 1);
+				coords[0] = new int[]{5, 20};
+			}
+			case("Billard Room"):{
+				coords = Arrays.copyOf(coords, 2);
+				coords[0] = new int[]{1, 13};
+				coords[1] = new int[]{5, 16};
+			}
+			case("Ball Room"):{
+				coords = Arrays.copyOf(coords, 4);
+				coords[0] = new int[]{15, 18};
+				coords[1] = new int[]{10, 18};
+				coords[2] = new int[]{9, 20};
+				coords[3] = new int[]{16, 20};
 			}
 		}
 		return coords;
