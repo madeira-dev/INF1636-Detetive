@@ -3,10 +3,10 @@ package models;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Player implements PlayerFactory {
+class Player implements PlayerFactory {
 	private Player vizinho;
 	private final String name;
-	private final String character;
+	private String character;
 
 	private Cell cell;
 	private Card[] cardsArr = new Card[0];
@@ -57,5 +57,9 @@ public class Player implements PlayerFactory {
 	}
 	public void set_cell(Cell c){
 		cell = c;
+	}
+
+	public void setCharacter(String name) {
+		this.character = name;
 	}
 }

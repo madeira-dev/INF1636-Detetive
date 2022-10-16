@@ -1,6 +1,6 @@
 package models;
 
-public interface PlayerFactory {
+interface PlayerFactory {
 	
 	public String getName();
 	

@@ -1,10 +1,12 @@
 package models;
 
-public class Card implements CardFactory {
+class Card implements CardFactory {
 	
 	private String name;
 
-	public Card(String name) {this.name=name;}
+	public Card(String name) {
+		this.name=name;
+		}
 
 
 	@Override

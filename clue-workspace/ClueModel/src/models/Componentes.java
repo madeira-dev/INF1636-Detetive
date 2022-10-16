@@ -1,8 +1,7 @@
 package models;
 import java.util.Random;
-import models.Card;
 
-public class Componentes{
+class Componentes{
 	
 	public static Card[] personagens_cartas(){
 	Card[] personagens = {
@@ -26,9 +25,10 @@ public class Componentes{
       new Card("Castiçal"),
       new Card("Revolver")
     };
-	return armas_cartas;
 	
+	return armas_cartas;
 	}
+	
 	public static Card[] comodos_cartas() {
 		
 		Card[] comodos_cartas = {
@@ -45,6 +45,7 @@ public class Componentes{
     
 		return comodos_cartas;
   }
+
 	public int dados() {
 		Random result = new Random();
 		int val,val1=1,val2=1;
@@ -56,6 +57,7 @@ public class Componentes{
 		
 		return val;
 	}
+
 	public static Card[] arquivo_confidencial()
 	{
 		Random result = new Random();
@@ -75,8 +77,7 @@ public class Componentes{
 		
 		return arquivo;
 		
-	} 
-	
+	}
 	
 }
 

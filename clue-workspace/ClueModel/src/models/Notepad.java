@@ -1,7 +1,7 @@
 package models;
 import java.util.Arrays;
 
-public class notepad {
+class Notepad {
 
 	//	ordem de armas no array: Corda, Cano de Chumbo, Faca, Chave Inglesa, Castiçal, Revólver
 	private Boolean[] weapons = {false, false, false, false, false, false};
@@ -18,8 +18,16 @@ public class notepad {
 	
 	public void printRooms() { System.out.println(Arrays.toString(this.rooms)); }
 	
-	public Boolean[] setTrue(Boolean[] arr, int index) { arr[index] = true; return arr; }
+	public Boolean[] setTrue(Boolean[] arr, int index) {
+		arr[index] = true;
+		
+		return arr;
+	}
 	
-	public Boolean[] setFalse(Boolean[] arr, int index) { arr[index] = false; return arr; }
+	public Boolean[] setFalse(Boolean[] arr, int index) {
+		arr[index] = false;
+		
+		return arr;
+	}
 	
 }

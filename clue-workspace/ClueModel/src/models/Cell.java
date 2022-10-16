@@ -3,13 +3,14 @@ package models;
 import java.util.Objects;
 
 // Abstração da "casa" lógica do tabuleiro
-public class Cell{
+class Cell{
     private String personagem;    // Personagem que ocupa a casa no momento ("" se nenhum)
     private final int x;    // Coordenada x da casa no tabuleiro
     private final int y;  // Coordenada y da casa no tabuleiro
     private String comodo; // Comodo que essa casa está, "" se está nos corredores
     private Cell passagem_secreta; // Passagem secreta que essa casa leva para, null se nenhum
     private boolean fora_do_mapa; // Se a casa está fora do tabuleiro (out of bounds ou interior dos comodos)
+    
     public Cell(int x, int y)   //Construtor
      {
         personagem = "";

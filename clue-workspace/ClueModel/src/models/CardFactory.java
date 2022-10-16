@@ -1,6 +1,6 @@
 package models;
 
-public interface CardFactory {
+interface CardFactory {
 	
 	public String getName();
 }
