@@ -3,16 +3,20 @@ package models;
 public class Main {
 	public static void main(String[] args) {
 		Board b = Board.getInstance();
+		MoveGenerator m = new MoveGenerator(b);
+
 		b.init_all();
 		b.print_board();
-		Cell[] origin = new Cell[100];
-		origin[0] = b.get_cell(20, 19);
-		Cell[] moves = b.gen_moves(origin, 2, 1);
-		for(Cell m:moves){
-			if(m == null){
+
+		Cell start = b.get_cell(20, 19);
+		m.set_generator(start);
+
+		Cell[] moves = m.get_moves(2);
+		for(Cell move:moves){
+			if(move == null){
 				break;
 			}
-			m.print_coord();
+			move.print_coord();
 		}
 
 	}
