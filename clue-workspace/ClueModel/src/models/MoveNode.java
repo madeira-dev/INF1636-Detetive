@@ -36,10 +36,10 @@ public class MoveNode {
     public boolean has_passed(Cell cell){
         for(Cell c: passed_by){
             if(c == cell){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean has_shortcut(){

@@ -31,16 +31,12 @@ public class MoveGenerator {
     }
 
     public Cell[] get_moves(int depth){
-        System.out.println(last);
         int [][] temp;
         boolean[] neighbors;
         int old_last = last;
         int [][] mov = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
-
-
         for(int i=first; i < old_last; i++){
             current_cell = nodes[i];
-
             if(current_cell.is_room() && !first_iteration){
                 continue;
             }
@@ -51,7 +47,6 @@ public class MoveGenerator {
             for(int j=0; j<4; j++) {
                 Cell c = board.get_cell(current_cell.get_x() + mov[j][0], current_cell.get_y() + mov[j][1]);
                 if (neighbors[j]) {
-                    System.out.println("added n");
                     add_node(c);
                 }
             }
@@ -69,17 +64,18 @@ public class MoveGenerator {
                 }
             }
         }
-    if(depth == 1){
-        return get_cells(nodes);
-    }
     first_iteration = false;
-    first = old_last + 1;
+    first = old_last;
+        if(depth == 1){
+            return get_cells(nodes);
+        }
     return get_moves(depth-1);
     }
 
     private Cell[] get_cells(MoveNode[] nodes){
         Cell[] cells = new Cell[last - first];
         for(int i=first; i < last; i++){
+            System.out.println(i);
             cells[i - first] = nodes[i].getCell();
         }
         return cells;
