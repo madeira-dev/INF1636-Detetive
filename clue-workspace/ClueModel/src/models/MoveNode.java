@@ -12,9 +12,9 @@ public class MoveNode {
         this.passed_by = new Cell[12];
         this.num_passed = 0;
     }
-
-    public int getNum_passed() {
-        return num_passed;
+    public void pass_node(MoveNode node){
+        passed_by[num_passed] = node.getCell();
+        num_passed++;
     }
 
     public Cell getCell(){
@@ -34,7 +34,8 @@ public class MoveNode {
     }
 
     public boolean has_passed(Cell cell){
-        for(Cell c: passed_by){
+        for(int i=0; i <num_passed; i++){
+            Cell c = passed_by[i];
             if(c == cell){
                 return true;
             }

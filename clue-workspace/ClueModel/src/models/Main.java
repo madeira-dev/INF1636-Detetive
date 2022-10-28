@@ -12,7 +12,7 @@ public class Main {
 		Cell start = b.get_cell(10, 25);
 		m.set_generator(start);
 
-		Cell[] moves = m.get_moves(2);
+		Cell[] moves = m.get_moves(7);
 		for(Cell move:moves){
 			if(move == null){
 				break;
