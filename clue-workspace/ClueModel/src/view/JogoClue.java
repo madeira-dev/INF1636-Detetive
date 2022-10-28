@@ -53,6 +53,7 @@ public class JogoClue extends JFrame {
            this.setLayout(null);
            this.setSize(1200, 700);
            this.setVisible(true);
+           this.setTitle("Gameplay - Clue");
 
            this.add(passagem_secreta);
            this.add(prox);
