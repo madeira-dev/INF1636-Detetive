@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/INF1636-Detetive.iml" filepath="$PROJECT_DIR$/INF1636-Detetive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clue-workspace/ClueModel/src/view/view.iml" filepath="$PROJECT_DIR$/clue-workspace/ClueModel/src/view/view.iml" />
     </modules>
   </component>
 </project>
