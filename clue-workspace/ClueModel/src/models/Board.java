@@ -17,7 +17,7 @@ class Board {
 	private Board() {
 		num_players = 0;
 		this.width = 26;
-		this.height = 26;
+		this.height = 27;
 		}
 	
 	public static Board getInstance() {
@@ -115,6 +115,12 @@ class Board {
 		snip(1,18,1,1);
 		set_room("Billard Room",1,13);
 		set_room("Billard Room",5,16);
+
+		// lilfix
+		snip(0, 25, 10, 1);
+		snip(11, 25, 4, 1);
+		snip(16, 25, 10, 1);
+
 
 		set_character("Coronel Mustard",8,25);
 		set_character("Srta. Scarlett",17,0);
@@ -232,8 +238,8 @@ class Board {
 	
 	// Printa tabuleiro (usada para debug apenas)
 	public void print_board(){
-		for(int i=0; i < width; i++){
-			for(int j=0; j < height; j++){
+		for(int i=0; i < height; i++){
+			for(int j=0; j < width; j++){
 				cells[j][i].print();
 			}
 			System.out.print("\n");
