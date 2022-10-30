@@ -49,6 +49,9 @@ public class MoveGenerator {
                 if (neighbors[j]) {
                     add_node(c);
                     nodes[last-1].pass_node(current_cell);
+                    if(depth==1 || c.is_room()){
+                        nodes[last-1].setIs_final();
+                    }
                 }
             }
 
@@ -59,12 +62,15 @@ public class MoveGenerator {
                 if(current_cell.has_shortcut()){
                     add_node(current_cell.get_shortcut());
                     nodes[last-1].pass_node(current_cell);
+                    nodes[last-1].setIs_final();
+
 
                 }
                 temp = get_coord_room(nodes[0].get_room());
                 for (int[] coord: temp) {
                     add_node(board.get_cell(coord[0], coord[1]));
                     nodes[last-1].pass_node(current_cell);
+                    nodes[last-1].setIs_final();
 
                 }
             }
@@ -78,15 +84,18 @@ public class MoveGenerator {
     }
 
     private Cell[] get_cells(MoveNode[] nodes){
-        Cell[] cells = new Cell[last - first];
+        Cell[] cells = new Cell[1000];
         Cell c;
         boolean add;
 
         int added = 0;
 
-        for(int i=first; i < last; i++){
-            add = true;
+        for(int i=0; i < last; i++){
+            if(!nodes[i].is_final()){
+                continue;
+            }
             c = nodes[i].getCell();
+            add = true;
             for(Cell c2: cells){
                 if(c2 == c){
                     add = false;

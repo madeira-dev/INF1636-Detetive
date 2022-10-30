@@ -6,11 +6,13 @@ public class MoveNode {
     Cell cell;
     Cell[] passed_by;
     int num_passed;
+    boolean is_final;
 
     MoveNode(Cell cell){
         this.cell = cell;
         this.passed_by = new Cell[12];
         this.num_passed = 0;
+        this.is_final = false;
     }
     public void pass_node(MoveNode node){
         passed_by[num_passed] = node.getCell();
@@ -19,6 +21,12 @@ public class MoveNode {
 
     public Cell getCell(){
         return cell;
+    }
+    public void setIs_final(){
+        is_final = true;
+    }
+    public boolean is_final(){
+        return this.is_final;
     }
     public int get_x(){
         return cell.get_x();
