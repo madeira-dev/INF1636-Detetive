@@ -17,7 +17,7 @@ class Board {
 	private Board() {
 		num_players = 0;
 		this.width = 26;
-		this.height = 26;
+		this.height = 27;
 		}
 	
 	public static Board getInstance() {
@@ -60,12 +60,12 @@ class Board {
 		configura_passagem(7,20,4,19);
 		
 		//Hall
-		snip(10, 1, 6, 6);
+		snip(10, 1, 6, 7);
 		snip(9, 1, 1, 1);
 		snip(16, 1, 1, 1);
 		set_room("Hall",10,4);
-		set_room("Hall",13,6);
-		set_room("Hall",12,6);
+		set_room("Hall",13,7);
+		set_room("Hall",12,7);
 		
 		//Lounge
 		snip(18, 1, 7, 6);
@@ -79,7 +79,7 @@ class Board {
 		set_room("Library", 4, 11);
 
 		//Meio do Mapa
-		snip(10, 8, 5, 7);
+		snip(10, 9, 5, 7);
 
 		//Dining Room
 		snip(17, 10, 8, 6);
@@ -111,10 +111,17 @@ class Board {
 		configura_passagem(5,18,20,16);
 
 		//Billard Room
-		snip(1,13,5,5);
+		snip(1,13,6,5);
 		snip(1,18,1,1);
-		set_room("Billard Room",1,13);
-		set_room("Billard Room",5,16);
+		snip(1, 12, 1, 1);
+		set_room("Billard Room",2,13);
+		set_room("Billard Room",6,16);
+
+		// lilfix
+		snip(0, 25, 10, 1);
+		snip(11, 25, 4, 1);
+		snip(16, 25, 10, 1);
+
 
 		set_character("Coronel Mustard",8,25);
 		set_character("Srta. Scarlett",17,0);
@@ -232,8 +239,8 @@ class Board {
 	
 	// Printa tabuleiro (usada para debug apenas)
 	public void print_board(){
-		for(int i=0; i < width; i++){
-			for(int j=0; j < height; j++){
+		for(int i=0; i < height; i++){
+			for(int j=0; j < width; j++){
 				cells[j][i].print();
 			}
 			System.out.print("\n");
@@ -281,5 +288,4 @@ class Board {
 		return options;
 	}
 	
-	// Consulta onde estão as portas de cada cômodo (usada na movimentação)
 }

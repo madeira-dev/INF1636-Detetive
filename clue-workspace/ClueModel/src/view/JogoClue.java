@@ -8,8 +8,9 @@ import javax.swing.*;
 
 public class JogoClue extends JFrame {
 
-       Image img_tabuleiro;
-       JPanel p;
+    Image img_tabuleiro;
+    JPanel p;
+    
     JButton passagem_secreta = new JButton("Passagem Secreta");
     JButton prox = new JButton("Próximo");
     JButton mostrar_cartas = new JButton("Mostrar Cartas");
@@ -24,12 +25,19 @@ public class JogoClue extends JFrame {
 
 
     JList num_dados = new JList(valores_dados);
+    
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    int sl = screenSize.width;
+    int sa = screenSize.height;
+    int x = sl/2-1200/2;
+    int y = sa/2-700/2;
 
   public JogoClue()
        {
            try
            {
-               img_tabuleiro = ImageIO.read(new File("E:\\Users\\thiag\\IdeaProjects\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiro.jpg"));
+               img_tabuleiro = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/Tabuleiro.jpg"));
            }
            catch(IOException e)
            {
@@ -54,6 +62,7 @@ public class JogoClue extends JFrame {
            this.setSize(1200, 700);
            this.setVisible(true);
            this.setTitle("Gameplay - Clue");
+           this.setBounds(x, y, 1200, 700);
 
            this.add(passagem_secreta);
            this.add(prox);
