@@ -11,7 +11,7 @@ public class MoveGenerator {
     MoveNode[] nodes;
     MoveGenerator(Board board){
         this.board = board;
-        this.nodes = new MoveNode[100];
+        this.nodes = new MoveNode[1000];
     }
     {
         reset_variables();
@@ -94,8 +94,8 @@ public class MoveGenerator {
                 }
             }
             if(add){
+                cells[added] = c;
                 added++;
-                cells[i-first] = c;
             }
         }
         return Arrays.copyOf(cells, added);
