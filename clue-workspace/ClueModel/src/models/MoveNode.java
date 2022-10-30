@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 public class MoveNode {
     Cell cell;
+    // Lista de células que foram atravessadas para chegar até a célula atual
+    // garante que uma casa não seja pisada duas vezes no mesmo turno.
     Cell[] passed_by;
     int num_passed;
+    // O nó atual é final? (Destino válido para se mover para)
     boolean is_final;
 
     MoveNode(Cell cell){
@@ -14,11 +17,12 @@ public class MoveNode {
         this.num_passed = 0;
         this.is_final = false;
     }
+    // Adiciona um nó à lista de nós atravessados para chegar a determinada casa
     public void pass_node(MoveNode node){
         passed_by[num_passed] = node.getCell();
         num_passed++;
     }
-
+    // Getters / setters
     public Cell getCell(){
         return cell;
     }
