@@ -111,10 +111,10 @@ class Board {
 		configura_passagem(5,18,20,16);
 
 		//Billard Room
-		snip(1,13,5,5);
+		snip(1,13,6,5);
 		snip(1,18,1,1);
 		set_room("Billard Room",1,13);
-		set_room("Billard Room",5,16);
+		set_room("Billard Room",6,16);
 
 		// lilfix
 		snip(0, 25, 10, 1);
