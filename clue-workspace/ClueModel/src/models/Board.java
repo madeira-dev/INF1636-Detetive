@@ -113,7 +113,8 @@ class Board {
 		//Billard Room
 		snip(1,13,6,5);
 		snip(1,18,1,1);
-		set_room("Billard Room",1,13);
+		snip(1, 12, 1, 1);
+		set_room("Billard Room",2,13);
 		set_room("Billard Room",6,16);
 
 		// lilfix
@@ -287,5 +288,4 @@ class Board {
 		return options;
 	}
 	
-	// Consulta onde estão as portas de cada cômodo (usada na movimentação)
 }

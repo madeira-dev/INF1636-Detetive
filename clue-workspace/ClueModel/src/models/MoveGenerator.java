@@ -35,6 +35,20 @@ public class MoveGenerator {
         boolean[] neighbors;
         int old_last = last;
         int [][] mov = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+
+        if(first_iteration){
+            if(current_cell.is_room()){
+                if(current_cell.has_shortcut()){
+                    add_node(current_cell.get_shortcut());
+                    old_last++;
+                }
+                temp = get_coord_room(nodes[0].get_room());
+                for (int[] coord: temp) {
+                    add_node(board.get_cell(coord[0], coord[1]));
+                    old_last++;
+                }
+            }
+        }
         for(int i=first; i < old_last; i++){
             current_cell = nodes[i];
             if(current_cell.is_room() && !first_iteration){
@@ -57,24 +71,6 @@ public class MoveGenerator {
 
         }
 
-        if(first_iteration){
-            if(current_cell.is_room()){
-                if(current_cell.has_shortcut()){
-                    add_node(current_cell.get_shortcut());
-                    nodes[last-1].pass_node(current_cell);
-                    nodes[last-1].setIs_final();
-
-
-                }
-                temp = get_coord_room(nodes[0].get_room());
-                for (int[] coord: temp) {
-                    add_node(board.get_cell(coord[0], coord[1]));
-                    nodes[last-1].pass_node(current_cell);
-                    nodes[last-1].setIs_final();
-
-                }
-            }
-        }
     first_iteration = false;
     first = old_last;
         if(depth == 1){
@@ -114,6 +110,8 @@ public class MoveGenerator {
         nodes[last] = new MoveNode(to_add);
         last++;
     }
+    // Consulta onde estão as portas de cada cômodo (usada na movimentação)
+
     private int[][] get_coord_room(String nome){
         int [][] coords = new int[2][0];
         switch (nome) {
@@ -150,8 +148,8 @@ public class MoveGenerator {
 
             case ("Billard Room"):
                 coords = Arrays.copyOf(coords, 2);
-                coords[0] = new int[]{1, 13};
-                coords[1] = new int[]{5, 16};
+                coords[0] = new int[]{2, 13};
+                coords[1] = new int[]{6, 16};
                 break;
 
             case ("Ball Room"):
