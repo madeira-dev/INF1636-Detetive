@@ -9,10 +9,10 @@ public class Main {
 		b.print_board();
 
 
-		Cell start = b.get_cell(10, 25);
+		Cell start = b.get_cell(8, 12);
 		m.set_generator(start);
 
-		Cell[] moves = m.get_moves(7);
+		Cell[] moves = m.get_moves(3);
 		for(Cell move:moves){
 			if(move == null){
 				break;

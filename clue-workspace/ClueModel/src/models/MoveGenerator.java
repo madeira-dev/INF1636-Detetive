@@ -79,10 +79,26 @@ public class MoveGenerator {
 
     private Cell[] get_cells(MoveNode[] nodes){
         Cell[] cells = new Cell[last - first];
+        Cell c;
+        boolean add;
+
+        int added = 0;
+
         for(int i=first; i < last; i++){
-            cells[i - first] = nodes[i].getCell();
+            add = true;
+            c = nodes[i].getCell();
+            for(Cell c2: cells){
+                if(c2 == c){
+                    add = false;
+                    break;
+                }
+            }
+            if(add){
+                added++;
+                cells[i-first] = c;
+            }
         }
-        return cells;
+        return Arrays.copyOf(cells, added);
     }
 
     private void add_node(Cell to_add){

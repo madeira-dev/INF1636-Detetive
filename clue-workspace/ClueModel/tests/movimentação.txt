@@ -1,0 +1,7 @@
+1. Teste normal partindo de (10, 25) e tirando 7
+(8, 22)
+(7, 21)
+(7, 21)
+(7, 23)
+(7, 21)
+(8, 20)
