@@ -9,7 +9,7 @@ public class Main {
 		b.print_board();
 
 
-		Cell start = b.get_cell(2, 13);
+		Cell start = b.get_cell(20, 19);
 		m.set_generator(start);
 
 		Cell[] moves = m.get_moves(2);

@@ -40,6 +40,7 @@ public class MoveGenerator {
             if(current_cell.is_room()){
                 if(current_cell.has_shortcut()){
                     add_node(current_cell.get_shortcut());
+                    nodes[last-1].setIs_final();
                     old_last++;
                 }
                 temp = get_coord_room(nodes[0].get_room());
