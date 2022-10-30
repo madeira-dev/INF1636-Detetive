@@ -20,7 +20,7 @@ import java.io.IOException;
         {
             try
             {
-                img_menu = ImageIO.read(new File("clue-workspace\\ClueModel\\src\\view\\Clue1.jpg"));
+                img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/iew/Clue1.jpg"));
             }
             catch(IOException e)
             {
