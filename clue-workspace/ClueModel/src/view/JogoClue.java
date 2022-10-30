@@ -37,7 +37,7 @@ public class JogoClue extends JFrame {
        {
            try
            {
-               img_tabuleiro = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/Tabuleiro.jpg"));
+               img_tabuleiro = ImageIO.read(new File("clue-workspace/ClueModel/src/view/Tabuleiro.jpg"));
            }
            catch(IOException e)
            {

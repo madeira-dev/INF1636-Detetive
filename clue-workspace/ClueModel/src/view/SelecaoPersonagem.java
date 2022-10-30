@@ -27,7 +27,7 @@ public class SelecaoPersonagem extends JFrame {
     {
         try
         {
-            img_menu = ImageIO.read(new File("E:\\Users\\thiag\\IdeaProjects\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\CluePersonagens.png"));
+            img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/view/CluePersonagens.png"));
         }
         catch(IOException e)
         {
@@ -47,7 +47,7 @@ public class SelecaoPersonagem extends JFrame {
         this.setLayout(null);
         this.setSize(966, 700);
         this.setVisible(true);
-        this.setTitle("Menu Inicial");
+        this.setTitle("Seleção Personagem");
 
         this.add(jogar);
         this.add(scarlett);
@@ -57,7 +57,7 @@ public class SelecaoPersonagem extends JFrame {
         this.add(plum);
         this.add(peacock);
 
-        //this.add(nova_partida);
+
 
     }
 
