@@ -60,12 +60,12 @@ class Board {
 		configura_passagem(7,20,4,19);
 		
 		//Hall
-		snip(10, 1, 6, 6);
+		snip(10, 1, 6, 7);
 		snip(9, 1, 1, 1);
 		snip(16, 1, 1, 1);
 		set_room("Hall",10,4);
-		set_room("Hall",13,6);
-		set_room("Hall",12,6);
+		set_room("Hall",13,7);
+		set_room("Hall",12,7);
 		
 		//Lounge
 		snip(18, 1, 7, 6);
@@ -79,7 +79,7 @@ class Board {
 		set_room("Library", 4, 11);
 
 		//Meio do Mapa
-		snip(10, 8, 5, 7);
+		snip(10, 9, 5, 7);
 
 		//Dining Room
 		snip(17, 10, 8, 6);
