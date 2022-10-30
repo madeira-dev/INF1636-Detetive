@@ -9,9 +9,23 @@ public class MoveGenerator {
     boolean first_iteration;
     MoveNode current_cell;
     MoveNode[] nodes;
+    private static volatile MoveGenerator instance = null;
+
     MoveGenerator(Board board){
         this.board = board;
         this.nodes = new MoveNode[1000];
+    }
+    public static MoveGenerator getInstance(Board b) {
+        if (instance == null) {
+
+//			making thread safe
+            synchronized (Board.class) {
+//				check again as multiple threads can reach above step
+                if (instance == null)
+                    instance = new MoveGenerator(b);
+            }
+        }
+        return instance;
     }
     {
         reset_variables();
