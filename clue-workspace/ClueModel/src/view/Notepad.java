@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 
 public class Notepad extends JFrame implements ActionListener {
@@ -40,42 +42,66 @@ public class Notepad extends JFrame implements ActionListener {
     public Notepad()
     {
 
-
         salvar.setBounds(450,300,100,20);
         salvar.addActionListener(this);
 
+//      suspeitos
         scarlett.setBounds(15,40,150,20);
+        
         green.setBounds(15,80,150,20);
+        
         white.setBounds(15,120,150,20);
+        
         mustard.setBounds(15,160,150,20);
+        
         plum.setBounds(15,200,150,20);
+        
         peacock.setBounds(15,240,150,20);
 
+
+//		armas
         corda.setBounds(180,40,150,20);
+
         cano_chumbo.setBounds(180,80,150,20);
+        
         faca.setBounds(180,120,150,20);
+        
         chave_inglesa.setBounds(180,160,150,20);
+        
         castical.setBounds(180,200,150,20);
+        
         revolver.setBounds(180,240,150,20);
 
+
+//      comodos
         study.setBounds(330,40,150,20);
+        
         hall.setBounds(330,80,150,20);
+        
         lounge.setBounds(330,120,150,20);
+        
         library.setBounds(330,160,150,20);
+        
         dining_room.setBounds(330,200,150,20);
+        
         kitchen.setBounds(330,240,150,20);
+        
         ball_room.setBounds(330,280,150,20);
+        
         conservatory.setBounds(330,320,150,20);
+        
         billard_room.setBounds(330,360,150,20);
 
+        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(600, 400);
         this.setVisible(true);
         this.setTitle("Bloco de Notas");
 
-
         this.add(salvar);
+
+//		suspeitos
         this.add(scarlett);
         this.add(green);
         this.add(white);
@@ -83,6 +109,7 @@ public class Notepad extends JFrame implements ActionListener {
         this.add(plum);
         this.add(peacock);
 
+//      armas
         this.add(corda);
         this.add(cano_chumbo);
         this.add(faca);
@@ -90,6 +117,7 @@ public class Notepad extends JFrame implements ActionListener {
         this.add(castical);
         this.add(revolver);
 
+//		comodos
         this.add(study);
         this.add(billard_room);
         this.add(library);
@@ -104,7 +132,7 @@ public class Notepad extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
-			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			this.dispose();
 		}
 	}
 }
