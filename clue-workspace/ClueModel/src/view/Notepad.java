@@ -2,9 +2,11 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-public class Notepad extends JFrame {
+public class Notepad extends JFrame implements ActionListener {
 
 
     JCheckBox corda= new JCheckBox("Corda");
@@ -34,11 +36,13 @@ public class Notepad extends JFrame {
     JButton salvar = new JButton("Salvar");
 
 
+
     public Notepad()
     {
 
 
         salvar.setBounds(450,300,100,20);
+        salvar.addActionListener(this);
 
         scarlett.setBounds(15,40,150,20);
         green.setBounds(15,80,150,20);
@@ -96,4 +100,11 @@ public class Notepad extends JFrame {
         this.add(hall);
         this.add(ball_room);
     }
+    
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == salvar) {
+			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+	}
 }
