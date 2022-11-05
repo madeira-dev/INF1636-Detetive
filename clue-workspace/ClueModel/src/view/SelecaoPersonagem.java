@@ -66,34 +66,47 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e) {
+    	String []lista_jogadores = new String[6];
     	if(e.getSource() == jogar) {
-    		int num_jogadores = 0 ;
-        	
-        	if(scarlett.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(green.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(white.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(mustard.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(plum.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(peacock.isSelected()) {
-    			num_jogadores++;
-    		}
-    		if(num_jogadores>=3) {
-    			JogoClue tela_jogo = new JogoClue();
-    		}
+    		lista_jogadores = produzJogadores();
+    		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0],lista_jogadores[1],lista_jogadores[2],lista_jogadores[3],lista_jogadores[4],lista_jogadores[5]);
     	}
     	
     }
    
+    public String[] produzJogadores() {
+    	int num_jogadores = 0 ;
+    	String []lista_jogadores = new String[6];
+    	
+    	if(scarlett.isSelected()) {
+    		lista_jogadores[num_jogadores]= "Srta. Scarlett";
+			num_jogadores++;
+		}
+		if(green.isSelected()) {
+			lista_jogadores[num_jogadores]= "Rev. Green";
+			num_jogadores++;
+		}
+		if(white.isSelected()) {
+			lista_jogadores[num_jogadores]= "Mrs. White";
+			num_jogadores++;
+		}
+		if(mustard.isSelected()) {
+			lista_jogadores[num_jogadores]= "Coronel Mustard";
+			num_jogadores++;
+		}
+		if(plum.isSelected()) {
+			lista_jogadores[num_jogadores]= "Prof. Plum";
+			num_jogadores++;
+		}
+		if(peacock.isSelected()) {
+			lista_jogadores[num_jogadores]= "Mrs. Peacock";
+			num_jogadores++;
+		}
+		if(num_jogadores>=3) {
+			JogoClue tela_jogo = new JogoClue();
+		}
+		return lista_jogadores;
+    }
     	
 		
    
