@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 
-    public class MenuClue extends JFrame {
+    class MenuClue extends JFrame implements ActionListener {
 
         Image img_menu;
         JPanel p;
@@ -29,7 +29,9 @@ import java.io.IOException;
             p = new MyPanel(img_menu);
             continuar.setBounds(700,300,150,40);
             nova_partida.setBounds(700,370,150,40);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            nova_partida.addActionListener(this);
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             this.setLayout(null);
             this.setSize(966, 700);
             this.setVisible(true);
@@ -39,10 +41,10 @@ import java.io.IOException;
 
         }
 
+
         public void paint(Graphics g2d){
             super.paint(g2d);
             g2d.drawImage(img_menu,0,0,this);
-
         }
 
     }

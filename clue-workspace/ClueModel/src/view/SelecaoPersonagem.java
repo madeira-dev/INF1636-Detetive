@@ -43,7 +43,7 @@ public class SelecaoPersonagem extends JFrame {
         peacock.setBounds(600,300,150,40);
 
         //nova_partida.setBounds(700,370,150,40);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(966, 700);
         this.setVisible(true);

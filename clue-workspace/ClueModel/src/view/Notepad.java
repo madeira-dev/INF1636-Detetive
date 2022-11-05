@@ -64,7 +64,7 @@ public class Notepad extends JFrame {
         conservatory.setBounds(330,320,150,20);
         billard_room.setBounds(330,360,150,20);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(600, 400);
         this.setVisible(true);

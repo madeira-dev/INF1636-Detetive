@@ -57,7 +57,7 @@ public class JogoClue extends JFrame {
            //num_dados.addListSelectionListener(new MeuListListener());
            num_dados.setBounds(800,550,15,15);
 
-           this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
            this.setLayout(null);
            this.setSize(1200, 700);
            this.setVisible(true);
