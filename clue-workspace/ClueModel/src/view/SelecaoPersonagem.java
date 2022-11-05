@@ -1,14 +1,16 @@
 package view;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
 
 
-public class SelecaoPersonagem extends JFrame {
+public class SelecaoPersonagem extends JFrame implements ActionListener{
 
     Image img_menu;
     JPanel p;
@@ -35,7 +37,9 @@ public class SelecaoPersonagem extends JFrame {
         }
         p = new MyPanel(img_menu);
         jogar.setBounds(600,350,150,40);
+        jogar.addActionListener(this);
         scarlett.setBounds(600,100,150,40);
+        scarlett.addActionListener(this);
         green.setBounds(600,140,150,40);
         white.setBounds(600,180,150,40);
         mustard.setBounds(600,220,150,40);
@@ -60,7 +64,39 @@ public class SelecaoPersonagem extends JFrame {
 
 
     }
-
+    
+    public void actionPerformed(ActionEvent e) {
+    	if(e.getSource() == jogar) {
+    		int num_jogadores = 0 ;
+        	
+        	if(scarlett.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(green.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(white.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(mustard.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(plum.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(peacock.isSelected()) {
+    			num_jogadores++;
+    		}
+    		if(num_jogadores>=3) {
+    			JogoClue tela_jogo = new JogoClue();
+    		}
+    	}
+    	
+    }
+   
+    	
+		
+   
     public void paint(Graphics g2d){
         super.paint(g2d);
         g2d.drawImage(img_menu,0,0,this);

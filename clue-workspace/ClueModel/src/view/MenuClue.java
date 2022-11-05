@@ -1,14 +1,16 @@
 package view;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
 
 
-    class MenuClue extends JFrame implements ActionListener {
+    class MenuClue extends JFrame implements ActionListener{
 
         Image img_menu;
         JPanel p;
@@ -20,7 +22,7 @@ import java.io.IOException;
         {
             try
             {
-                img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/iew/Clue1.jpg"));
+                img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/view/Clue1.jpg"));
             }
             catch(IOException e)
             {
@@ -29,8 +31,9 @@ import java.io.IOException;
             p = new MyPanel(img_menu);
             continuar.setBounds(700,300,150,40);
             nova_partida.setBounds(700,370,150,40);
-
             nova_partida.addActionListener(this);
+
+           
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             this.setLayout(null);
             this.setSize(966, 700);
@@ -41,7 +44,11 @@ import java.io.IOException;
 
         }
 
-
+        public void actionPerformed(ActionEvent e) {
+        	if(e.getSource() == nova_partida) {
+        		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
+        	}
+        }
         public void paint(Graphics g2d){
             super.paint(g2d);
             g2d.drawImage(img_menu,0,0,this);
