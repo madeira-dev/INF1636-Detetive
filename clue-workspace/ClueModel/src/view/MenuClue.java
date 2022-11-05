@@ -3,12 +3,13 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 
 
-    class MenuClue extends JFrame implements ActionListener {
+    class MenuClue extends JFrame {
 
         Image img_menu;
         JPanel p;
@@ -30,7 +31,7 @@ import java.io.IOException;
             continuar.setBounds(700,300,150,40);
             nova_partida.setBounds(700,370,150,40);
 
-            nova_partida.addActionListener(this);
+//            nova_partida.addActionListener(this);
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             this.setLayout(null);
             this.setSize(966, 700);

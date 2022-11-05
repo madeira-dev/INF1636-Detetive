@@ -1,12 +1,15 @@
 package view;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
 
-public class JogoClue extends JFrame {
+public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
     JPanel p;
@@ -48,6 +51,7 @@ public class JogoClue extends JFrame {
            prox.setBounds(700,50,400,45);
            mostrar_cartas.setBounds(700,100,400,45);
            bloco_notas.setBounds(700,150,400,45);
+           bloco_notas.addActionListener(this);
            palpite.setBounds(700,200,400,45);
            acusar.setBounds(700,250,400,45);
            salvar_jogo.setBounds(700,325,400,45);
@@ -86,4 +90,12 @@ public class JogoClue extends JFrame {
 
    }
 
+@Override
+public void actionPerformed(ActionEvent e) {
+	if (e.getSource() == bloco_notas)
+	{
+		Notepad notes = new Notepad();
+	}
+
+}
 }
