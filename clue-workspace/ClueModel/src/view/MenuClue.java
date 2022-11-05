@@ -46,6 +46,7 @@ import java.io.IOException;
 
         public void actionPerformed(ActionEvent e) {
         	if(e.getSource() == nova_partida) {
+        		this.dispose();
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
         }

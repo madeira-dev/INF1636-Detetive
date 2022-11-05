@@ -92,10 +92,8 @@ public class JogoClue extends JFrame implements ActionListener {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-	if (e.getSource() == bloco_notas)
-	{
+	if (e.getSource() == bloco_notas) {
 		Notepad notes = new Notepad();
+		}
 	}
-
-}
 }
