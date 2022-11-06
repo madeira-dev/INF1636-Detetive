@@ -96,6 +96,7 @@ public void actionPerformed(ActionEvent e) {
 	{
 		Notepad notes = new Notepad();
 	}
+	
 
 }
 }

@@ -39,7 +39,6 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
         jogar.setBounds(600,350,150,40);
         jogar.addActionListener(this);
         scarlett.setBounds(600,100,150,40);
-        scarlett.addActionListener(this);
         green.setBounds(600,140,150,40);
         white.setBounds(600,180,150,40);
         mustard.setBounds(600,220,150,40);
