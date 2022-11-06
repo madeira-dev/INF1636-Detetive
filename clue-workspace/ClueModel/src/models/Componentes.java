@@ -46,18 +46,6 @@ class Componentes{
 		return comodos_cartas;
   }
 
-	public int dados() {
-		Random result = new Random();
-		int val,val1=1,val2=1;
-		
-		val1 += result.nextInt(6);
-		val2 += result.nextInt(6);
-		
-		val = val1 + val2;
-		
-		return val;
-	}
-
 	public static Card[] arquivo_confidencial()
 	{
 		Random result = new Random();

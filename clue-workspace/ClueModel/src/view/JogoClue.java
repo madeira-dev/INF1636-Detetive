@@ -6,12 +6,15 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import controller.*;
 
 
 
 public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
+    Image dado_resultado;
+    
     JPanel p;
     
     JButton passagem_secreta = new JButton("Passagem Secreta");
@@ -40,7 +43,8 @@ public class JogoClue extends JFrame implements ActionListener {
        {
            try
            {
-               img_tabuleiro = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/Tabuleiro.jpg"));
+               img_tabuleiro = ImageIO.read(new File("CluePersonagens.jpg"));
+               //dado_resultado = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/Tabuleiro.jpg"))
            }
            catch(IOException e)
            {
@@ -56,6 +60,7 @@ public class JogoClue extends JFrame implements ActionListener {
            acusar.setBounds(700,250,400,45);
            salvar_jogo.setBounds(700,325,400,45);
            jogar_dados.setBounds(700,500,400,45);
+           jogar_dados.addActionListener(this);
            escolher_dados.setBounds(900,550,200,55);
            num_dados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
            //num_dados.addListSelectionListener(new MeuListListener());
@@ -94,6 +99,34 @@ public class JogoClue extends JFrame implements ActionListener {
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == bloco_notas) {
 		Notepad notes = new Notepad();
+		}
+	if(e.getSource() == jogar_dados) {
+		int result1;
+		result1 = Dados.joga_dado();
+		
+		if(result1==1) {
+			
+		}
+		else if(result1==2) {
+			
+		}
+		else if(result1==3) {
+			
+		}
+		else if(result1==4) {
+	
+		}
+		else if(result1==5) {
+	
+		}
+		else if(result1==6) {
+	
+		}
+		else {
+	
+		}
+
+		System.out.printf("%d", result1);
 		}
 	}
 }
