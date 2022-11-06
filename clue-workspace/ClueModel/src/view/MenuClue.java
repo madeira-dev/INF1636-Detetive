@@ -22,7 +22,7 @@ import java.io.IOException;
         {
             try
             {
-                img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/view/Clue1.jpg"));
+                img_menu = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/Clue1.jpg"));
             }
             catch(IOException e)
             {
@@ -46,6 +46,7 @@ import java.io.IOException;
 
         public void actionPerformed(ActionEvent e) {
         	if(e.getSource() == nova_partida) {
+        		this.dispose();
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
         }

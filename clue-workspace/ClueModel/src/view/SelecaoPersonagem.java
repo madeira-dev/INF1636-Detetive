@@ -29,7 +29,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     {
         try
         {
-            img_menu = ImageIO.read(new File("clue-workspace/ClueModel/src/view/CluePersonagens.png"));
+            img_menu = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/CluePersonagens.png"));
         }
         catch(IOException e)
         {
@@ -67,6 +67,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	String []lista_jogadores = new String[6];
     	if(e.getSource() == jogar) {
+    		this.dispose();
     		lista_jogadores = produzJogadores();
     		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0],lista_jogadores[1],lista_jogadores[2],lista_jogadores[3],lista_jogadores[4],lista_jogadores[5]);
     	}
