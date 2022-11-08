@@ -62,8 +62,7 @@ public class JogoClue extends JFrame implements ActionListener {
        {
            try
            {
-               img_tabuleiro = ImageIO.read(new File("Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\Tabuleiro.jpg"));
-               //dado_resultado = ImageIO.read(new File("E:/Users/thiag/git/INF1636-Detetive/clue-workspace/ClueModel/src/view/Tabuleiros/dado1.jpg"));
+               img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
            }
            catch(IOException e)
            {
@@ -102,40 +101,34 @@ public class JogoClue extends JFrame implements ActionListener {
            this.setBounds(x, y, 1200, 700);
 
            this.add(passagem_secreta);
-           this.add(prox);
-           this.add(mostrar_cartas);
-           this.add(bloco_notas);
-           this.add(palpite);
-           this.add(acusar);
-           this.add(salvar_jogo);
-           this.add(jogar_dados);
-           this.add(escolher_dados);
-           this.add(num_dados);
-           
-           this.add(imagem_dado_gui1);
-           this.add(imagem_dado_gui2);
-           this.add(imagem_dado1);
-           this.add(imagem_dado2);
-           this.add(imagem_dado3);
-           this.add(imagem_dado4);
-           this.add(imagem_dado5);
-           this.add(imagem_dado6);
+//           this.add(prox);
+//           this.add(mostrar_cartas);
+//           this.add(bloco_notas);
+//           this.add(palpite);
+//           this.add(acusar);
+//           this.add(salvar_jogo);
+//           this.add(jogar_dados);
+//           this.add(escolher_dados);
+//           this.add(num_dados);
+//           
+//           this.add(imagem_dado_gui1);
+//           this.add(imagem_dado_gui2);
+//           this.add(imagem_dado1);
+//           this.add(imagem_dado2);
+//           this.add(imagem_dado3);
+//           this.add(imagem_dado4);
+//           this.add(imagem_dado5);
+//           this.add(imagem_dado6);
            
            imagem_dado_gui1.setVisible(true);
            imagem_dado_gui2.setVisible(true);
-           
-           
-           
+
            p = new MyPanel(img_tabuleiro);
-
-
    }
 
-   public void paint(Graphics g2d){
-      super.paint(g2d);
-      g2d.drawImage(img_tabuleiro,0,0,this);
-      
-
+   public void paint(Graphics g){
+	   Graphics2D g2D = (Graphics2D) g;
+      g2D.drawImage(img_tabuleiro,0,0,this);
    }
 
 @Override

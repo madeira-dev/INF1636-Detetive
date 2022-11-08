@@ -12,7 +12,7 @@ class Board {
 	private Cell[][] cells;
 	private final int width;
 	private final int height;
-	private static volatile Board instance = null;
+	private static Board instance = null;
 	
 	private Board() {
 		num_players = 0;
@@ -22,16 +22,10 @@ class Board {
 	
 	public static Board getInstance() {
 		if (instance == null) {
-			
-//			making thread safe
-			synchronized (Board.class) {
-//				check again as multiple threads can reach above step
-				if (instance == null)
-					instance = new Board();
+			instance = new Board();
 			}
-		}
 		return instance;
-	}
+		}
 	
 	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
 	public Player get_player_by_character(String name){
