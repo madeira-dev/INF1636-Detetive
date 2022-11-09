@@ -60,14 +60,14 @@ public class JogoClue extends JFrame implements ActionListener {
 
   public JogoClue()
        {
-           try
-           {
+           try {
                img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
            }
-           catch(IOException e)
-           {
+           catch(IOException e) {
                System.out.println(e.getMessage());
            }
+           
+           p = new MyPanel(img_tabuleiro);
 
            passagem_secreta.setBounds(700,0,400,45);
            prox.setBounds(700,50,400,45);
@@ -100,7 +100,7 @@ public class JogoClue extends JFrame implements ActionListener {
            this.setTitle("Gameplay - Clue");
            this.setBounds(x, y, 1200, 700);
 
-           this.add(passagem_secreta);
+//           this.add(passagem_secreta);
 //           this.add(prox);
 //           this.add(mostrar_cartas);
 //           this.add(bloco_notas);
@@ -110,23 +110,21 @@ public class JogoClue extends JFrame implements ActionListener {
 //           this.add(jogar_dados);
 //           this.add(escolher_dados);
 //           this.add(num_dados);
-//           
-//           this.add(imagem_dado_gui1);
-//           this.add(imagem_dado_gui2);
-//           this.add(imagem_dado1);
-//           this.add(imagem_dado2);
-//           this.add(imagem_dado3);
-//           this.add(imagem_dado4);
-//           this.add(imagem_dado5);
-//           this.add(imagem_dado6);
+           
+           this.add(imagem_dado_gui1);
+           this.add(imagem_dado_gui2);
+           this.add(imagem_dado1);
+           this.add(imagem_dado2);
+           this.add(imagem_dado3);
+           this.add(imagem_dado4);
+           this.add(imagem_dado5);
+           this.add(imagem_dado6);
            
            imagem_dado_gui1.setVisible(true);
            imagem_dado_gui2.setVisible(true);
-
-           p = new MyPanel(img_tabuleiro);
    }
 
-   public void paint(Graphics g){
+   public void paint(Graphics g) {
 	   Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
    }

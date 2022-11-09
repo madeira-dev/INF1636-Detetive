@@ -1,7 +1,7 @@
 package models;
 import java.util.Random;
 
-class Componentes{
+class Componentes {
 	
 	public static Card[] personagens_cartas(){
 	Card[] personagens = {
@@ -16,38 +16,34 @@ class Componentes{
 	}
 	
 	public static Card[] armas_cartas() {
-		
-	Card[] armas_cartas = {
-      new Card("Corda"),
-      new Card("Cano de Chumbo"),
-      new Card("Faca"),
-      new Card("Chave Inglesa"),
-      new Card("Castiçal"),
-      new Card("Revolver")
-    };
+		Card[] armas_cartas = {
+				new Card("Corda"),
+				new Card("Cano de Chumbo"),
+				new Card("Faca"),
+				new Card("Chave Inglesa"),
+				new Card("Castiçal"),
+				new Card("Revolver")
+				};
 	
-	return armas_cartas;
-	}
+		return armas_cartas;
+		}
 	
 	public static Card[] comodos_cartas() {
-		
 		Card[] comodos_cartas = {
-	      new Card("Billard Room"),
-	      new Card("Library"),
-	      new Card("Study"),
-	      new Card("Hall"),
-	      new Card("Lounge"),
-	      new Card("Dining Room"),
-	      new Card("Kitchen"),
-	      new Card("Ball Room"),
-	      new Card("Conservatory")
-	    };
-    
+				new Card("Billard Room"),
+				new Card("Library"),
+				new Card("Study"),
+				new Card("Hall"),
+				new Card("Lounge"),
+				new Card("Dining Room"),
+				new Card("Kitchen"),
+				new Card("Ball Room"),
+				new Card("Conservatory")
+				};
 		return comodos_cartas;
-  }
+		}
 
-	public static Card[] arquivo_confidencial()
-	{
+	public static Card[] arquivo_confidencial() {
 		Random result = new Random();
 		Card[] arquivo = new Card[3];
 		int index_suspeito,index_comodo,index_arma;

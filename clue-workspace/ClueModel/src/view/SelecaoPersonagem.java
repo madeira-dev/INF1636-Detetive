@@ -25,16 +25,14 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     JButton jogar = new JButton("Jogar");
 
 
-    public SelecaoPersonagem()
-    {
-        try
-        {
-            img_menu = ImageIO.read(new File("/home/madeira/Documents/PUC/INF1636-Detetive/clue-workspace/ClueModel/src/view/CluePersonagens.png"));
+    public SelecaoPersonagem() {
+        try {
+            img_menu = ImageIO.read(new File("imagens/Tabuleiros/CluePersonagens.png"));
         }
-        catch(IOException e)
-        {
+        catch(IOException e) {
             System.out.println(e.getMessage());
         }
+        
         p = new MyPanel(img_menu);
         jogar.setBounds(600,350,150,40);
         jogar.addActionListener(this);
@@ -59,9 +57,6 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
         this.add(mustard);
         this.add(plum);
         this.add(peacock);
-
-
-
     }
     
     public void actionPerformed(ActionEvent e) {
@@ -71,7 +66,6 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     		lista_jogadores = produzJogadores();
     		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0],lista_jogadores[1],lista_jogadores[2],lista_jogadores[3],lista_jogadores[4],lista_jogadores[5]);
     	}
-    	
     }
    
     public String[] produzJogadores() {
@@ -107,10 +101,8 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
 		}
 		return lista_jogadores;
     }
-    	
-		
    
-    public void paint(Graphics g2d){
+    public void paint(Graphics g2d) {
         super.paint(g2d);
         g2d.drawImage(img_menu,0,0,this);
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 
-    class MenuClue extends JFrame implements ActionListener{
+    class MenuClue extends JFrame implements ActionListener {
 
         Image img_menu;
         JPanel p;
@@ -18,16 +18,14 @@ import java.io.IOException;
         JButton nova_partida = new JButton("Nova Partida");
 
 
-        public MenuClue()
-        {
-            try
-            {
+        public MenuClue() {
+            try {
                 img_menu = ImageIO.read(new File("imagens/Tabuleiros/Clue1.jpg"));
             }
-            catch(IOException e)
-            {
+            catch(IOException e) {
                 System.out.println(e.getMessage());
             }
+            
             p = new MyPanel(img_menu);
             continuar.setBounds(700,300,150,40);
             nova_partida.setBounds(700,370,150,40);
@@ -41,7 +39,6 @@ import java.io.IOException;
             this.setTitle("Menu Inicial");
             this.add(continuar);
             this.add(nova_partida);
-
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -50,7 +47,8 @@ import java.io.IOException;
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
         }
-        public void paint(Graphics g2d){
+        
+        public void paint(Graphics g2d) {
             super.paint(g2d);
             g2d.drawImage(img_menu,0,0,this);
         }

@@ -17,14 +17,15 @@ class Player implements PlayerFactory {
 	}
 
 	@Override
-	public Card[] getCardsArr(){
-		return cardsArr;
-	}
+	public Card[] getCardsArr(){ return cardsArr; }
+	
 	@Override
 	public String getName() { return this.name; }
-		
+	
 	@Override
 	public String getCharacter() { return this.character; }
+	
+	public void setCharacter(String name) { this.character = name; }
 	
 	@Override
 	public void addCard(Card _card) {
@@ -33,11 +34,11 @@ class Player implements PlayerFactory {
 		
 		cardsArr = newArray;
 	}
-	public Card[] possui_algum(Card[] cards){
+	public Card[] possui_algum(Card[] cards) {
 		Card[] possui = new Card[0];
-		for(Card c : cardsArr){
-			for(Card card : cards){
-				if(Objects.equals(c.getName(), card.getName())){
+		for(Card c : cardsArr) {
+			for(Card card : cards) {
+				if(Objects.equals(c.getName(), card.getName())) {
 					possui = Arrays.copyOf(possui, possui.length + 1);
 					possui[possui.length - 1] = c;
 				}
@@ -46,20 +47,12 @@ class Player implements PlayerFactory {
 		return possui;
 	}
 
-	public void setVizinho(Player vizinho) {
-		this.vizinho = vizinho;
-	}
-	public Player getVizinho(){
-		return this.vizinho;
-	}
-	public Cell get_cell(){
-		return cell;
-	}
-	public void set_cell(Cell c){
-		cell = c;
-	}
-
-	public void setCharacter(String name) {
-		this.character = name;
-	}
+	public Player getVizinho(){ return this.vizinho; }
+	
+	public void setVizinho(Player vizinho) { this.vizinho = vizinho; }
+	
+	public Cell get_cell(){ return cell; }
+	
+	public void set_cell(Cell c){ cell = c; }
+	
 }

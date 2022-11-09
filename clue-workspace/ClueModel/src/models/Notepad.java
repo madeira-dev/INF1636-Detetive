@@ -19,15 +19,12 @@ class Notepad {
 	public void printRooms() { System.out.println(Arrays.toString(this.rooms)); }
 	
 	public Boolean[] setTrue(Boolean[] arr, int index) {
-		arr[index] = true;
-		
+		arr[index] = true;	
 		return arr;
 	}
 	
 	public Boolean[] setFalse(Boolean[] arr, int index) {
 		arr[index] = false;
-		
 		return arr;
 	}
-	
 }

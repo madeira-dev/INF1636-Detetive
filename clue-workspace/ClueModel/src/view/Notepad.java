@@ -39,8 +39,7 @@ public class Notepad extends JFrame implements ActionListener {
 
 
 
-    public Notepad()
-    {
+    public Notepad() {
 
         salvar.setBounds(450,300,100,20);
         salvar.addActionListener(this);
@@ -133,6 +132,6 @@ public class Notepad extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
 			this.dispose();
+			}
 		}
 	}
-}

@@ -4,8 +4,10 @@ import java.util.Arrays;
 
 public class MoveGenerator {
     Board board;
+    
     // Index do primeiro nó da iteração atual
     int first;
+    
     // Index do último nó da iteração atual
     int last;
     boolean first_iteration;
@@ -17,59 +19,60 @@ public class MoveGenerator {
         this.board = board;
         this.nodes = new MoveNode[1000];
     }
-    // Construtor singleton
-    public static MoveGenerator getInstance(Board b) {
-        if (instance == null) {
 
-//			making thread safe
-            synchronized (MoveGenerator.class) {
-//				check again as multiple threads can reach above step
-                if (instance == null)
-                    instance = new MoveGenerator(b);
-            }
-        }
-        return instance;
-    }
-    {
-        reset_variables();
-    }
+	public static MoveGenerator getInstance(Board b) {
+		if (instance == null) {
+			instance = new MoveGenerator(b);
+			}
+		return instance;
+		}
+	
+//	bloco de inicialização
+	{
+		reset_variables();
+	}
 
     // Reinicia variáveis
-    private void reset_variables(){
+    private void reset_variables() {
         this.last = 0;
         this.first_iteration = true;
     }
     // Reinicia o gerador para configurar uma nova casa de início
-    public void reset_generator(Cell start){
+    public void reset_generator(Cell start) {
         reset_variables();
         set_generator(start);
     }
     // Configura pela primeira vez um gerador para cada casa inicial
-    public void set_generator(Cell start){
+    public void set_generator(Cell start) {
         this.current_cell = new MoveNode(start);
         nodes[0] = current_cell;
         last++;
     }
 
     // Função principal de gerar movimentos
-    public Cell[] get_moves(int depth){
+    public Cell[] get_moves(int depth) {
         int [][] temp;
         boolean[] neighbors;
         int old_last = last;
+        
         // Opções de movimentação
         int [][] mov = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+        
         // Se é a primeira iteração, algumas coisas são diferentes
         // Caso não seja, não podemos sair por outra porta ou pegar passagens secretas
-        if(first_iteration){
-            if(current_cell.is_room()){
-                if(current_cell.has_shortcut()){
+        if(first_iteration) {
+            if(current_cell.is_room()) {
+                if(current_cell.has_shortcut()) {
+                	
                     // Caso começamos numa passagem secreta, podemos atravessar para o outro lado
                     add_node(current_cell.get_shortcut());
+                    
                     nodes[last-1].setIs_final();
                     old_last++;
-                }
+                    }
                 // Se estamos num cômodo, podemos sair por qualquer porta
                 temp = get_coord_room(nodes[0].get_room());
+                
                 for (int[] coord: temp) {
                     add_node(board.get_cell(coord[0], coord[1]));
                     old_last++;
@@ -80,11 +83,11 @@ public class MoveGenerator {
         for(int i=first; i < old_last; i++){
             current_cell = nodes[i];
             // Não podemos andar sobre cômodos fora da primeira iteração
-            if(current_cell.is_room() && !first_iteration){
+            if(current_cell.is_room() && !first_iteration) {
                 continue;
             }
             // Nem passagens secretas
-            if(current_cell.has_shortcut() && nodes[0] != current_cell){
+            if(current_cell.has_shortcut() && nodes[0] != current_cell) {
                 continue;
             }
             // Quais vizinhos estão livres
@@ -95,7 +98,7 @@ public class MoveGenerator {
                     // Se está livre, adicionamos à lista
                     add_node(c);
                     nodes[last-1].pass_node(current_cell);
-                    if(depth==1 || c.is_room()){
+                    if(depth==1 || c.is_room()) {
                         // Se é a última iteração ou uma porta, é um destino final
                         nodes[last-1].setIs_final();
                     }
@@ -103,11 +106,14 @@ public class MoveGenerator {
             }
 
         }
+        
     first_iteration = false;
+    
     // Ajustamos a nova camada de folhas
     first = old_last;
+    
     // Retornamos caso seja a última iteração
-    if(depth == 1){
+    if(depth == 1) {
             return get_cells(nodes);
         }
     // Caso não seja, chamamos recursivamente
@@ -115,20 +121,20 @@ public class MoveGenerator {
     }
 
     // Extrai as células únicas da lista de MoveNodes
-    private Cell[] get_cells(MoveNode[] nodes){
+    private Cell[] get_cells(MoveNode[] nodes) {
         Cell[] cells = new Cell[1000];
         Cell c;
         boolean add;
 
         int added = 0;
 
-        for(int i=0; i < last; i++){
-            if(!nodes[i].is_final()){
+        for(int i=0; i < last; i++) {
+            if(!nodes[i].is_final()) {
                 continue;
             }
             c = nodes[i].getCell();
             add = true;
-            for(Cell c2: cells){
+            for(Cell c2: cells) {
                 if(c2 == c){
                     add = false;
                     break;
@@ -146,9 +152,9 @@ public class MoveGenerator {
         nodes[last] = new MoveNode(to_add);
         last++;
     }
+    
     // Consulta onde estão as portas de cada cômodo (usada na movimentação)
-
-    private int[][] get_coord_room(String nome){
+    private int[][] get_coord_room(String nome) {
         int [][] coords = new int[2][0];
         switch (nome) {
             case ("Study"):
@@ -207,29 +213,28 @@ public class MoveGenerator {
     }
 
     // Consulta quais vizinhos estão disponíveis
-    private boolean[] neighbor_availability(){
+    private boolean[] neighbor_availability() {
         boolean[] availability = {false, false, false, false};
         Cell c;
+        
         // right, left, up, down
         int [][] mov = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
 
-        for(int i=0; i<4; i++){
+        for(int i=0; i<4; i++) {
             c = board.get_cell(current_cell.get_x() + mov[i][0], current_cell.get_y() + mov[i][1]);
             if(c.is_free() && !current_cell.has_passed(c)){
                 availability[i] = true;
             }
         }
-        if(current_cell.get_x() == 17 && current_cell.get_y() == 6){
+        if(current_cell.get_x() == 17 && current_cell.get_y() == 6) {
             availability[0] = false;
         }
-        if(current_cell.get_x() == 8 && current_cell.get_y() == 4){
+        if(current_cell.get_x() == 8 && current_cell.get_y() == 4) {
             availability[1] = false;
         }
-        if(current_cell.get_x() == 5 && current_cell.get_y() == 19){
+        if(current_cell.get_x() == 5 && current_cell.get_y() == 19) {
             availability[3] = false;
         }
-
         return availability;
     }
-
 }
