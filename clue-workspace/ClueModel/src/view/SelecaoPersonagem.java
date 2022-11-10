@@ -34,14 +34,14 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
         }
         
         p = new MyPanel(img_menu);
-        jogar.setBounds(600,350,150,40);
+        jogar.setBounds(600,440,150,40);
         jogar.addActionListener(this);
-        scarlett.setBounds(600,100,150,40);
-        green.setBounds(600,140,150,40);
-        white.setBounds(600,180,150,40);
-        mustard.setBounds(600,220,150,40);
-        plum.setBounds(600,260,150,40);
-        peacock.setBounds(600,300,150,40);
+        scarlett.setBounds(600,190,150,40);
+        green.setBounds(600,230,150,40);
+        white.setBounds(600,270,150,40);
+        mustard.setBounds(600,310,150,40);
+        plum.setBounds(600,350,150,40);
+        peacock.setBounds(600,390,150,40);
 
         //nova_partida.setBounds(700,370,150,40);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -104,7 +104,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
    
     public void paint(Graphics g2d) {
         super.paint(g2d);
-        g2d.drawImage(img_menu,0,0,this);
+        g2d.drawImage(img_menu,0,55,this);
 
     }
 
