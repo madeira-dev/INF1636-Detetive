@@ -27,7 +27,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
 
     public SelecaoPersonagem() {
         try {
-            img_menu = ImageIO.read(new File("imagens/Tabuleiros/CluePersonagens.png"));
+            img_menu = ImageIO.read(new File("clue-workspace/ClueModel/imagens/Tabuleiros/CluePersonagens.png"));
         }
         catch(IOException e) {
             System.out.println(e.getMessage());

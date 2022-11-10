@@ -15,8 +15,9 @@ public class PlayerCards extends JFrame {
 	public final int height = 650;
 	JLabel label_comodo = new JLabel("Comodo(s)");
 	JLabel label_arma = new JLabel("Arma(s)");
-	ImageIcon arma = new ImageIcon("clue-workspace/ClueModel/src/view/Armas/Faca.jpg");
-	ImageIcon comodo = new ImageIcon("clue-workspace/ClueModel/src/view/Comodos/Entrada.jpg");
+	ImageIcon arma = new ImageIcon("clue-workspace/ClueModel/imagens/Armas/Faca.jpg");
+
+	ImageIcon comodo = new ImageIcon("clue-workspace/ClueModel/imagens/Comodos/Entrada.jpg");
 	
 	JLabel imagem_arma = new JLabel(arma);
 	JLabel imagem_comodo = new JLabel(comodo);

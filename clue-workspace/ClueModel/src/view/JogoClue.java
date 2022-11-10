@@ -29,15 +29,15 @@ public class JogoClue extends JFrame implements ActionListener {
 
     String []valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     
-    ImageIcon dado_gui1 =  new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado1.jpg");
-    ImageIcon dado_gui2 =  new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado1.jpg");
+    ImageIcon dado_gui1 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
+    ImageIcon dado_gui2 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
     
-    ImageIcon dado1 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado1.jpg");
-	ImageIcon dado2 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado2.jpg");
-	ImageIcon dado3 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado3.jpg");
-	ImageIcon dado4 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado4.jpg");
-	ImageIcon dado5 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado5.jpg");
-	ImageIcon dado6 = new ImageIcon("E:\\Users\\thiag\\git\\INF1636-Detetive\\clue-workspace\\ClueModel\\src\\view\\Tabuleiros\\dado6.jpg");
+    ImageIcon dado1 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
+	ImageIcon dado2 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado2.jpg");
+	ImageIcon dado3 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado3.jpg");
+	ImageIcon dado4 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado4.jpg");
+	ImageIcon dado5 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado5.jpg");
+	ImageIcon dado6 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado6.jpg");
 	
 	JLabel imagem_dado_gui1 = new JLabel(dado_gui1);
 	JLabel imagem_dado_gui2 = new JLabel(dado_gui2);
@@ -61,7 +61,7 @@ public class JogoClue extends JFrame implements ActionListener {
   public JogoClue()
        {
            try {
-               img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
+               img_tabuleiro = ImageIO.read(new File("clue-workspace/ClueModel/imagens/Tabuleiros/Tabuleiro.jpg"));
            }
            catch(IOException e) {
                System.out.println(e.getMessage());
