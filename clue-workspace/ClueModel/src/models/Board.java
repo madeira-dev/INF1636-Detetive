@@ -3,6 +3,7 @@ package models;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
+import models.API;
 
 // Implementação lógica do tabuleiro (Precisa ser conectado a uma interface gráfica!!)
 class Board {
@@ -43,6 +44,10 @@ class Board {
 		add_player("Thiago", "Coronel Mustard");
 		add_player("Rafael", "Professor Plum");
 		add_player("Madeira", "Srta. Scarlett");
+		
+//		adicionando array de jogadores na classe para comunicar com view
+		API.setPlayersArray(players);
+		
 		set_neighbors();
 
 		gera_arquivo();
