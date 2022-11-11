@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
 
-
+// I'm really sorry for the code below, but the deadline is close
 public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
@@ -75,7 +75,7 @@ public class JogoClue extends JFrame implements ActionListener {
            bloco_notas.addActionListener(this);
            palpite.setBounds(700,200,400,45);
            acusar.setBounds(700,250,400,45);
-           salvar_jogo.setBounds(700,325,400,45);
+           salvar_jogo.setBounds(700,300,400,45);
            jogar_dados.setBounds(700,500,400,45);
            jogar_dados.addActionListener(this);
            escolher_dados.setBounds(900,550,200,55);
@@ -129,6 +129,15 @@ public class JogoClue extends JFrame implements ActionListener {
    public void paint(Graphics g) {
 	   Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
+      this.passagem_secreta.repaint();
+      this.prox.repaint();
+      this.mostrar_cartas.repaint();
+      this.bloco_notas.repaint();
+      this.palpite.repaint();
+      this.salvar_jogo.repaint();
+      this.acusar.repaint();
+      this.jogar_dados.repaint();
+      this.escolher_dados.repaint();
    }
 
 @Override

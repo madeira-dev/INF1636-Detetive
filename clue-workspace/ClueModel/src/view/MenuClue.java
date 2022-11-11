@@ -47,7 +47,6 @@ import java.io.IOException;
 
         public void actionPerformed(ActionEvent e) {
         	if(e.getSource() == nova_partida) {
-        		this.dispose();
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
         }
@@ -55,6 +54,8 @@ import java.io.IOException;
         public void paint(Graphics g2d) {
             super.paint(g2d);
             g2d.drawImage(img_menu,0,0,this);
+            this.continuar.repaint();
+            this.nova_partida.repaint();
         }
 
     }
