@@ -62,7 +62,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	String []lista_jogadores = new String[6];
     	if(e.getSource() == jogar) {
-    		//this.dispose();
+    		this.dispose();
     		lista_jogadores = produzJogadores();
     		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0],lista_jogadores[1],lista_jogadores[2],lista_jogadores[3],lista_jogadores[4],lista_jogadores[5]);
     	}
