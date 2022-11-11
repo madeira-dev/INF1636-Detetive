@@ -9,7 +9,6 @@ import javax.swing.*;
 import controller.*;
 
 
-
 public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
