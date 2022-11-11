@@ -15,6 +15,7 @@ class Board {
 	private final int width;
 	private final int height;
 	private static Board instance = null;
+	API board_api = new API();
 	
 	private Board() {
 		num_players = 0;
@@ -46,13 +47,14 @@ class Board {
 	public void init_all() {
 		generate_grid(width, height);
 		init_players(3);
+		
+		// tirar o hardcode dos players que vão jogar
 		add_player("Thiago", "Coronel Mustard");
 		add_player("Rafael", "Professor Plum");
 		add_player("Madeira", "Srta. Scarlett");
-		
-//		adicionando array de jogadores na classe para comunicar com view
-		API.setPlayersArray(players);
-		
+
+		board_api.setPlayersArray(players);
+
 		set_neighbors();
 
 		gera_arquivo();

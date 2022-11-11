@@ -1,14 +1,14 @@
 package models;
 
 public class API {
-	private static Player[] playersArr;
-	private static Card[] cardsArr;
+	private  Player[] playersArr;
+	private Card[] cardsArr;
 	
-	public static Player[] getPlayersArray() { return playersArr; }
+	public Player[] getPlayersArray() { return playersArr; }
 	
-	public static void setPlayersArray(Player[] players_arr) { playersArr = players_arr; }
+	public void setPlayersArray(Player[] players_arr) { playersArr = players_arr; }
 	
-	public static Card[] getCardsArray() { return cardsArr; }
+	public Card[] getCardsArray() { return cardsArr; }
 	
-	public static void setCardsArray(Card[] cards_arr) { cardsArr = cards_arr; }
+	public void setCardsArray(Card[] cards_arr) { cardsArr = cards_arr;}
 	}

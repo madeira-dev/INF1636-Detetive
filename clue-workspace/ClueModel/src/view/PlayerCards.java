@@ -1,28 +1,29 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.*;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageIO.*;
 import java.io.*;
+import javax.imageio.ImageIO.*;
 import javax.swing.*;
-
-import javax.swing.*;
+import models.API;
 
 public class PlayerCards extends JFrame {
 	public final int width = 900;
 	public final int height = 650;
+	public API players_cards_api = new API();
+	public Object[] cards_arr;
+	
 	JLabel label_comodo = new JLabel("Comodo(s)");
 	JLabel label_arma = new JLabel("Arma(s)");
 	ImageIcon arma = new ImageIcon("clue-workspace/ClueModel/imagens/Armas/Faca.jpg");
-
+	
 	ImageIcon comodo = new ImageIcon("clue-workspace/ClueModel/imagens/Comodos/Entrada.jpg");
 	
 	JLabel imagem_arma = new JLabel(arma);
 	JLabel imagem_comodo = new JLabel(comodo);
 	
 	public PlayerCards() {
+		
+		cards_arr=players_cards_api.getCardsArray();
 
 		this.setTitle("cards");
 		this.setVisible(true);
