@@ -18,6 +18,7 @@ import java.io.IOException;
         JButton nova_partida = new JButton("Nova Partida");
 
 
+
         public MenuClue() {
             try {
                 img_menu = ImageIO.read(new File("clue-workspace/ClueModel/imagens/Tabuleiros/Clue1.jpg"));
@@ -27,18 +28,21 @@ import java.io.IOException;
             }
             
             p = new MyPanel(img_menu);
-            continuar.setBounds(700,300,150,40);
-            nova_partida.setBounds(700,370,150,40);
+
+            continuar.setBounds(700,370,150,40);
+            nova_partida.setBounds(700,300,150,40);
             nova_partida.addActionListener(this);
 
            
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             this.setLayout(null);
             this.setSize(966, 700);
-            this.setVisible(true);
             this.setTitle("Menu Inicial");
-            this.add(continuar);
             this.add(nova_partida);
+            this.add(continuar);
+            this.setVisible(true);
+            this.revalidate();
+            this.repaint();
         }
 
         public void actionPerformed(ActionEvent e) {
