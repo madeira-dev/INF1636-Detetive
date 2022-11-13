@@ -1,160 +1,122 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 
 public class Notepad extends JFrame implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	//  arrays pra guardar checkboxes
+    JCheckBox[] armas_arr = new JCheckBox[6];
+    JCheckBox[] suspeitos_arr = new JCheckBox[6];
+    JCheckBox[] comodos_arr = new JCheckBox[9];
 
-    JCheckBox corda= new JCheckBox("Corda");
-    JCheckBox cano_chumbo= new JCheckBox("Cano de Chumbo");
-    JCheckBox faca= new JCheckBox("Faca");
-    JCheckBox chave_inglesa= new JCheckBox("Chave Inglesa");
-    JCheckBox castical= new JCheckBox("Castiçal");
-    JCheckBox revolver= new JCheckBox("Revolver");
-
-    JCheckBox scarlett= new JCheckBox("Mrs. Scarlett");
-    JCheckBox mustard= new JCheckBox("Coronel Mustard");
-    JCheckBox white= new JCheckBox("Mrs. White");
-    JCheckBox peacock= new JCheckBox("Mrs. Peacock");
-    JCheckBox plum= new JCheckBox("Prof. Plum");
-    JCheckBox green= new JCheckBox("Rev. Green");
-
-    JCheckBox study= new JCheckBox("Study");
-    JCheckBox hall= new JCheckBox("Hall");
-    JCheckBox lounge= new JCheckBox("Lounge");
-    JCheckBox library= new JCheckBox("Library");
-    JCheckBox dining_room= new JCheckBox("Dining Room");
-    JCheckBox kitchen= new JCheckBox("Kitchen");
-    JCheckBox ball_room= new JCheckBox("Ball Room");
-    JCheckBox conservatory= new JCheckBox("Conservatory");
-    JCheckBox billard_room= new JCheckBox("Billard Room");
-
+    JLabel suspeitos = new JLabel("Suspeitos");
+	JLabel armas = new JLabel("Armas");
+	JLabel comodos = new JLabel("Comodos");
     JButton salvar = new JButton("Salvar");
 
-//  arrays pra guardar checkboxes
-    JCheckBox[] armas_arr = {corda, cano_chumbo, faca, chave_inglesa, castical, revolver};
-    JCheckBox[] suspeitos_arr = {scarlett, mustard, white, peacock, plum, green};
-    JCheckBox[] comodos_arr = {study, hall, lounge, library, dining_room, kitchen, ball_room, conservatory, billard_room};
+    public Notepad(boolean[] bool_armas, boolean[] bool_suspeitos, boolean[] bool_comodos) {
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setVisible(true);
+        this.setLayout(null);
+        this.setTitle("Bloco de Notas");
+        this.setBounds(1000, 500, 600, 450);
 
-//  arrays pra guardar estado das checkboxes
-    boolean[] arma_boxesState = {false, false, false, false, false, false};
-    boolean[] suspeitos_boxesState = {false, false, false, false, false, false};
-    boolean[] comodos_boxesState = {false, false, false, false, false, false, false, false, false};
+        this.add(salvar);
 
+        armas_arr[0] = new JCheckBox("Corda");
+        armas_arr[1] = new JCheckBox("Cano de Chumbo");
+        armas_arr[2] = new JCheckBox("Faca");
+        armas_arr[3] = new JCheckBox("Chave Inglesa");
+        armas_arr[4] = new JCheckBox("Castiçal");
+        armas_arr[5] = new JCheckBox("Revolver");
 
-    public Notepad() {
-    	System.out.println("inicio:");
-    	for (int i = 0; i < 6; i++)
-			System.out.println(arma_boxesState[i]);
+        suspeitos_arr[0] = new JCheckBox("Mrs. Scarlett");
+        suspeitos_arr[1] = new JCheckBox("Coronel Mustard");
+        suspeitos_arr[2] = new JCheckBox("Mrs. White");
+        suspeitos_arr[3] = new JCheckBox("Mrs. Peacock");
+        suspeitos_arr[4] = new JCheckBox("Prof. Plum");
+        suspeitos_arr[5] = new JCheckBox("Rev. Green");
+
+        comodos_arr[0] = new JCheckBox("Study");
+        comodos_arr[1] = new JCheckBox("Hall");
+        comodos_arr[2] = new JCheckBox("Lounge");
+        comodos_arr[3] = new JCheckBox("Library");
+        comodos_arr[4] = new JCheckBox("Dining Room");
+        comodos_arr[5] = new JCheckBox("Kitchen");
+        comodos_arr[6] = new JCheckBox("Ball Room");
+        comodos_arr[7] = new JCheckBox("Conservatory");
+        comodos_arr[8] = new JCheckBox("Billard Room");
 
 //    	botao para salvar e sair
         salvar.setBounds(450,300,100,20);
         salvar.addActionListener(this);
 
 //      suspeitos
-        scarlett.setBounds(15,40,150,20);
-        green.setBounds(15,80,150,20);
-        white.setBounds(15,120,150,20);
-        mustard.setBounds(15,160,150,20);
-        plum.setBounds(15,200,150,20);
-        peacock.setBounds(15,240,150,20);
+        suspeitos.setBounds(15, 0, 150, 20);
+        suspeitos_arr[0].setBounds(15,40,150,20);
+        suspeitos_arr[1].setBounds(15,80,150,20);
+        suspeitos_arr[2].setBounds(15,120,150,20);
+        suspeitos_arr[3].setBounds(15,160,150,20);
+        suspeitos_arr[4].setBounds(15,200,150,20);
+        suspeitos_arr[5].setBounds(15,240,150,20);
+        this.add(suspeitos);
 
 //		armas
-        corda.setBounds(180,40,150,20);
-        cano_chumbo.setBounds(180,80,150,20);
-        faca.setBounds(180,120,150,20);
-        chave_inglesa.setBounds(180,160,150,20);
-        castical.setBounds(180,200,150,20);
-        revolver.setBounds(180,240,150,20);
-
+        armas.setBounds(180, 0, 150, 20);
+        armas_arr[0].setBounds(180,40,150,20);
+        armas_arr[1].setBounds(180,80,150,20);
+        armas_arr[2].setBounds(180,120,150,20);
+        armas_arr[3].setBounds(180,160,150,20);
+        armas_arr[4].setBounds(180,200,150,20);
+        armas_arr[5].setBounds(180,240,150,20);
+        this.add(armas);
 
 //      comodos
-        study.setBounds(330,40,150,20);
-        hall.setBounds(330,80,150,20);
-        lounge.setBounds(330,120,150,20);
-        library.setBounds(330,160,150,20);
-        dining_room.setBounds(330,200,150,20);
-        kitchen.setBounds(330,240,150,20);
-        ball_room.setBounds(330,280,150,20);
-        conservatory.setBounds(330,320,150,20);
-        billard_room.setBounds(330,360,150,20);
+        comodos.setBounds(330, 0, 150, 20);
+        comodos_arr[0].setBounds(330,40,150,20);
+        comodos_arr[1].setBounds(330,80,150,20);
+        comodos_arr[2].setBounds(330,120,150,20);
+        comodos_arr[3].setBounds(330,160,150,20);
+        comodos_arr[4].setBounds(330,200,150,20);
+        comodos_arr[5].setBounds(330,240,150,20);
+        comodos_arr[6].setBounds(330,280,150,20);
+        comodos_arr[7].setBounds(330,320,150,20);
+        comodos_arr[8].setBounds(330,360,150,20);
+        this.add(comodos);
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(null);
-        this.setSize(600, 400);
-        this.setVisible(true);
-        this.setTitle("Bloco de Notas");
-
-        this.add(salvar);
-
-//		suspeitos
-        this.add(scarlett);
-        this.add(green);
-        this.add(white);
-        this.add(mustard);
-        this.add(plum);
-        this.add(peacock);
-
-//      armas
-        this.add(corda);
-        this.add(cano_chumbo);
-        this.add(faca);
-        this.add(chave_inglesa);
-        this.add(castical);
-        this.add(revolver);
-
-//		comodos
-        this.add(study);
-        this.add(billard_room);
-        this.add(library);
-        this.add(conservatory);
-        this.add(kitchen);
-        this.add(dining_room);
-        this.add(lounge);
-        this.add(hall);
-        this.add(ball_room);
+//      loop pra adicionar checkboxes de armas e suspeitos e verificar se estavam marcadas
+        for (int i = 0; i < 6; i++) {
+        	this.add(armas_arr[i]);
+        	System.out.println("armas "+i+":"+bool_armas[i]);
+        	armas_arr[i].setSelected(bool_armas[i]);
+        	armas_arr[i].setEnabled(true);
+        	
+        	this.add(suspeitos_arr[i]);
+        	System.out.println("suspeitos "+i+":"+bool_suspeitos[i]);
+        	suspeitos_arr[i].setSelected(bool_suspeitos[i]);
+        	suspeitos_arr[i].setEnabled(true);
+        }
         
-		this.set_boxes_state(armas_arr, arma_boxesState);
-		this.set_boxes_state(comodos_arr, comodos_boxesState);
-		this.set_boxes_state(suspeitos_arr, suspeitos_boxesState);
-		System.out.println("final:");
-		for (int i = 0; i < 6; i++)
-			System.out.println(arma_boxesState[i]);
-    }
-    
-    public void save_boxes_state(JCheckBox[] checkbox_arr, boolean[] bool_arr) {
-    	for (int i = 0; i < checkbox_arr.length; i++) {
-    		if (checkbox_arr[i].isSelected())
-    			bool_arr[i]=true;
-    		else
-    			bool_arr[i]=false;
-    	}
+//      loop pra adicionar checkboxes de commodos e verificar se estavam marcadas
+        for (int i = 0; i < 9; i++) {
+        	this.add(comodos_arr[i]);
+        	System.out.println("comodos "+i+":"+bool_comodos[i]);
+        	comodos_arr[i].setSelected(bool_comodos[i]);
+        	comodos_arr[i].setEnabled(true);
+        }
+
     }
 
-    public void set_boxes_state(JCheckBox[] checkbox_arr, boolean[] bool_arr) {
-    	for (int i = 0; i < bool_arr.length; i++) {
-    		if (bool_arr[i])
-    			checkbox_arr[i].setSelected(true);
-    		else
-    			checkbox_arr[i].setSelected(false);
-    	}
-    }
-    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
-			save_boxes_state(armas_arr, arma_boxesState);
-			save_boxes_state(comodos_arr, comodos_boxesState);
-			save_boxes_state(suspeitos_arr, suspeitos_boxesState);
-			
-			System.out.println("salvar:");
-			for (int i = 0; i < 6; i++)
-				System.out.println(armas_arr[i].isSelected());
 			this.dispose();
 			}
 		}
