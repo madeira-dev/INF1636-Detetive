@@ -18,9 +18,9 @@ public class Palpite  extends JFrame implements ActionListener {
     ButtonGroup personagens_group;
     ButtonGroup comodos_group;
     JPanel[] panels;
+    JButton palpite;
 
     public Palpite(){
-
         armas = new JRadioButton[Componentes.num_armas()];
         personagens = new JRadioButton[Componentes.num_personagens()];
         comodos = new JRadioButton[Componentes.num_comodos()];
@@ -29,13 +29,15 @@ public class Palpite  extends JFrame implements ActionListener {
         personagens_group = new ButtonGroup();
         comodos_group = new ButtonGroup();
 
-        panels = new JPanel[3];
+        panels = new JPanel[4];
+
+        palpite = new JButton("Palpitar");
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(500, 400);
         this.setVisible(true);
         this.setTitle("Tela de Palpite");
-        this.setLayout(new GridLayout(1, 3));
+        this.setLayout(new GridLayout(1, 4));
 
         for(int i=0; i< 3; i++){
             panels[i] = new JPanel();
@@ -58,7 +60,10 @@ public class Palpite  extends JFrame implements ActionListener {
             this.panels[2].add(comodos[i]);
             comodos_group.add(comodos[i]);
         }
-
+        this.panels[3] = new JPanel();
+        this.panels[3].setLayout(new BorderLayout());
+        this.panels[3].add(palpite);
+        this.add(panels[3]);
         this.pack();
     }
     @Override
