@@ -60,7 +60,7 @@ public class JogoClue extends JFrame implements ActionListener {
   public JogoClue()
        {
            try {
-               img_tabuleiro = ImageIO.read(new File("clue-workspace/ClueModel/imagens/Tabuleiros/Tabuleiro.jpg"));
+               img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
            }
            catch(IOException e) {
                System.out.println(e.getMessage());

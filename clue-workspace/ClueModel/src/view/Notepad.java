@@ -10,7 +10,6 @@ import java.awt.event.ItemListener;
 
 public class Notepad extends JFrame implements ActionListener {
 
-
     JCheckBox corda= new JCheckBox("Corda");
     JCheckBox cano_chumbo= new JCheckBox("Cano de Chumbo");
     JCheckBox faca= new JCheckBox("Faca");
@@ -37,61 +36,54 @@ public class Notepad extends JFrame implements ActionListener {
 
     JButton salvar = new JButton("Salvar");
 
+//  arrays pra guardar checkboxes
+    JCheckBox[] armas_arr = {corda, cano_chumbo, faca, chave_inglesa, castical, revolver};
+    JCheckBox[] suspeitos_arr = {scarlett, mustard, white, peacock, plum, green};
+    JCheckBox[] comodos_arr = {study, hall, lounge, library, dining_room, kitchen, ball_room, conservatory, billard_room};
+
+//  arrays pra guardar estado das checkboxes
+    boolean[] arma_boxesState = {false, false, false, false, false, false};
+    boolean[] suspeitos_boxesState = {false, false, false, false, false, false};
+    boolean[] comodos_boxesState = {false, false, false, false, false, false, false, false, false};
 
 
     public Notepad() {
+    	System.out.println("inicio:");
+    	for (int i = 0; i < 6; i++)
+			System.out.println(arma_boxesState[i]);
 
+//    	botao para salvar e sair
         salvar.setBounds(450,300,100,20);
         salvar.addActionListener(this);
 
 //      suspeitos
         scarlett.setBounds(15,40,150,20);
-        
         green.setBounds(15,80,150,20);
-        
         white.setBounds(15,120,150,20);
-        
         mustard.setBounds(15,160,150,20);
-        
         plum.setBounds(15,200,150,20);
-        
         peacock.setBounds(15,240,150,20);
-
 
 //		armas
         corda.setBounds(180,40,150,20);
-
         cano_chumbo.setBounds(180,80,150,20);
-        
         faca.setBounds(180,120,150,20);
-        
         chave_inglesa.setBounds(180,160,150,20);
-        
         castical.setBounds(180,200,150,20);
-        
         revolver.setBounds(180,240,150,20);
 
 
 //      comodos
         study.setBounds(330,40,150,20);
-        
         hall.setBounds(330,80,150,20);
-        
         lounge.setBounds(330,120,150,20);
-        
         library.setBounds(330,160,150,20);
-        
         dining_room.setBounds(330,200,150,20);
-        
         kitchen.setBounds(330,240,150,20);
-        
         ball_room.setBounds(330,280,150,20);
-        
         conservatory.setBounds(330,320,150,20);
-        
         billard_room.setBounds(330,360,150,20);
 
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(600, 400);
@@ -126,11 +118,43 @@ public class Notepad extends JFrame implements ActionListener {
         this.add(lounge);
         this.add(hall);
         this.add(ball_room);
+        
+		this.set_boxes_state(armas_arr, arma_boxesState);
+		this.set_boxes_state(comodos_arr, comodos_boxesState);
+		this.set_boxes_state(suspeitos_arr, suspeitos_boxesState);
+		System.out.println("final:");
+		for (int i = 0; i < 6; i++)
+			System.out.println(arma_boxesState[i]);
+    }
+    
+    public void save_boxes_state(JCheckBox[] checkbox_arr, boolean[] bool_arr) {
+    	for (int i = 0; i < checkbox_arr.length; i++) {
+    		if (checkbox_arr[i].isSelected())
+    			bool_arr[i]=true;
+    		else
+    			bool_arr[i]=false;
+    	}
+    }
+
+    public void set_boxes_state(JCheckBox[] checkbox_arr, boolean[] bool_arr) {
+    	for (int i = 0; i < bool_arr.length; i++) {
+    		if (bool_arr[i])
+    			checkbox_arr[i].setSelected(true);
+    		else
+    			checkbox_arr[i].setSelected(false);
+    	}
     }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
+			save_boxes_state(armas_arr, arma_boxesState);
+			save_boxes_state(comodos_arr, comodos_boxesState);
+			save_boxes_state(suspeitos_arr, suspeitos_boxesState);
+			
+			System.out.println("salvar:");
+			for (int i = 0; i < 6; i++)
+				System.out.println(armas_arr[i].isSelected());
 			this.dispose();
 			}
 		}
