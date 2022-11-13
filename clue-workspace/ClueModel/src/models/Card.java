@@ -1,6 +1,6 @@
 package models;
 
-class Card implements CardFactory {
+public class Card implements CardFactory {
 	private String name;
 
 	public Card(String name) { this.name=name; }

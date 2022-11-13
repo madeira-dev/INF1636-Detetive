@@ -7,7 +7,7 @@ import models.API;
 
 // Implementação lógica do tabuleiro (Precisa ser conectado a uma interface gráfica!!)
 class Board {
-	private Player turn;
+	private int turn;
 	private Player[] players;
 	private int num_players;
 	private Card[] arquivo_confidencial;
@@ -30,9 +30,10 @@ class Board {
 		return instance;
 		}
 
-	public Player get_turn(){
+	public int get_turn(){
 		return turn;
 	}
+	public void pass_turn(){turn = (turn + 1) % num_players;}
 	
 	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
 	public Player get_player_by_character(String name){
