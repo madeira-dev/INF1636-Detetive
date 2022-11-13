@@ -32,7 +32,7 @@ public class Palpite  extends JFrame implements ActionListener {
         panels = new JPanel[3];
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(600, 400);
+        this.setSize(500, 400);
         this.setVisible(true);
         this.setTitle("Tela de Palpite");
         this.setLayout(new GridLayout(1, 3));
@@ -58,6 +58,8 @@ public class Palpite  extends JFrame implements ActionListener {
             this.panels[2].add(comodos[i]);
             comodos_group.add(comodos[i]);
         }
+
+        this.pack();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
