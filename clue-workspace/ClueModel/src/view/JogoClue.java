@@ -13,7 +13,7 @@ public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
     Image dado_resultado;
-    
+
     JPanel p;
     
     JButton passagem_secreta = new JButton("Passagem Secreta");
@@ -26,11 +26,13 @@ public class JogoClue extends JFrame implements ActionListener {
     JButton jogar_dados = new JButton("Jogar Dados");
     JButton escolher_dados = new JButton("Escolher Dados");
 
-    String []valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+    String[] valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     
+//  remover ImageIcons
     ImageIcon dado_gui1 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
     ImageIcon dado_gui2 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
     
+//  remover ImageIcons
     ImageIcon dado1 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
 	ImageIcon dado2 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado2.jpg");
 	ImageIcon dado3 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado3.jpg");
@@ -54,12 +56,25 @@ public class JogoClue extends JFrame implements ActionListener {
     Dimension screenSize = tk.getScreenSize();
     int sl = screenSize.width;
     int sa = screenSize.height;
-    int x = sl/2-1200/2;
-    int y = sa/2-700/2;
-
+    int x = sl / 2-1200 / 2;
+    int y = sa / 2-700 / 2;
+    
+    boolean[] armas_bool = new boolean[6];
+    boolean[] suspeitos_bool = new boolean[6];
+    boolean[] comodos_bool = new boolean[9];
+    
   public JogoClue()
-       {
-           try {
+  {
+//	  esse for loop é só pra testar o notepad, pode remover depois
+	  for (int i = 0; i < 6; i++) {
+		  armas_bool[i]=true;
+		  suspeitos_bool[i]=true;
+	  }
+//    esse loop também pode remover
+	  for (int i = 0; i < 9; i++)
+		  comodos_bool[i]=true;
+	  
+	  try {
                img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
            }
            catch(IOException e) {
@@ -143,7 +158,7 @@ public class JogoClue extends JFrame implements ActionListener {
 @Override
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == bloco_notas) {
-		Notepad notes = new Notepad();
+		Notepad notes = new Notepad(armas_bool, suspeitos_bool, comodos_bool);
 		}
 	else if(e.getSource() == jogar_dados) {
 		int result1,result2;

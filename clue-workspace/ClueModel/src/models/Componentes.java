@@ -1,8 +1,10 @@
 package models;
 import java.util.Random;
 
-class Componentes {
-	
+public final class Componentes {
+	public static int num_personagens(){return 6;}
+	public static int num_armas(){return 6;}
+	public static int num_comodos(){return 9;}
 	public static Card[] personagens_cartas(){
 	Card[] personagens = {
       new Card("Srta. Scarlett"),
