@@ -89,6 +89,7 @@ public class JogoClue extends JFrame implements ActionListener {
            bloco_notas.setBounds(700,150,400,45);
            bloco_notas.addActionListener(this);
            palpite.setBounds(700,200,400,45);
+            palpite.addActionListener(this);
            acusar.setBounds(700,250,400,45);
            salvar_jogo.setBounds(700,300,400,45);
            jogar_dados.setBounds(700,500,400,45);
@@ -222,5 +223,9 @@ public void actionPerformed(ActionEvent e) {
 		System.out.printf(" ||| %d - ", result1);
 		System.out.printf("%d", result2);
 		}
+    else if(e.getSource() == palpite){
+        Palpite palpite = new Palpite();
+
+        }
 	}
 }
