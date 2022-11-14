@@ -12,7 +12,7 @@ import controller.*;
 public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
-    Image dado_resultado;
+    Image dado_resultado1,dado_resultado2;
 
     JPanel p;
     
@@ -28,26 +28,9 @@ public class JogoClue extends JFrame implements ActionListener {
 
     String[] valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     
-//  remover ImageIcons
-    ImageIcon dado_gui1 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
-    ImageIcon dado_gui2 =  new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
-    
-//  remover ImageIcons
-    ImageIcon dado1 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado1.jpg");
-	ImageIcon dado2 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado2.jpg");
-	ImageIcon dado3 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado3.jpg");
-	ImageIcon dado4 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado4.jpg");
-	ImageIcon dado5 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado5.jpg");
-	ImageIcon dado6 = new ImageIcon("clue-workspace/ClueModel/imagens/Tabuleiros/dado6.jpg");
+
 	
-	JLabel imagem_dado_gui1 = new JLabel(dado_gui1);
-	JLabel imagem_dado_gui2 = new JLabel(dado_gui2);
-	JLabel imagem_dado1 = new JLabel(dado1);
-	JLabel imagem_dado2 = new JLabel(dado2);
-	JLabel imagem_dado3 = new JLabel(dado3);
-	JLabel imagem_dado4 = new JLabel(dado4);
-	JLabel imagem_dado5 = new JLabel(dado5);
-	JLabel imagem_dado6 = new JLabel(dado6);
+
 
 
     JList num_dados = new JList(valores_dados);
@@ -75,10 +58,11 @@ public class JogoClue extends JFrame implements ActionListener {
 		  comodos_bool[i]=true;
 	  
 	  try {
-               img_tabuleiro = ImageIO.read(new File("imagens/Tabuleiros/Tabuleiro.jpg"));
+		  		File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
+               img_tabuleiro = ImageIO.read(tabuleiro);
            }
-           catch(IOException e) {
-               System.out.println(e.getMessage());
+           catch(IOException exception) {
+               System.out.println(exception.getMessage());
            }
            
            p = new MyPanel(img_tabuleiro);
@@ -95,18 +79,12 @@ public class JogoClue extends JFrame implements ActionListener {
            jogar_dados.setBounds(700,500,400,45);
            jogar_dados.addActionListener(this);
            escolher_dados.setBounds(900,550,200,55);
+           escolher_dados.addActionListener(this);
            num_dados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
            //num_dados.addListSelectionListener(new MeuListListener());
            num_dados.setBounds(800,550,15,15);
            
-           imagem_dado_gui1.setBounds(700,380,100,100);
-           imagem_dado_gui2.setBounds(820,380,100,100);
-           imagem_dado1.setBounds(700,380,100,100);
-           imagem_dado2.setBounds(700,380,100,100);
-           imagem_dado3.setBounds(700,380,100,100);
-           imagem_dado4.setBounds(700,380,100,100);
-           imagem_dado5.setBounds(700,380,100,100);
-           imagem_dado6.setBounds(700,380,100,100);
+           
 
            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
            this.setLayout(null);
@@ -125,17 +103,9 @@ public class JogoClue extends JFrame implements ActionListener {
            this.add(escolher_dados);
            this.add(num_dados);
            
-           this.add(imagem_dado_gui1);
-           this.add(imagem_dado_gui2);
-           this.add(imagem_dado1);
-           this.add(imagem_dado2);
-           this.add(imagem_dado3);
-           this.add(imagem_dado4);
-           this.add(imagem_dado5);
-           this.add(imagem_dado6);
+
            
-           imagem_dado_gui1.setVisible(true);
-           imagem_dado_gui2.setVisible(true);
+           
 
            this.setVisible(true);
            this.revalidate();
@@ -145,6 +115,8 @@ public class JogoClue extends JFrame implements ActionListener {
    public void paint(Graphics g) {
 	   Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
+      g2D.drawImage(dado_resultado1, 730, 400, this);
+	  g2D.drawImage(dado_resultado2, 830, 400, this);
       this.passagem_secreta.repaint();
       this.prox.repaint();
       this.mostrar_cartas.repaint();
@@ -166,57 +138,14 @@ public void actionPerformed(ActionEvent e) {
 		result1 = Dados.joga_dados();
 		result2 = Dados.joga_dados();
 		
-		imagem_dado1.setVisible(false);
-        imagem_dado2.setVisible(false);
-        imagem_dado3.setVisible(false);
-        imagem_dado4.setVisible(false);
-        imagem_dado5.setVisible(false);
-        imagem_dado6.setVisible(false);
-        imagem_dado_gui1.setVisible(false);
-        imagem_dado_gui2.setVisible(false);
-	
-        if(result1==1) {
-			imagem_dado1.setVisible(true);
-		}
-		else if(result1==2) {
-			imagem_dado2.setVisible(true);
-		}
-		else if(result1==3) {
-			imagem_dado3.setVisible(true);
-		}
-		else if(result1==4) {
-			imagem_dado4.setVisible(true);
-		}
-		else if(result1==5) {
-			imagem_dado5.setVisible(true);
-		}
-		else {
-			imagem_dado6.setVisible(true);
-		}
-       
-        if(result2==1) {
-        	imagem_dado1.setBounds(820,380,100,100);
-			imagem_dado1.setVisible(true);
-		}
-		else if(result2==2) {
-			imagem_dado2.setBounds(820,380,100,100);
-			imagem_dado2.setVisible(true);
-		}
-		else if(result2==3) {
-			imagem_dado3.setBounds(820,380,100,100);
-			imagem_dado3.setVisible(true);
-		}
-		else if(result2==4) {
-			imagem_dado4.setBounds(820,380,100,100);
-			imagem_dado4.setVisible(true);
-		}
-		else if(result2==5) {
-			imagem_dado5.setBounds(820,380,100,100);
-			imagem_dado5.setVisible(true);
-		}
-		else {
-			imagem_dado6.setBounds(820,380,100,100);
-			imagem_dado6.setVisible(true);
+		try {
+			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result1));
+			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result2));
+			
+			dado_resultado1 = ImageIO.read((dado1));
+			dado_resultado2 = ImageIO.read((dado2));
+		} catch (IOException exception) {
+			System.out.println(exception.getMessage());
 		}
 		
 		repaint();
