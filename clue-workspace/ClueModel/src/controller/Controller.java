@@ -1,3 +1,5 @@
+package controller;
+
 import models.Board;
 import models.Card;
 import models.Componentes;
