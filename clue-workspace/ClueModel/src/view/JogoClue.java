@@ -144,7 +144,7 @@ public void actionPerformed(ActionEvent e) {
 		//System.out.printf("%d", result2);
 		}
     else if(e.getSource() == palpite){
-        Palpite palpite = new Palpite(true);
+        Palpite palpite = new Palpite(true, Controller.get_current_player());
         }
     else if(e.getSource()== mostrar_cartas) {
         // Mockado

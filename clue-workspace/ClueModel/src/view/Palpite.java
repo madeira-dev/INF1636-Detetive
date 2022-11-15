@@ -1,7 +1,9 @@
 package view;
 
+import controller.Controller;
 import models.Card;
 import models.Componentes;
+import models.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +20,11 @@ public class Palpite  extends JFrame implements ActionListener {
     ButtonGroup comodos_group;
     JPanel[] panels;
     JButton palpite;
+    Player guesser;
+    Card[] cards;
+    public Palpite(boolean acusacao, Player guesser){
+        this.guesser = guesser;
 
-    public Palpite(boolean acusacao){
         armas = new JRadioButton[Componentes.num_armas()];
         personagens = new JRadioButton[Componentes.num_personagens()];
         comodos = new JRadioButton[Componentes.num_comodos()];
@@ -71,6 +76,30 @@ public class Palpite  extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        cards = new Card[3];
+        if(e.getSource() == palpite){
+            for(int i=0; i < armas.length; i++){
+                if(armas[i].isSelected()){
+                    cards[0] = Componentes.armas_cartas()[i];
+                    break;
+                }
+            }
 
+            for(int i=0; i < comodos.length; i++){
+                if(comodos[i].isSelected()){
+                    cards[2] = Componentes.comodos_cartas()[i];
+                    break;
+                }
+            }
+
+            for(int i=0; i < personagens.length; i++){
+                if(personagens[i].isSelected()){
+                    cards[1] = Componentes.armas_cartas()[i];
+                    break;
+                }
+            }
+            Controller.guess(guesser, cards);
+
+        }
     }
 }
