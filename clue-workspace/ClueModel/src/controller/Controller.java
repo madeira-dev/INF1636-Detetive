@@ -39,6 +39,9 @@ public class Controller {
         return null;
     }
     // Palpite
+    public static Player get_current_player(){
+        return players[turn];
+    }
     public static Card[] guess(Player guesser, Card[] cards){
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1].getName());

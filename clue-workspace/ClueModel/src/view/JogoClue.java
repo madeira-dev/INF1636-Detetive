@@ -149,7 +149,7 @@ public void actionPerformed(ActionEvent e) {
     else if(e.getSource()== mostrar_cartas) {
         // Mockado
 
-    	PlayerCards cartas_jogador = new PlayerCards(null, null, null);
+    	PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().getCardsArr(), Controller.get_current_player().getCardsArr(), Controller.get_current_player().getCardsArr());
     	}
 	}
 }
