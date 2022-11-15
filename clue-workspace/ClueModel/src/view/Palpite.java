@@ -13,14 +13,13 @@ public class Palpite  extends JFrame implements ActionListener {
     JRadioButton[] armas;
     JRadioButton[] personagens;
     JRadioButton[] comodos;
-
     ButtonGroup armas_group;
     ButtonGroup personagens_group;
     ButtonGroup comodos_group;
     JPanel[] panels;
     JButton palpite;
 
-    public Palpite(){
+    public Palpite(boolean acusacao){
         armas = new JRadioButton[Componentes.num_armas()];
         personagens = new JRadioButton[Componentes.num_personagens()];
         comodos = new JRadioButton[Componentes.num_comodos()];
@@ -30,8 +29,12 @@ public class Palpite  extends JFrame implements ActionListener {
         comodos_group = new ButtonGroup();
 
         panels = new JPanel[4];
-
-        palpite = new JButton("Palpitar");
+        if(acusacao){
+            palpite = new JButton("Acusar");
+        }
+        else{
+            palpite = new JButton("Palpitar");
+        }
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(500, 400);
