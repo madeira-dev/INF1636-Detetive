@@ -15,7 +15,9 @@ public class Board {
 	private Board() {
 		this.width = 26;
 		this.height = 27;
-		}
+		generate_grid();
+		init_all();
+	}
 	
 	public static Board getInstance() {
 		if (instance == null) {

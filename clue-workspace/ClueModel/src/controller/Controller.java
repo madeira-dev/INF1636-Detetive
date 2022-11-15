@@ -29,6 +29,12 @@ public class Controller {
     private Controller() {
         board = Board.getInstance();
     }
+    {// Temporario
+        init_players(3);
+        add_player("Madeira", "Peacock");
+        add_player("Rafael", "Green");
+        add_player("Thiago", "Plum");
+    }
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
         for(Player p: players){
