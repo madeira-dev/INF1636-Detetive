@@ -7,36 +7,33 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageIO.*;
 import javax.swing.*;
 import models.API;
+import models.Card;
 
 public class PlayerCards extends JFrame {
 	public final int width = 900;
 	public final int height = 650;
-	public API players_cards_api = new API();
 	public Object[] cards_arr;
-	
-	JLabel label_comodo = new JLabel("Comodo(s)");
-	JLabel label_arma = new JLabel("Arma(s)");
-	
-	Image image_arma;
-	Image image_comodo;
+	File[] images_arma;
+	File[] images_comodo;
+	File[] images_personagens;
 	
 	
 	
-	public PlayerCards() {
-		
-		
-		cards_arr=players_cards_api.getCardsArray();
-		
-		try {
-		  	   File arma = new File("imagens/Armas/Cano.jpg");
-		  	   File comodo = new File("imagens/Comodos/Biblioteca.jpg");
-	           image_arma = ImageIO.read(arma);
-	           image_comodo = ImageIO.read(comodo);
-	       }
-	       catch(IOException exception) {
-	           System.out.println(exception.getMessage());
-	       }
-		
+	public PlayerCards(Card[] comodos, Card[] armas, Card[] personagens) {
+		images_arma = new File[armas.length];
+		images_comodo = new File[comodos.length];
+		images_personagens = new File[personagens.length];
+
+		for(int i=0; i < armas.length; i++){
+			images_arma[i] = new File(String.format("imagens/Armas/%s.jpg", armas[i].getName()));
+	  }
+		for(int i=0; i < personagens.length; i++){
+			images_personagens[i] = new File(String.format("imagens/Personagens/%s.jpg", personagens[i].getName()));
+		}
+		for(int i=0; i < comodos.length; i++){
+			images_comodo[i] = new File(String.format("imagens/Comodos/%s.jpg", comodos[i].getName()));
+		}
+
 		this.setTitle("cards");
 		this.setVisible(true);
 		
@@ -44,19 +41,29 @@ public class PlayerCards extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		
-		label_comodo.setBounds(0, 0, 0, 0);
-		label_arma.setBounds(100, 360, 100, 100);
-		
-		this.add(label_comodo);
-		this.add(label_arma);
-		
-		label_comodo.setVisible(true);
-		label_arma.setVisible(true);
-		
 	}
 	public void paint(Graphics g) {
-		   Graphics2D g2D = (Graphics2D) g;
-	      g2D.drawImage(image_arma,50,50,this);
-	      g2D.drawImage(image_comodo, 50, 350, this);
+		Graphics2D g2D = (Graphics2D) g;
+		for(int i=0; i < images_arma.length; i++){
+		  try {
+			  g2D.drawImage(ImageIO.read(images_arma[i]),width * i/9,0,this);
+		  } catch (IOException e) {
+			  throw new RuntimeException(e);
+		  }
+		}
+		for(int i=0; i < images_comodo.length; i++){
+			try {
+				g2D.drawImage(ImageIO.read(images_comodo[i]),width * i/9,0,this);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		for(int i=0; i < images_personagens.length; i++){
+			try {
+				g2D.drawImage(ImageIO.read(images_personagens[i]),width * i/9,0,this);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 }
