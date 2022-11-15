@@ -1,16 +1,13 @@
 package view;
 
 import javax.swing.*;
+import models.API;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Notepad extends JFrame implements ActionListener {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	//  arrays pra guardar checkboxes
     JCheckBox[] armas_arr = new JCheckBox[6];
     JCheckBox[] suspeitos_arr = new JCheckBox[6];
@@ -91,25 +88,31 @@ public class Notepad extends JFrame implements ActionListener {
         comodos_arr[8].setBounds(330,360,150,20);
         this.add(comodos);
 
-//      loop pra adicionar checkboxes de armas e suspeitos e verificar se estavam marcadas
+//      atualizando estado das chekcboxes de armas e suspeitos
         for (int i = 0; i < 6; i++) {
         	this.add(armas_arr[i]);
-        	System.out.println("armas "+i+":"+bool_armas[i]);
         	armas_arr[i].setSelected(bool_armas[i]);
-        	armas_arr[i].setEnabled(true);
         	
         	this.add(suspeitos_arr[i]);
-        	System.out.println("suspeitos "+i+":"+bool_suspeitos[i]);
         	suspeitos_arr[i].setSelected(bool_suspeitos[i]);
-        	suspeitos_arr[i].setEnabled(true);
         }
         
-//      loop pra adicionar checkboxes de commodos e verificar se estavam marcadas
+//      atualizando estado das chekcboxes de comodos
         for (int i = 0; i < 9; i++) {
         	this.add(comodos_arr[i]);
-        	System.out.println("comodos "+i+":"+bool_comodos[i]);
         	comodos_arr[i].setSelected(bool_comodos[i]);
-        	comodos_arr[i].setEnabled(true);
+        }
+
+
+//      salvando estado das checkboxes de arma e suspeito
+        for (int i = 0; i < 6; i++) {
+        	bool_armas[i]=armas_arr[i].isSelected();
+        	bool_suspeitos[i]=suspeitos_arr[i].isSelected();
+        }
+        
+//      salvando estado das checkboxes de comodos
+        for (int i = 0; i < 9; i++) {
+        	bool_comodos[i]=comodos_arr[i].isSelected();
         }
     }
 

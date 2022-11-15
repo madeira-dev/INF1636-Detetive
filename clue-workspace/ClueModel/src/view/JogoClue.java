@@ -15,7 +15,7 @@ public class JogoClue extends JFrame implements ActionListener {
     Image dado_resultado1,dado_resultado2;
 
     JPanel p;
-    
+
     JButton prox = new JButton("Próximo");
     JButton mostrar_cartas = new JButton("Mostrar Cartas");
     JButton bloco_notas = new JButton("Bloco de Notas");
@@ -28,7 +28,7 @@ public class JogoClue extends JFrame implements ActionListener {
     String[] valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
     JList num_dados = new JList(valores_dados);
-    
+
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension screenSize = tk.getScreenSize();
     int sl = screenSize.width;
@@ -39,26 +39,16 @@ public class JogoClue extends JFrame implements ActionListener {
     boolean[] armas_bool = new boolean[6];
     boolean[] suspeitos_bool = new boolean[6];
     boolean[] comodos_bool = new boolean[9];
-    
-  public JogoClue()
-  {
-//	  esse for loop é só pra testar o notepad, pode remover depois
-	  for (int i = 0; i < 6; i++) {
-		  armas_bool[i]=true;
-		  suspeitos_bool[i]=true;
-	  }
-//    esse loop também pode remover
-	  for (int i = 0; i < 9; i++)
-		  comodos_bool[i]=true;
-	  
+
+  public JogoClue() {	  
 	  try {
-		  		File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
-               img_tabuleiro = ImageIO.read(tabuleiro);
-           }
-           catch(IOException exception) {
-               System.out.println(exception.getMessage());
-           }
-           
+		  File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
+		  img_tabuleiro = ImageIO.read(tabuleiro);
+		  }
+	  catch(IOException exception) {
+		  System.out.println(exception.getMessage());
+		  }
+
            p = new MyPanel(img_tabuleiro);
 
            prox.setBounds(700,50,400,45);
@@ -67,7 +57,7 @@ public class JogoClue extends JFrame implements ActionListener {
            bloco_notas.setBounds(700,150,400,45);
            bloco_notas.addActionListener(this);
            palpite.setBounds(700,200,400,45);
-            palpite.addActionListener(this);
+           palpite.addActionListener(this);
            acusar.setBounds(700,250,400,45);
            salvar_jogo.setBounds(700,300,400,45);
            jogar_dados.setBounds(700,500,400,45);
@@ -119,15 +109,15 @@ public class JogoClue extends JFrame implements ActionListener {
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == bloco_notas) {
 		Notepad notes = new Notepad(armas_bool, suspeitos_bool, comodos_bool);
-		}
+	}
 	else if(e.getSource() == jogar_dados) {
+		
 		int result1,result2;
-		result1 = Dados.joga_dados();
-		result2 = Dados.joga_dados();
+        Controller.joga_dados();
 		
 		try {
-			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result1));
-			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result2));
+			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[0]));
+			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[1]));
 			
 			dado_resultado1 = ImageIO.read((dado1));
 			dado_resultado2 = ImageIO.read((dado2));
@@ -136,6 +126,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 		repaint();
+
 		//System.out.printf(" ||| %d - ", result1);
 		//System.out.printf("%d", result2);
 		}

@@ -16,16 +16,18 @@ public class ShowCard extends JFrame {
 
 
     ShowCard(Card carta, Player mostrador) throws IOException {
+        this.setLayout(new BorderLayout());
         texto = new JLabel(String.format("%s te mostrou %s", mostrador.getName(), carta.getName()), SwingConstants.CENTER);
-        texto.setBounds(400, 350, 400, 350);
+        texto.setBounds(0, 0, 400, 50);
+        System.out.println(String.format("imagens/%s/%s.jpg", carta.get_folder(), carta.getName()));
         imagem = ImageIO.read(new File(String.format("imagens/%s/%s.jpg", carta.get_folder(), carta.getName())));
 
-        this.add(texto);
+        this.add(texto, BorderLayout.PAGE_START);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(500, 400);
         this.setVisible(true);
         this.setTitle("Receber Carta");
-        this.setLayout(null);
+
     }
     public void paint(Graphics g2d) {
         super.paint(g2d);
