@@ -65,6 +65,7 @@ public class JogoClue extends JFrame implements ActionListener {
            passagem_secreta.setBounds(700,0,400,45);
            prox.setBounds(700,50,400,45);
            mostrar_cartas.setBounds(700,100,400,45);
+           mostrar_cartas.addActionListener(this);
            bloco_notas.setBounds(700,150,400,45);
            bloco_notas.addActionListener(this);
            palpite.setBounds(700,200,400,45);
@@ -139,14 +140,14 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 		repaint();
-		System.out.printf(" ||| %d - ", result1);
-		System.out.printf("%d", result2);
+		//System.out.printf(" ||| %d - ", result1);
+		//System.out.printf("%d", result2);
 		}
     else if(e.getSource() == palpite){
-        Palpite palpite = new Palpite(false);
-        }
-    else if(e.getSource() == acusar){
         Palpite palpite = new Palpite(true);
-    }
+        }
+    else if(e.getSource()== mostrar_cartas) {
+    	PlayerCards cartas_jogador = new PlayerCards();
+    	}
 	}
 }
