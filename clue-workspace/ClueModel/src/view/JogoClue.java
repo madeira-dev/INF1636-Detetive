@@ -16,7 +16,6 @@ public class JogoClue extends JFrame implements ActionListener {
 
     JPanel p;
     
-    JButton passagem_secreta = new JButton("Passagem Secreta");
     JButton prox = new JButton("Próximo");
     JButton mostrar_cartas = new JButton("Mostrar Cartas");
     JButton bloco_notas = new JButton("Bloco de Notas");
@@ -62,7 +61,6 @@ public class JogoClue extends JFrame implements ActionListener {
            
            p = new MyPanel(img_tabuleiro);
 
-           passagem_secreta.setBounds(700,0,400,45);
            prox.setBounds(700,50,400,45);
            mostrar_cartas.setBounds(700,100,400,45);
            mostrar_cartas.addActionListener(this);
@@ -88,7 +86,6 @@ public class JogoClue extends JFrame implements ActionListener {
            this.setTitle("Gameplay - Clue");
            this.setBounds(x, y, 1200, 700);
 
-           this.add(passagem_secreta);
            this.add(prox);
            this.add(mostrar_cartas);
            this.add(bloco_notas);
@@ -108,7 +105,6 @@ public class JogoClue extends JFrame implements ActionListener {
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
-      this.passagem_secreta.repaint();
       this.prox.repaint();
       this.mostrar_cartas.repaint();
       this.bloco_notas.repaint();
@@ -147,8 +143,6 @@ public void actionPerformed(ActionEvent e) {
         Palpite palpite = new Palpite(true, Controller.get_current_player());
         }
     else if(e.getSource()== mostrar_cartas) {
-        // Mockado
-
     	PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
                                                      Controller.get_current_player().get_card_by_type("arma"),
                                                      Controller.get_current_player().get_card_by_type("personagem"));

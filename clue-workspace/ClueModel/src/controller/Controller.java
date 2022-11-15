@@ -32,14 +32,14 @@ public class Controller {
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
         for(Player p: players){
-            if(Objects.equals(p.getCharacter(), name)){
+            if(Objects.equals(p.getCharacter(), name)) {
                 return p;
             }
         }
         return null;
     }
     // Palpite
-    public static Player get_current_player(){
+    public static Player get_current_player() {
         return players[turn];
     }
     public static Card[] guess(Player guesser, Card[] cards){

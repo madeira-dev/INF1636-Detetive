@@ -8,7 +8,7 @@ public class API {
 	
 	public void setPlayersArray(Player[] players_arr) { playersArr = players_arr; }
 	
-	public Card[] getCardsArray() { return cardsArr; }
+	public Card[] getPlayerCardsArray() { return cardsArr; }
 	
-	public void setCardsArray(Card[] cards_arr) { cardsArr = cards_arr;}
+	public void setPlayerCardsArray(Card[] cards_arr) { cardsArr = cards_arr;}
 	}
