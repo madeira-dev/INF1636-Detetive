@@ -7,24 +7,24 @@ public final class Componentes {
 	public static int num_comodos(){return 9;}
 	public static Card[] personagens_cartas(){
 	Card[] personagens = {
-      new Card("Srta. Scarlett"),
-      new Card("Reverendo Green"),
-      new Card("Srta. Peacock"),
-      new Card("Professor Plum"),
-      new Card("Coronel Mustard"),
-      new Card("Srta. White")
+      new Card("Srta. Scarlett", "personagem"),
+      new Card("Reverendo Green", "personagem"),
+      new Card("Srta. Peacock", "personagem"),
+      new Card("Professor Plum", "personagem"),
+      new Card("Coronel Mustard", "personagem"),
+      new Card("Srta. White", "personagem")
       };
     	return personagens;
 	}
 	
 	public static Card[] armas_cartas() {
 		Card[] armas_cartas = {
-				new Card("Corda"),
-				new Card("Cano de Chumbo"),
-				new Card("Faca"),
-				new Card("Chave Inglesa"),
-				new Card("Castiçal"),
-				new Card("Revolver")
+				new Card("Corda", "arma"),
+				new Card("Cano de Chumbo", "arma"),
+				new Card("Faca", "arma"),
+				new Card("Chave Inglesa", "arma"),
+				new Card("Castiçal", "arma"),
+				new Card("Revolver", "arma")
 				};
 	
 		return armas_cartas;
@@ -32,15 +32,15 @@ public final class Componentes {
 	
 	public static Card[] comodos_cartas() {
 		Card[] comodos_cartas = {
-				new Card("Billard Room"),
-				new Card("Library"),
-				new Card("Study"),
-				new Card("Hall"),
-				new Card("Lounge"),
-				new Card("Dining Room"),
-				new Card("Kitchen"),
-				new Card("Ball Room"),
-				new Card("Conservatory")
+				new Card("Billard Room", "comodo"),
+				new Card("Library", "comodo"),
+				new Card("Study", "comodo"),
+				new Card("Hall", "comodo"),
+				new Card("Lounge", "comodo"),
+				new Card("Dining Room", "comodo"),
+				new Card("Kitchen", "comodo"),
+				new Card("Ball Room", "comodo"),
+				new Card("Conservatory", "comodo")
 				};
 		return comodos_cartas;
 		}
