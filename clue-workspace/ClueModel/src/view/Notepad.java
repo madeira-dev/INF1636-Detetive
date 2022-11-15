@@ -111,7 +111,6 @@ public class Notepad extends JFrame implements ActionListener {
         	comodos_arr[i].setSelected(bool_comodos[i]);
         	comodos_arr[i].setEnabled(true);
         }
-
     }
 
 	@Override

@@ -3,7 +3,7 @@ package models;
 import java.util.Arrays;
 import java.util.Objects;
 
-class Player implements PlayerFactory {
+public class Player implements PlayerFactory {
 	private Player vizinho;
 	private final String name;
 	private String character;

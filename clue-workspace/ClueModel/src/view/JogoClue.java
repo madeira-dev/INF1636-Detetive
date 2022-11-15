@@ -27,11 +27,6 @@ public class JogoClue extends JFrame implements ActionListener {
     JButton escolher_dados = new JButton("Escolher Dados");
 
     String[] valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
-    
-
-	
-
-
 
     JList num_dados = new JList(valores_dados);
     
@@ -102,11 +97,6 @@ public class JogoClue extends JFrame implements ActionListener {
            this.add(jogar_dados);
            this.add(escolher_dados);
            this.add(num_dados);
-           
-
-           
-           
-
            this.setVisible(true);
            this.revalidate();
            this.repaint();

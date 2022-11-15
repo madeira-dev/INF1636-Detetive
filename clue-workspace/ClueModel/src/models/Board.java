@@ -6,19 +6,13 @@ import java.util.Random;
 import models.API;
 
 // Implementação lógica do tabuleiro (Precisa ser conectado a uma interface gráfica!!)
-class Board {
-	private int turn;
-	private Player[] players;
-	private int num_players;
-	private Card[] arquivo_confidencial;
+public class Board {
 	private Cell[][] cells;
 	private final int width;
 	private final int height;
 	private static Board instance = null;
-	API board_api = new API();
-	
+
 	private Board() {
-		num_players = 0;
 		this.width = 26;
 		this.height = 27;
 		}
@@ -30,37 +24,8 @@ class Board {
 		return instance;
 		}
 
-	public int get_turn(){
-		return turn;
-	}
-	public void pass_turn(){turn = (turn + 1) % num_players;}
-	
-	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
-	public Player get_player_by_character(String name){
-		for(Player p: players){
-			if(Objects.equals(p.getCharacter(), name)){
-				return p;
-			}
-		}
-		return null;
-	}
 	// Inicializa o tabuleiro com base na imagem fornecida
 	public void init_all() {
-		generate_grid(width, height);
-		init_players(3);
-		
-		// tirar o hardcode dos players que vão jogar
-		add_player("Thiago", "Coronel Mustard");
-		add_player("Rafael", "Professor Plum");
-		add_player("Madeira", "Srta. Scarlett");
-
-		board_api.setPlayersArray(players);
-
-		set_neighbors();
-
-		gera_arquivo();
-		deal_cards();
-		
 		//Study
 		snip(1, 1, 7, 4);
 		set_room("Study",7,4);
@@ -137,17 +102,8 @@ class Board {
 		set_character("Professor Plum",0,6);
 		set_character("Srta. White",0,19);
 	}
-	// Funções usadas para configurar lógica do tabuleiro
-	private void init_players(int num){
-		players = new Player[num];
-	}
 	
-	private void add_player(String name, String character){
-		players[num_players] = new Player(name, character);
-		num_players++;
-	}
-	
-	private void generate_grid(int width, int height){
+	public void generate_grid(){
 		cells = new Cell[width][height];
 		for(int i=0; i < width; i++){
 			for(int j=0; j < height; j++){
@@ -175,75 +131,13 @@ class Board {
 	private void set_character(String character, int x, int y){
 		cells[x][y].aloca_personagem(character);
 	}
-	
-	private void set_neighbors(){
-		for(int i=0; i < num_players; i++){
-			players[i].setVizinho(players[(i + 1) % num_players]);
-		}
-	}
-	
-	private void deal_cards(){
-		int i = 0;
-		boolean[] ja_usado = new boolean[18];
-		Card[] cards = new Card[18];
-		Card[] suspeitos = Componentes.personagens_cartas();
-		Card[] armas = Componentes.armas_cartas();
-		Card[] locais = Componentes.comodos_cartas();
 
-		for(Card sus : suspeitos){
-			if(!Objects.equals(sus.getName(), arquivo_confidencial[1].getName())){
-				cards[i] = sus;
-				i++;
-			}
-		}
-		
-		for(Card arma : armas){
-			if(!Objects.equals(arma.getName(), arquivo_confidencial[0].getName())){
-				cards[i] = arma;
-				i++;
-			}
-		}
-		
-		for(Card local : locais){
-			if(!Objects.equals(local.getName(), arquivo_confidencial[2].getName())){
-				cards[i] = local;
-				i++;
-			}
-		}
-		
-		for(int j=0; j < 18; j++){
-			ja_usado[j] = false;
-		}
-
-		Random result = new Random();
-		
-		int val;
-		for(int j=0; j < 18; j++){
-			val = result.nextInt(18);
-			while (true){
-				if(!ja_usado[val]){
-					players[j % num_players].addCard(cards[val]);
-					ja_usado[val] = true;
-					break;
-				}
-				
-				else {
-					val = (val + 1) % 18;
-				}
-			}
-		}
-
-	}
 	
 	private void configura_passagem(int x1, int x2, int y1, int y2){
 		cells[x1][y1].configura_passagem(cells[x2][y2]);
 		cells[x2][y2].configura_passagem(cells[x1][y1]);
 	}
-	
-	private void gera_arquivo(){
-		arquivo_confidencial = Componentes.arquivo_confidencial();
-	}
-	
+
 	// Printa tabuleiro (usada para debug apenas)
 	public void print_board(){
 		for(int i=0; i < height; i++){
@@ -260,39 +154,7 @@ class Board {
 	}
 	
 	// Move jogador
-	public void move_player(Player player, Cell destination){
+	public void move_player(Player player, Cell destination) {
 		player.set_cell(destination);
-
 	}
-	// Palpite
-	public Card[] guess(Player guesser, Card[] cards){
-		// Move o acusado para a sala
-		Player acusado = get_player_by_character(cards[1].getName());
-		if(acusado != null){
-			move_player(acusado, guesser.get_cell());
-		}
-
-
-		Player temp = guesser.getVizinho();
-		Card[] options = new Card[0];
-		
-		// Se chegamos de novo no palpitador, encerramos o loop
-		while (!Objects.equals(temp.getName(), guesser.getName())){
-			// Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
-			options = temp.possui_algum(cards);
-			// Debug
-			System.out.printf("%s pode mostrar\n", temp.getName());
-			for(Card c: options){
-				System.out.println(c.getName());
-			}
-			// Se o jogador pode mostrar algo, encerramos
-			if(options.length != 0){
-				return options;
-			}
-			// Se não, avançamos para o próximo
-			temp = temp.getVizinho();
-		}
-		return options;
 	}
-	
-}
