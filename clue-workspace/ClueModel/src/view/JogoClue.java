@@ -154,8 +154,7 @@ public void actionPerformed(ActionEvent e) {
 		//System.out.printf("%d", result2);
 		}
     else if(e.getSource() == palpite){
-        Palpite palpite = new Palpite();
-
+        Palpite palpite = new Palpite(true);
         }
     else if(e.getSource()== mostrar_cartas) {
     	PlayerCards cartas_jogador = new PlayerCards();
