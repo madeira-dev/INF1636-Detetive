@@ -147,7 +147,9 @@ public void actionPerformed(ActionEvent e) {
         Palpite palpite = new Palpite(true);
         }
     else if(e.getSource()== mostrar_cartas) {
-    	PlayerCards cartas_jogador = new PlayerCards();
+        // Mockado
+
+    	PlayerCards cartas_jogador = new PlayerCards(null, null, null);
     	}
 	}
 }
