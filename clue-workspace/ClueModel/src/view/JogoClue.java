@@ -113,12 +113,11 @@ public void actionPerformed(ActionEvent e) {
 	else if(e.getSource() == jogar_dados) {
 		
 		int result1,result2;
-		result1 = Dados.joga_dados();
-		result2 = Dados.joga_dados();
+        Controller.joga_dados();
 		
 		try {
-			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result1));
-			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", result2));
+			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[0]));
+			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[1]));
 			
 			dado_resultado1 = ImageIO.read((dado1));
 			dado_resultado2 = ImageIO.read((dado2));

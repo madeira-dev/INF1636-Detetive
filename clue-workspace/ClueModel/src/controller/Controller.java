@@ -17,6 +17,7 @@ public class Controller {
     public static void pass_turn(){turn = (turn + 1) % num_players;}
     private static Controller instance = null;
 
+    private static int[] valores_dado;
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();
@@ -25,8 +26,11 @@ public class Controller {
     }
     private Controller() {
         board = Board.getInstance();
+        valores_dado = new int[2];
+        init_all();
     }
-    {// Temporario
+    {
+        // Temporario
         init_players(3);
         add_player("Madeira", "Peacock");
         add_player("Rafael", "Green");
@@ -145,7 +149,21 @@ public class Controller {
         set_neighbors();
         gera_arquivo();
         deal_cards();
-        board.generate_grid();
+    }
+    public static void joga_dados() {
+        Random result1 = new Random();
+        Random result2 = new Random();
 
+        int val1=1;
+        int val2=1;
+
+        val1 += result1.nextInt(6);
+        val2 += result2.nextInt(6);
+
+        valores_dado[0] = val1;
+        valores_dado[1] = val2;
+    }
+    public static int[] pega_dados(){
+        return valores_dado;
     }
 }
