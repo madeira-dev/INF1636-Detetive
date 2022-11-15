@@ -154,7 +154,9 @@ public void actionPerformed(ActionEvent e) {
 		}
     else if(e.getSource() == palpite){
         Palpite palpite = new Palpite(false);
-
         }
+    else if(e.getSource() == acusar){
+        Palpite palpite = new Palpite(true);
+    }
 	}
 }
