@@ -18,7 +18,19 @@ public class Player implements PlayerFactory {
 
 	@Override
 	public Card[] getCardsArr(){ return cardsArr; }
-	
+
+	public Card[] get_card_by_type(String type){
+		int counter = 0;
+		Card[] cards = new Card[cardsArr.length];
+		for(int i=0; i < cardsArr.length; i++){
+			if(Objects.equals(cardsArr[i].getType(), type)){
+				counter++;
+				cards[i] = cardsArr[i];
+			}
+		}
+		cards = Arrays.copyOf(cards, counter);
+		return cards;
+	}
 	@Override
 	public String getName() { return this.name; }
 	
