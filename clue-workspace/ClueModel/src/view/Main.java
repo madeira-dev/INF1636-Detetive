@@ -2,14 +2,17 @@ package view;
 
 import controller.Controller;
 import models.Componentes;
+import models.Player;
+
+import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-	JogoClue tela_jogo = new JogoClue();
+	//JogoClue tela_jogo = new JogoClue();
 	Controller c = Controller.getInstance();
-
+	ShowCard s = new ShowCard(Componentes.personagens_cartas()[1], new Player("Rafael", "Green"));
 	 //SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
 	 //MenuClue tela_menu = new MenuClue();
 
