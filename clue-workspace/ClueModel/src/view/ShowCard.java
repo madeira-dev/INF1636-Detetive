@@ -17,8 +17,8 @@ public class ShowCard extends JFrame {
 
     ShowCard(Card carta, Player mostrador) throws IOException {
         texto = new JLabel(String.format("%s te mostrou %s", mostrador.getName(), carta.getName()), SwingConstants.CENTER);
-        texto.setBounds(0, 0, 400, 50);
-        imagem = ImageIO.read(new File(String.format("Imagens/%s/%s", carta.get_folder(), carta.getName())));
+        texto.setBounds(400, 350, 400, 350);
+        imagem = ImageIO.read(new File(String.format("imagens/%s/%s.jpg", carta.get_folder(), carta.getName())));
 
         this.add(texto);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
