@@ -53,14 +53,14 @@ public class PlayerCards extends JFrame {
 		}
 		for(int i=0; i < images_comodo.length; i++){
 			try {
-				g2D.drawImage(ImageIO.read(images_comodo[i]),width * i/9,0,this);
+				g2D.drawImage(ImageIO.read(images_comodo[i]),width * i/9,height/3,this);
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
 		}
 		for(int i=0; i < images_personagens.length; i++){
 			try {
-				g2D.drawImage(ImageIO.read(images_personagens[i]),width * i/9,0,this);
+				g2D.drawImage(ImageIO.read(images_personagens[i]),width * i/9,height * 2/3,this);
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
