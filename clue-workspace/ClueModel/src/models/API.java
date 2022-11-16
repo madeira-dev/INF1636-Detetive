@@ -10,5 +10,5 @@ public class API {
 	
 	public Card[] getPlayerCardsArray() { return cardsArr; }
 	
-	public void setPlayerCardsArray(Card[] cards_arr) { cardsArr = cards_arr;}
+	public void setPlayerCardsArray(Card[] cards_arr) { cardsArr = cards_arr; }
 	}
