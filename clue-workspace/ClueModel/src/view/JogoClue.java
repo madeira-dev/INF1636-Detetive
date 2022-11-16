@@ -132,9 +132,12 @@ public void actionPerformed(ActionEvent e) {
 		//System.out.printf("%d", result2);
 		}
     else if(e.getSource() == palpite){
-        Palpite palpite = new Palpite(true, Controller.get_current_player());
+        Palpite palpite = new Palpite(false, Controller.get_current_player());
         }
-    else if(e.getSource() == mostrar_cartas) {
+    else if(e.getSource() == acusar){
+        Palpite palpite = new Palpite(true, Controller.get_current_player());
+    }
+    else if(e.getSource()== mostrar_cartas) {
     	PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
                                                      Controller.get_current_player().get_card_by_type("arma"),
                                                      Controller.get_current_player().get_card_by_type("personagem"));

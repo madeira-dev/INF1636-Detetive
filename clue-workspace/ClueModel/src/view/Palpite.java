@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import models.Card;
 import models.Componentes;
+import models.InfoPalpite;
 import models.Player;
 
 import javax.swing.*;
@@ -67,6 +68,8 @@ public class Palpite extends JFrame implements ActionListener {
             this.panels[2].add(comodos[i]);
             comodos_group.add(comodos[i]);
         }
+        palpite.addActionListener(this);
+
         this.panels[3] = new JPanel();
         this.panels[3].setLayout(new BorderLayout());
         this.panels[3].add(palpite);
@@ -97,7 +100,7 @@ public class Palpite extends JFrame implements ActionListener {
                     break;
                 }
             }
-            Controller.guess(guesser, cards);
+            InfoPalpite info = Controller.guess(guesser, cards);
 
         }
     }

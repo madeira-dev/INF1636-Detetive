@@ -15,8 +15,9 @@ public class Transicao extends JFrame implements ActionListener{
 
     Transicao(String character){
         this.setLayout(new GridLayout(2, 1));
-        texto = new JLabel(String.format("Passe o turno para %s (%s)", character, Objects.requireNonNull(Controller.get_player_by_character(character)).getName()));
+        texto = new JLabel(String.format("Passe o turno para %s (%s)", character, Objects.requireNonNull(Controller.get_player_by_character(character)).getName()), SwingConstants.CENTER);
         ok = new JButton("OK");
+        ok.addActionListener(this);
         this.add(texto);
         this.add(ok);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,6 +26,9 @@ public class Transicao extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == ok){
+            System.out.println("here");
+            this.dispose();
+        }
     }
 }

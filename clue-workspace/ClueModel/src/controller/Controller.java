@@ -1,9 +1,6 @@
 package controller;
 
-import models.Board;
-import models.Card;
-import models.Componentes;
-import models.Player;
+import models.*;
 
 import java.util.Objects;
 import java.util.Random;
@@ -48,7 +45,7 @@ public class Controller {
     public static Player get_current_player() {
         return players[turn];
     }
-    public static Card[] guess(Player guesser, Card[] cards){
+    public static InfoPalpite guess(Player guesser, Card[] cards){
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1].getName());
         if(acusado != null){
@@ -69,12 +66,12 @@ public class Controller {
             }
             // Se o jogador pode mostrar algo, encerramos
             if(options.length != 0){
-                return options;
+                return new InfoPalpite(temp, options);
             }
             // Se não, avançamos para o próximo
             temp = temp.getVizinho();
         }
-        return options;
+        return new InfoPalpite(temp, options);
     }
     // Funções usadas para configurar lógica do tabuleiro
     private static void init_players(int num){
