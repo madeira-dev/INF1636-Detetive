@@ -9,10 +9,10 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-	JogoClue tela_jogo = new JogoClue();
+	//JogoClue tela_jogo = new JogoClue();
 	Controller c = Controller.getInstance();
 	//ShowCard s = new ShowCard(Componentes.personagens_cartas()[1], new Player("Rafael", "Green"));
-	 //SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
+	 SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
 	 //MenuClue tela_menu = new MenuClue();
 	Card [] array = new Card[3];
 	array [0]= new Card("Cano","Arma");

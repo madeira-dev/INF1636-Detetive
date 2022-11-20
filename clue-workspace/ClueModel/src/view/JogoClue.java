@@ -52,6 +52,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	  catch(IOException exception) {
 		  System.out.println(exception.getMessage());
 		  }
+	  
 
            p = new MyPanel(img_tabuleiro);
 
