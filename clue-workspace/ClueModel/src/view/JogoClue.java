@@ -3,13 +3,16 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Ellipse2D;
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
 
 // I'm really sorry for the code below, but the deadline is close
-public class JogoClue extends JFrame implements ActionListener {
+public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
     Image img_tabuleiro;
     Image dado_resultado1,dado_resultado2;
@@ -68,6 +71,8 @@ public class JogoClue extends JFrame implements ActionListener {
            //num_dados.addListSelectionListener(new MeuListListener());
            num_dados.setBounds(800,550,15,15);
            
+           this.addMouseListener(this);
+           
            
 
            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -95,6 +100,7 @@ public class JogoClue extends JFrame implements ActionListener {
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
+	
       this.prox.repaint();
       this.mostrar_cartas.repaint();
       this.bloco_notas.repaint();
@@ -141,5 +147,24 @@ public void actionPerformed(ActionEvent e) {
                                                      Controller.get_current_player().get_card_by_type("arma"),
                                                      Controller.get_current_player().get_card_by_type("personagem"));
     	}
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		int x_coordenada = (e.getX() -50) /24;
+		int y_coordenada = (e.getY()-50) /24;
+		
+		System.out.printf("%d - %d xx ", x_coordenada, y_coordenada);
+	}
+	
+	public void mousePressed(MouseEvent e) {
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
 	}
 }
