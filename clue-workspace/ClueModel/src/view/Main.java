@@ -22,7 +22,7 @@ public class Main {
 	InfoPalpite inf = new InfoPalpite(new Player("Rafael", "Green"),array);
 
 	 // Apenas para teste, irei colocar todas as cartas
-	MostrarCartasJogador j = new MostrarCartasJogador(inf);
+	//MostrarCartasJogador j = new MostrarCartasJogador(inf);
 //	 PlayerCards cards = new PlayerCards(Componentes.comodos_cartas(), Componentes.armas_cartas(), Componentes.personagens_cartas());
 
 	 // PlayerCards cards = new PlayerCards(Componentes.comodos_cartas(), Componentes.armas_cartas(), Componentes.personagens_cartas());
