@@ -28,10 +28,11 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
     JButton jogar_dados = new JButton("Jogar Dados");
     JButton escolher_dados = new JButton("Escolher Dados");
 
-    String[] valores_dados= {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+    String[] valores_dados= {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
-    JList num_dados = new JList(valores_dados);
-
+    @SuppressWarnings("unchecked")
+	JComboBox dados_escolha = new JComboBox(valores_dados);
+    
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension screenSize = tk.getScreenSize();
     int sl = screenSize.width;
@@ -55,21 +56,29 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            p = new MyPanel(img_tabuleiro);
 
            prox.setBounds(700,50,400,45);
+           
            mostrar_cartas.setBounds(700,100,400,45);
            mostrar_cartas.addActionListener(this);
+           
            bloco_notas.setBounds(700,150,400,45);
            bloco_notas.addActionListener(this);
+           
            palpite.setBounds(700,200,400,45);
            palpite.addActionListener(this);
+           
            acusar.setBounds(700,250,400,45);
+           
            salvar_jogo.setBounds(700,300,400,45);
+           
            jogar_dados.setBounds(700,500,400,45);
            jogar_dados.addActionListener(this);
+           
            escolher_dados.setBounds(900,550,200,55);
            escolher_dados.addActionListener(this);
-           num_dados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-           //num_dados.addListSelectionListener(new MeuListListener());
-           num_dados.setBounds(800,550,15,15);
+           
+           dados_escolha.setBounds(800,550,90,55);
+           dados_escolha.addActionListener(this);
+           
            
            this.addMouseListener(this);
            
@@ -89,7 +98,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            this.add(salvar_jogo);
            this.add(jogar_dados);
            this.add(escolher_dados);
-           this.add(num_dados);
+           this.add(dados_escolha);
+           
            this.setVisible(true);
            this.revalidate();
            this.repaint();
@@ -109,21 +119,23 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
       this.acusar.repaint();
       this.jogar_dados.repaint();
       this.escolher_dados.repaint();
+      this.dados_escolha.repaint();
    }
 
 @Override
 public void actionPerformed(ActionEvent e) {
+	File dado1,dado2;
+	
 	if (e.getSource() == bloco_notas) {
 		Notepad notes = new Notepad(armas_bool, suspeitos_bool, comodos_bool);
 	}
+	
 	else if(e.getSource() == jogar_dados) {
-		
-		int result1,result2;
         Controller.joga_dados();
 		
 		try {
-			File dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[0]));
-			File dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[1]));
+			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[0]));
+			dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[1]));
 			
 			dado_resultado1 = ImageIO.read((dado1));
 			dado_resultado2 = ImageIO.read((dado2));
@@ -133,27 +145,57 @@ public void actionPerformed(ActionEvent e) {
 		
 		repaint();
 
-		//System.out.printf(" ||| %d - ", result1);
-		//System.out.printf("%d", result2);
+		System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
+		System.out.printf("%d",  Controller.pega_dados()[1]);
 		}
     else if(e.getSource() == palpite){
         Palpite palpite = new Palpite(false, Controller.get_current_player());
         }
+    
     else if(e.getSource() == acusar){
         Palpite palpite = new Palpite(true, Controller.get_current_player());
     }
+    
     else if(e.getSource()== mostrar_cartas) {
     	PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
                                                      Controller.get_current_player().get_card_by_type("arma"),
                                                      Controller.get_current_player().get_card_by_type("personagem"));
     	}
-	}
+    
+    else if(e.getSource() == escolher_dados) {
+    	int result = 0, dado1_valor = 0, dado2_valor = 0;
+    	result = dados_escolha.getSelectedIndex() + 2;
+    	
+    	if(result%2==0) {
+    		dado1_valor = result/2;
+    		dado2_valor = result/2;
+    	}
+    	else {
+    		dado1_valor = (result/2) + 1;
+    		dado2_valor = (result/2);
+    	} 
+    	
+    	System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
+    	try {
+			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado1_valor));
+			dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado2_valor));
+			
+			dado_resultado1 = ImageIO.read((dado1));
+			dado_resultado2 = ImageIO.read((dado2));
+		} catch (IOException exception) {
+			System.out.println(exception.getMessage());
+		}
+
+    	repaint();
+
+    }
+}
 
 	public void mouseClicked(MouseEvent e) {
-		int x_coordenada = (e.getX() -50) /24;
-		int y_coordenada = (e.getY()-50) /24;
+		int x_coordenada = (e.getX() - 50) /26;
+		int y_coordenada = (e.getY() - 50) /27;
 		
-		System.out.printf("%d - %d xx ", x_coordenada, y_coordenada);
+		System.out.printf("%d - %d xx \n", x_coordenada, y_coordenada);
 	}
 	
 	public void mousePressed(MouseEvent e) {
