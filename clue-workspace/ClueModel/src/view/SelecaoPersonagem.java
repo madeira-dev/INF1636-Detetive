@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 
 import javax.swing.*;
 
-import models.Player;
+import models.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -70,7 +70,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     		lista_jogadores = produzJogadores();
     		
     		System.out.printf("Jogadores Selecionados:\n");
-    		System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0].getCharacter(),lista_jogadores[1].getCharacter(),lista_jogadores[2].getCharacter(),lista_jogadores[3].getCharacter(),lista_jogadores[4].getCharacter(),lista_jogadores[5].getCharacter());
+    		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0].getCharacter(),lista_jogadores[1].getCharacter(),lista_jogadores[2].getCharacter(),lista_jogadores[3].getCharacter(),lista_jogadores[4].getCharacter(),lista_jogadores[5].getCharacter());
     	}
     }
    
