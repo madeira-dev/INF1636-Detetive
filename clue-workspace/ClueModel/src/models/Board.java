@@ -37,7 +37,7 @@ public class Board {
 		snip(10, 1, 6, 7);
 		snip(9, 1, 1, 1);
 		snip(16, 1, 1, 1);
-		set_room("Hall",10,4);
+		set_room("Hall",10,5);
 		set_room("Hall",13,7);
 		set_room("Hall",12,7);
 		

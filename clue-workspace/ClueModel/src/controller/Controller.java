@@ -34,6 +34,13 @@ public class Controller {
         valores_dado = new int[2];
         players = new Player[6];
     }
+    
+    public static void movimenta(int x, int y) {
+    	
+    	
+    	
+    }
+    
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
         for(Player p: players){
@@ -46,6 +53,9 @@ public class Controller {
     // Palpite
     public static Player get_current_player() {
         return players[turn];
+    }
+    public static Player get_next_player() {
+        return players[(turn+1)%get_num_players()];
     }
     public static InfoPalpite guess(Player guesser, Card[] cards){
         // Move o acusado para a sala

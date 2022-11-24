@@ -18,6 +18,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
 
     Image img_menu;
     JPanel p;
+    
     JCheckBox scarlett= new JCheckBox("Mrs. Scarlett");
     JCheckBox mustard= new JCheckBox("Coronel Mustard");
     JCheckBox white= new JCheckBox("Mrs. White");

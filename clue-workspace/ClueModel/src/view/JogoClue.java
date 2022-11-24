@@ -16,6 +16,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
     Image img_tabuleiro;
     Image dado_resultado1,dado_resultado2;
+    JLabel texto1,texto2;
 
     JPanel p;
 
@@ -53,10 +54,17 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		  System.out.println(exception.getMessage());
 		  }
 	  
-
+	  		
            p = new MyPanel(img_tabuleiro);
-
+           
+           texto1 = new JLabel(String.format("Jogador da vez:  %s",Controller.get_current_player().getCharacter() ,SwingConstants.CENTER));
+           texto2 = new JLabel(String.format("Proximo: %s", Controller.get_next_player().getCharacter(),SwingConstants.CENTER));
+           
+           texto1.setBounds(700, 0, 200, 30);
+           texto2.setBounds(700, 10, 200, 40);
+           
            prox.setBounds(700,50,400,45);
+           
            
            mostrar_cartas.setBounds(700,100,400,45);
            mostrar_cartas.addActionListener(this);
@@ -100,6 +108,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            this.add(jogar_dados);
            this.add(escolher_dados);
            this.add(dados_escolha);
+           this.add(texto1, BorderLayout.PAGE_START);
+           this.add(texto2, BorderLayout.PAGE_START);
            
            this.setVisible(true);
            this.revalidate();
@@ -121,6 +131,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
       this.jogar_dados.repaint();
       this.escolher_dados.repaint();
       this.dados_escolha.repaint();
+      this.texto1.repaint();
+      this.texto2.repaint();
+      
    }
 
 @Override
@@ -194,10 +207,11 @@ public void actionPerformed(ActionEvent e) {
 }
 
 	public void mouseClicked(MouseEvent e) {
-		int x_coordenada = (e.getX() - 50) /26;
-		int y_coordenada = (e.getY() - 50) /27;
+		int x_coordenada = (675-e.getX()  ) /25 ;
+		int y_coordenada = (700-e.getY())  /25;
+		Controller.movimenta(x_coordenada, y_coordenada);
 		
-		System.out.printf("%d - %d xx \n", x_coordenada, y_coordenada);
+		System.out.printf("%d - %d xx %d - %d \n", x_coordenada, y_coordenada,e.getX(),e.getY());
 	}
 	
 	public void mousePressed(MouseEvent e) {
