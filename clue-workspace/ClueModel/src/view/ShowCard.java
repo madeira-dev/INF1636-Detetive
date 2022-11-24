@@ -17,7 +17,7 @@ public class ShowCard extends JFrame {
 
     ShowCard(Card carta, Player mostrador) throws IOException {
         this.setLayout(new BorderLayout());
-        texto = new JLabel(String.format("%s te mostrou %s", mostrador.getName(), carta.getName()), SwingConstants.CENTER);
+        texto = new JLabel(String.format("%s te mostrou %s", mostrador.getCharacter(), carta.getName()), SwingConstants.CENTER);
         texto.setBounds(0, 0, 400, 50);
         //imagem = ImageIO.read(new File(String.format("clue-workspace/ClueModel/imagens/Armas/Cano.jpg", carta.get_folder(), carta.getName())));
         imagem = ImageIO.read(new File(String.format("imagens/%s/%s.jpg", carta.get_folder(), carta.getName())));

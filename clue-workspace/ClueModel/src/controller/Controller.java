@@ -29,13 +29,6 @@ public class Controller {
         valores_dado = new int[2];
         init_all();
     }
-    {
-        // Temporario
-        init_players(3);
-        add_player("Madeira", "Peacock");
-        add_player("Rafael", "Green");
-        add_player("Thiago", "Plum");
-    }
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
         for(Player p: players){
@@ -60,11 +53,11 @@ public class Controller {
         Card[] options = new Card[0];
 
         // Se chegamos de novo no palpitador, encerramos o loop
-        while (!Objects.equals(temp.getName(), guesser.getName())){
+        while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
             // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
             options = temp.possui_algum(cards);
             // Debug
-            System.out.printf("%s pode mostrar\n", temp.getName());
+            System.out.printf("%s pode mostrar\n", temp.getCharacter());
             for(Card c: options){
                 System.out.println(c.getName());
             }
@@ -81,8 +74,8 @@ public class Controller {
     private static void init_players(int num){
         players = new Player[num];
     }
-    private static void add_player(String name, String character){
-        players[num_players] = new Player(name, character);
+    private static void add_player(String character){
+        players[num_players] = new Player(character);
         num_players++;
     }
     private static void set_neighbors(){

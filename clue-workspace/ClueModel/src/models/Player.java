@@ -6,15 +6,12 @@ import models.API;
 
 public class Player implements PlayerFactory {
 	private Player vizinho;
-	private final String name;
 	private String character;
-
 	private Cell cell;
 	private Card[] cardsArr = new Card[0];
 	public API player_api = new API();
 
-	public Player (String name, String character) {
-		this.name = name;
+	public Player (String character) {
 		this.character = character;
 	}
 
@@ -33,9 +30,6 @@ public class Player implements PlayerFactory {
 		cards = Arrays.copyOf(cards, counter);
 		return cards;
 	}
-
-	@Override
-	public String getName() { return this.name; }
 
 	@Override
 	public String getCharacter() { return this.character; }

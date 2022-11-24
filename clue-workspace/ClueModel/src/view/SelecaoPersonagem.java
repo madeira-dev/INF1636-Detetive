@@ -76,30 +76,30 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
    
     public Player[] produzJogadores() {
     	int num_jogadores = 0 ;
-    	Player []lista_jogadores = new Player[6];
+    	Player lista_jogadores[] = new Player[6];
     	
     	if(scarlett.isSelected()) {
-    		lista_jogadores[num_jogadores]= new Player("Thiago","Srta. Scarlett");
+    		lista_jogadores[num_jogadores]= new Player("Srta. Scarlett");
 			num_jogadores++;
 		}
 		if(green.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Reverendo Green");
+			lista_jogadores[num_jogadores]= new Player("Reverendo Green");
 			num_jogadores++;
 		}
 		if(white.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Srta. White");
+			lista_jogadores[num_jogadores]= new Player("Srta. White");
 			num_jogadores++;
 		}
 		if(mustard.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Coronel Mustard");
+			lista_jogadores[num_jogadores]= new Player("Coronel Mustard");
 			num_jogadores++;
 		}
 		if(plum.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Professor Plum");
+			lista_jogadores[num_jogadores]= new Player("Professor Plum");
 			num_jogadores++;
 		}
 		if(peacock.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Srta. Peacock");
+			lista_jogadores[num_jogadores]= new Player("Srta. Peacock");
 			num_jogadores++;
 		}
 		if(num_jogadores>=3) {
