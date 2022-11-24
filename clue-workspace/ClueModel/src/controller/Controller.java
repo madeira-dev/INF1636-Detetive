@@ -14,6 +14,9 @@ public class Controller {
     public static int get_turn(){
         return turn;
     }
+    public static int get_num_players(){
+        return num_players;
+    }
     public static void pass_turn(){turn = (turn + 1) % num_players;}
     private static Controller instance = null;
 
@@ -27,7 +30,7 @@ public class Controller {
     private Controller() {
         board = Board.getInstance();
         valores_dado = new int[2];
-        init_all();
+        players = new Player[6];
     }
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
@@ -71,10 +74,12 @@ public class Controller {
         return new InfoPalpite(temp, options);
     }
     // Funções usadas para configurar lógica do tabuleiro
-    private static void init_players(int num){
-        players = new Player[num];
-    }
-    private static void add_player(String character){
+    public static void add_player(String character){
+        for(int i = 0; i < num_players; i++){
+            if(Objects.equals(players[i].getCharacter(), character)){
+                return;
+            }
+        }
         players[num_players] = new Player(character);
         num_players++;
     }
