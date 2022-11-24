@@ -161,7 +161,8 @@ public void actionPerformed(ActionEvent e) {
     	PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
                                                      Controller.get_current_player().get_card_by_type("arma"),
                                                      Controller.get_current_player().get_card_by_type("personagem"));
-    	}
+
+    }
     
     else if(e.getSource() == escolher_dados) {
     	int result = 0, dado1_valor = 0, dado2_valor = 0;

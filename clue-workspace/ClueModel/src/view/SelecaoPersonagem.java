@@ -4,7 +4,8 @@ import javax.imageio.ImageIO;
 
 import javax.swing.*;
 
-import models.*;
+import controller.Controller;
+import models.Player;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -68,44 +69,37 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
     		this.dispose();
     		
     		lista_jogadores = produzJogadores();
-    		
-    		System.out.printf("Jogadores Selecionados:\n");
-    		//System.out.printf("%s\n%s\n%s\n%s\n%s\n%s",lista_jogadores[0].getCharacter(),lista_jogadores[1].getCharacter(),lista_jogadores[2].getCharacter(),lista_jogadores[3].getCharacter(),lista_jogadores[4].getCharacter(),lista_jogadores[5].getCharacter());
+
     	}
     }
    
     public Player[] produzJogadores() {
     	int num_jogadores = 0 ;
-    	Player []lista_jogadores = new Player[6];
+    	Player lista_jogadores[] = new Player[6];
     	
     	if(scarlett.isSelected()) {
-    		lista_jogadores[num_jogadores]= new Player("Thiago","Srta. Scarlett");
-			num_jogadores++;
+    		Controller.add_player("Srta. Scarlett");
 		}
 		if(green.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Reverendo Green");
-			num_jogadores++;
+            Controller.add_player("Reverendo Green");
 		}
 		if(white.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Srta. White");
-			num_jogadores++;
+            Controller.add_player("Srta. White");
 		}
 		if(mustard.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Coronel Mustard");
-			num_jogadores++;
+            Controller.add_player("Coronel Mustard");
 		}
 		if(plum.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Professor Plum");
-			num_jogadores++;
+            Controller.add_player("Professor Plum");
 		}
 		if(peacock.isSelected()) {
-			lista_jogadores[num_jogadores]= new Player("Thiago","Srta. Peacock");
-			num_jogadores++;
+            Controller.add_player("Srta. Peacock");
 		}
-		if(num_jogadores>=3) {
+		if(Controller.get_num_players() >= 3) {
 			JogoClue tela_jogo = new JogoClue();
+            Controller.init_all();
 		}
-		
+
 		return lista_jogadores;
     }
    

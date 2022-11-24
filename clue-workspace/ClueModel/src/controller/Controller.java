@@ -2,6 +2,8 @@ package controller;
 
 import models.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -13,6 +15,9 @@ public class Controller {
     private static Card[] arquivo_confidencial;
     public static int get_turn(){
         return turn;
+    }
+    public static int get_num_players(){
+        return num_players;
     }
     public static void pass_turn(){turn = (turn + 1) % num_players;}
     private static Controller instance = null;
@@ -27,14 +32,7 @@ public class Controller {
     private Controller() {
         board = Board.getInstance();
         valores_dado = new int[2];
-        init_all();
-    }
-    {
-        // Temporario
-        init_players(3);
-        add_player("Madeira", "Peacock");
-        add_player("Rafael", "Green");
-        add_player("Thiago", "Plum");
+        players = new Player[6];
     }
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
     public static Player get_player_by_character(String name){
@@ -60,11 +58,11 @@ public class Controller {
         Card[] options = new Card[0];
 
         // Se chegamos de novo no palpitador, encerramos o loop
-        while (!Objects.equals(temp.getName(), guesser.getName())){
+        while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
             // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
             options = temp.possui_algum(cards);
             // Debug
-            System.out.printf("%s pode mostrar\n", temp.getName());
+            System.out.printf("%s pode mostrar\n", temp.getCharacter());
             for(Card c: options){
                 System.out.println(c.getName());
             }
@@ -78,11 +76,13 @@ public class Controller {
         return new InfoPalpite(temp, options);
     }
     // Funções usadas para configurar lógica do tabuleiro
-    private static void init_players(int num){
-        players = new Player[num];
-    }
-    private static void add_player(String name, String character){
-        players[num_players] = new Player(name, character);
+    public static void add_player(String character){
+        for(int i = 0; i < num_players; i++){
+            if(Objects.equals(players[i].getCharacter(), character)){
+                return;
+            }
+        }
+        players[num_players] = new Player(character);
         num_players++;
     }
     private static void set_neighbors(){
@@ -145,10 +145,11 @@ public class Controller {
     private static void gera_arquivo(){
         arquivo_confidencial = Componentes.arquivo_confidencial();
     }
-    private static void init_all(){
+    public static void init_all(){
         set_neighbors();
         gera_arquivo();
         deal_cards();
+        players = Arrays.copyOf(players, num_players);
     }
     public static void joga_dados() {
         Random result1 = new Random();
