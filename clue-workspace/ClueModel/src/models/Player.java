@@ -23,8 +23,8 @@ public class Player implements PlayerFactory {
 		Card[] cards = new Card[cardsArr.length];
 		for(int i=0; i < cardsArr.length; i++) {
 			if(Objects.equals(cardsArr[i].getType(), type)){
+				cards[counter] = cardsArr[i];
 				counter++;
-				cards[i] = cardsArr[i];
 			}
 		}
 		cards = Arrays.copyOf(cards, counter);

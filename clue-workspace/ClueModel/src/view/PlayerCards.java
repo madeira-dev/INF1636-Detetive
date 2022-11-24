@@ -19,11 +19,13 @@ public class PlayerCards extends JFrame {
 	File[] images_personagens;
 
 	public PlayerCards(Card[] comodos, Card[] armas, Card[] personagens) {
+
 		images_arma = new File[armas.length];
 		images_comodo = new File[comodos.length];
 		images_personagens = new File[personagens.length];
 
 		for(int i=0; i < armas.length; i++){
+			System.out.println(armas[i].getName());
 			images_arma[i] = new File(String.format("imagens/Armas/%s.jpg", armas[i].getName()));
 	  }
 		for(int i=0; i < personagens.length; i++){

@@ -97,6 +97,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener{
 		}
 		if(Controller.get_num_players() >= 3) {
 			JogoClue tela_jogo = new JogoClue();
+            Controller.init_all();
 		}
 
 		return lista_jogadores;

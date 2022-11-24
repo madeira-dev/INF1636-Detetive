@@ -2,6 +2,8 @@ package controller;
 
 import models.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -143,10 +145,11 @@ public class Controller {
     private static void gera_arquivo(){
         arquivo_confidencial = Componentes.arquivo_confidencial();
     }
-    private static void init_all(){
+    public static void init_all(){
         set_neighbors();
         gera_arquivo();
         deal_cards();
+        players = Arrays.copyOf(players, num_players);
     }
     public static void joga_dados() {
         Random result1 = new Random();
