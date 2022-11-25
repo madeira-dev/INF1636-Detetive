@@ -15,6 +15,7 @@ import controller.*;
 public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
     Image img_tabuleiro;
+    Image img_casa_valida;
     Image dado_resultado1,dado_resultado2;
     JLabel texto1,texto2;
 
@@ -40,8 +41,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
     int sa = screenSize.height;
     int x = sl / 2-1200 / 2;
     int y = sa / 2-700 / 2;
-    int x_coordenada;
-	int y_coordenada;
     
     boolean[] armas_bool = new boolean[6];
     boolean[] suspeitos_bool = new boolean[6];
@@ -50,7 +49,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
   public JogoClue() {	  
 	  try {
 		  File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
+          File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
 		  img_tabuleiro = ImageIO.read(tabuleiro);
+          img_casa_valida = ImageIO.read(casa_valida);
 		  }
 	  catch(IOException exception) {
 		  System.out.println(exception.getMessage());
@@ -119,41 +120,41 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
        }
 
    public void paint(Graphics g) {
-	  super.paint(g); 
+	  super.paint(g);
 	  Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
-	  
-	  
+
+
 	  Ellipse2D srta_scarlet = new Ellipse2D.Double(232,658, 20, 20);
 	  Ellipse2D srta_peacock = new Ellipse2D.Double(635,212, 20, 20);
 	  Ellipse2D srta_white = new Ellipse2D.Double(275,50, 20, 20);
 	  Ellipse2D rev_green = new Ellipse2D.Double(403,55, 20, 20);
 	  Ellipse2D cor_mustard = new Ellipse2D.Double(55,483, 20, 20);
 	  Ellipse2D prof_plum = new Ellipse2D.Double(635,534, 20, 20);
-	
-		 
+
+
 	  g2D.setPaint(Color.red);
 	  g2D.fill(srta_scarlet);
-	  
+
 	  g2D.setPaint(Color.blue);
 	  g2D.fill(srta_peacock);
-	  
+
 	  g2D.setPaint(Color.white);
 	  g2D.fill(srta_white);
-	  
+
 	  g2D.setPaint(Color.green);
 	  g2D.fill(rev_green);
-	  
+
 	  g2D.setPaint(Color.yellow);
 	  g2D.fill(cor_mustard);
-	  
+
 	  g2D.setPaint(Color.black);
 	  g2D.fill(prof_plum);
-	  
-	  
-      
+
+
+
       
    }
 
@@ -228,11 +229,12 @@ public void actionPerformed(ActionEvent e) {
 }
 
 	public void mouseClicked(MouseEvent e) {
-		x_coordenada = (675-e.getX()  ) /25;
-		y_coordenada = (700-e.getY())  /25;
-		Controller.movimenta(x_coordenada, y_coordenada);
-		
-		System.out.printf("%d - %d xx %d - %d \n", x_coordenada, y_coordenada,e.getX(),e.getY());
+		int x_coordenada = (675-e.getX()  ) /25 ;
+		int y_coordenada = (700-e.getY())  /25;
+        int[][] coord = Controller.casas_disponiveis(x_coordenada, y_coordenada);
+        for(int[] c: coord){
+            System.out.printf("%d %d\n", c[0], c[1]);
+        }
 	}
 	
 	public void mousePressed(MouseEvent e) {

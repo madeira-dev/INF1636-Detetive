@@ -21,6 +21,7 @@ public class Controller {
     }
     public static void pass_turn(){turn = (turn + 1) % num_players;}
     private static Controller instance = null;
+    private static MoveGenerator move_generator;
 
     private static int[] valores_dado;
     public static Controller getInstance() {
@@ -33,12 +34,12 @@ public class Controller {
         board = Board.getInstance();
         valores_dado = new int[2];
         players = new Player[6];
+        move_generator = new MoveGenerator(board);
     }
     
-    public static void movimenta(int x, int y) {
-    	
-    	
-    	
+    public static int[][] casas_disponiveis(int x, int y) {
+    	move_generator.reset_generator(board.get_cell(x, y));
+    	return move_generator.cell_to_coord(move_generator.get_moves(valores_dado[0] + valores_dado[1]));
     }
     
     // Procura entre os jogadores alguém com o personagem. Retorna o personagem caso ache ou null caso contrário
