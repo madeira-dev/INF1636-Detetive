@@ -15,6 +15,7 @@ import controller.*;
 public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
     Image img_tabuleiro;
+    Image img_casa_valida;
     Image dado_resultado1,dado_resultado2;
     JLabel texto1,texto2;
 
@@ -48,7 +49,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
   public JogoClue() {	  
 	  try {
 		  File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
+          File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
 		  img_tabuleiro = ImageIO.read(tabuleiro);
+          img_casa_valida = ImageIO.read(casa_valida);
 		  }
 	  catch(IOException exception) {
 		  System.out.println(exception.getMessage());
@@ -209,9 +212,10 @@ public void actionPerformed(ActionEvent e) {
 	public void mouseClicked(MouseEvent e) {
 		int x_coordenada = (675-e.getX()  ) /25 ;
 		int y_coordenada = (700-e.getY())  /25;
-		Controller.movimenta(x_coordenada, y_coordenada);
-		
-		System.out.printf("%d - %d xx %d - %d \n", x_coordenada, y_coordenada,e.getX(),e.getY());
+        int[][] coord = Controller.casas_disponiveis(x_coordenada, y_coordenada);
+        for(int[] c: coord){
+            System.out.printf("%d %d\n", c[0], c[1]);
+        }
 	}
 	
 	public void mousePressed(MouseEvent e) {

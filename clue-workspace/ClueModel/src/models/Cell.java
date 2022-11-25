@@ -62,4 +62,10 @@ class Cell{
     
     // Usado para debug
     public void print_coord() { System.out.printf("(%d, %d)\n", x, y); }
+    public int[] get_coord(){
+        int[] coord = new int[2];
+        coord[0] = get_x();
+        coord[1] = get_y();
+        return coord;
+    };
 }

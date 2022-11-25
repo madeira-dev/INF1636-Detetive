@@ -15,7 +15,7 @@ public class MoveGenerator {
     MoveNode[] nodes;
     private static volatile MoveGenerator instance = null;
 
-    MoveGenerator(Board board){
+    public MoveGenerator(Board board){
         this.board = board;
         this.nodes = new MoveNode[1000];
     }
@@ -236,5 +236,14 @@ public class MoveGenerator {
             availability[3] = false;
         }
         return availability;
+    }
+    public int[][] cell_to_coord(Cell[] cells){
+        int size = cells.length;
+        int[][] coord = new int[2][size];
+        for(int i=0; i < size; i++){
+            coord[i][0] = cells[i].get_x();
+            coord[i][1] = cells[i].get_y();
+        }
+        return coord;
     }
 }
