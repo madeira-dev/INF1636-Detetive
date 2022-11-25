@@ -16,44 +16,42 @@ public class Notepad extends JFrame implements ActionListener {
     JLabel suspeitos = new JLabel("Suspeitos");
 	JLabel armas = new JLabel("Armas");
 	JLabel comodos = new JLabel("Comodos");
-    JButton salvar = new JButton("Salvar");
-
-    public Notepad(boolean[] bool_armas, boolean[] bool_suspeitos, boolean[] bool_comodos) {
+    
+	
+    public Notepad(Boolean[] bool_armas, Boolean[] bool_suspeitos, Boolean[] bool_comodos) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
         this.setLayout(null);
         this.setTitle("Bloco de Notas");
         this.setBounds(1000, 500, 600, 450);
 
-        this.add(salvar);
+     
 
-        armas_arr[0] = new JCheckBox("Corda");
-        armas_arr[1] = new JCheckBox("Cano de Chumbo");
-        armas_arr[2] = new JCheckBox("Faca");
+        armas_arr[0] = new JCheckBox("Cano de Chumbo");
+        armas_arr[1] = new JCheckBox("Castiçal");
+        armas_arr[2] = new JCheckBox("Corda");
         armas_arr[3] = new JCheckBox("Chave Inglesa");
-        armas_arr[4] = new JCheckBox("Castiçal");
+        armas_arr[4] = new JCheckBox("Faca");
         armas_arr[5] = new JCheckBox("Revolver");
 
-        suspeitos_arr[0] = new JCheckBox("Mrs. Scarlett");
-        suspeitos_arr[1] = new JCheckBox("Coronel Mustard");
-        suspeitos_arr[2] = new JCheckBox("Mrs. White");
-        suspeitos_arr[3] = new JCheckBox("Mrs. Peacock");
-        suspeitos_arr[4] = new JCheckBox("Prof. Plum");
-        suspeitos_arr[5] = new JCheckBox("Rev. Green");
+        suspeitos_arr[0] = new JCheckBox("Mrs. White");
+        suspeitos_arr[1] = new JCheckBox("Rev. Green");
+        suspeitos_arr[2] = new JCheckBox("Mrs. Scarlett");
+        suspeitos_arr[3] = new JCheckBox("Prof. Plum");
+        suspeitos_arr[4] = new JCheckBox("Mrs. Peacock");
+        suspeitos_arr[5] = new JCheckBox("Cor. Mustard");
 
-        comodos_arr[0] = new JCheckBox("Study");
-        comodos_arr[1] = new JCheckBox("Hall");
-        comodos_arr[2] = new JCheckBox("Lounge");
-        comodos_arr[3] = new JCheckBox("Library");
-        comodos_arr[4] = new JCheckBox("Dining Room");
-        comodos_arr[5] = new JCheckBox("Kitchen");
-        comodos_arr[6] = new JCheckBox("Ball Room");
-        comodos_arr[7] = new JCheckBox("Conservatory");
-        comodos_arr[8] = new JCheckBox("Billard Room");
+        comodos_arr[0] = new JCheckBox("Biblioteca");
+        comodos_arr[1] = new JCheckBox("Cozinha");
+        comodos_arr[2] = new JCheckBox("Entrada");
+        comodos_arr[3] = new JCheckBox("Escritorio");
+        comodos_arr[4] = new JCheckBox("Jardim de Inverno");
+        comodos_arr[5] = new JCheckBox("Sala De Estar");
+        comodos_arr[6] = new JCheckBox("Sala De Jantar");
+        comodos_arr[7] = new JCheckBox("Sala De Musica");
+        comodos_arr[8] = new JCheckBox("Salao De Jogos");
 
-//    	botao para salvar e sair
-        salvar.setBounds(450,300,100,20);
-        salvar.addActionListener(this);
+
 
 //      suspeitos
         suspeitos.setBounds(15, 0, 150, 20);
@@ -118,8 +116,6 @@ public class Notepad extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == salvar) {
-			this.dispose();
-			}
+		
 		}
 	}

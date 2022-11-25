@@ -17,6 +17,11 @@ public class Player implements PlayerFactory {
 	}
 	
 	public void setNoteOptions(Card arr,int index) {note.setTrue(arr, index);}
+	
+	public Boolean[] getNoteOptionsWeapons() {return note.getWeapons();}
+	public Boolean[] getNoteOptionsRooms() {return note.getRooms();}
+	public Boolean[] getNoteOptionsSuspects() {return note.getSuspects();}
+	
 	public void printNote() {note.printRooms();note.printSuspects();note.printWeapons();}
 	
 	@Override
