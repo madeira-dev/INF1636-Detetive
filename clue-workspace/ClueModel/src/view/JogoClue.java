@@ -250,6 +250,9 @@ public void actionPerformed(ActionEvent e) {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+      if(Controller.get_ja_andou()){
+          return;
+      }
         int x = e.getX();
         int y = e.getY();
         if(x > 700){
@@ -260,6 +263,7 @@ public void actionPerformed(ActionEvent e) {
                 Controller.get_current_player().move(coord[0], coord[1]);
                 lista_quadrados = null;
                 repaint();
+                Controller.anda();
                 break;
             }
         }
