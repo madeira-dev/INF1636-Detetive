@@ -62,11 +62,14 @@ public class Controller {
     public static Player get_next_player() {
         return players[(turn+1)%get_num_players()];
     }
+    public static Player get_player(int i){
+        return players[i];
+    }
     public static InfoPalpite guess(Player guesser, Card[] cards){
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1].getName());
         if(acusado != null){
-            board.move_player(acusado, guesser.get_cell());
+            board.move_player(acusado, guesser.get_coord());
         }
 
         Player temp = guesser.getVizinho();

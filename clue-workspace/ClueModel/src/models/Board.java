@@ -157,7 +157,7 @@ public class Board {
 	}
 	
 	// Move jogador
-	public void move_player(Player player, Cell destination) {
-		player.set_cell(destination);
+	public void move_player(Player player,int[] coord) {
+		player.move(coord[0], coord[1]);
 	}
 	}

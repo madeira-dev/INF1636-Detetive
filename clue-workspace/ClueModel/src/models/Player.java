@@ -7,13 +7,40 @@ import models.API;
 public class Player implements PlayerFactory {
 	private Player vizinho;
 	private String character;
-	private Cell cell;
+	private int[] coord;
 	private Notepad note = new Notepad();
 	private Card[] cardsArr = new Card[0];
 	public API player_api = new API();
 
 	public Player (String character) {
+
 		this.character = character;
+		switch (character){
+			case "Reverendo Green":{
+				coord = new int[]{10, 25};
+				break;
+			}
+			case "Coronel Mustard":{
+				coord = new int[]{24, 8};
+				break;
+			}
+			case "Srta. Peacock":{
+				coord = new int[]{1, 19};
+				break;
+			}
+			case "Professor Plum":{
+				coord = new int[]{1, 6};
+				break;
+			}
+			case "Srta. Scarlett":{
+				coord = new int[]{17, 1};
+				break;
+			}
+			case "Srta. White":{
+				coord = new int[]{15, 25};
+				break;
+			}
+		}
 	}
 	
 	public void setNoteOptions(Card arr,int index) {note.setTrue(arr, index);}
@@ -43,8 +70,6 @@ public class Player implements PlayerFactory {
 	@Override
 	public String getCharacter() { return this.character; }
 
-	public void setCharacter(String name) { this.character = name; }
-
 	@Override
 	public void addCard(Card _card) {
 		Card[] newArray = Arrays.copyOf(cardsArr, cardsArr.length + 1);
@@ -70,16 +95,9 @@ public class Player implements PlayerFactory {
 
 	public void setVizinho(Player vizinho) { this.vizinho = vizinho; }
 
-	public Cell get_cell() { return cell; }
-	
-	public int get_coordenadaX() {
-		return cell.get_x();
-	}
-	public int get_coordenadaY() {
-		return cell.get_y();
-	}
+	public int[] get_coord() { return coord; }
 
-	public void set_cell(Cell c) { cell = c; }
+	public void move(int x, int y) {coord[0] = x; coord[1] = y;}
 
 	public void set_api_cards_arr(Card[] cards_arr) { player_api.setPlayerCardsArray(cards_arr); }
 }

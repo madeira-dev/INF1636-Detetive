@@ -133,36 +133,37 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
                g2D.drawImage(img_casa_valida, 650 - 25 * coord[0], 675 - 25 * coord[1], this);
            }
        }
+       for(int i=0; i < Controller.get_num_players(); i++){
+           Ellipse2D e = new Ellipse2D.Double(650 - 25 * Controller.get_player(i).get_coord()[0], 675 - 25 * Controller.get_player(i).get_coord()[1], 25, 25);
+           switch (Controller.get_player(i).getCharacter()){
+               case "Reverendo Green":{
+                   g2D.setPaint(Color.green);
+                   break;
+               }
+               case "Coronel Mustard":{
+                   g2D.setPaint(Color.yellow);
+                   break;
+               }
+               case "Srta. Peacock":{
+                   g2D.setPaint(Color.blue);
+                   break;
+               }
+               case "Professor Plum":{
+                   g2D.setPaint(Color.magenta);
+                   break;
+               }
+               case "Srta. Scarlett":{
+                   g2D.setPaint(Color.red);
+                   break;
+               }
+               case "Srta. White":{
+                   g2D.setPaint(Color.white);
+                   break;
+               }
+           }
+           g2D.fill(e);
+       }
 
-	  Ellipse2D srta_scarlet = new Ellipse2D.Double(232,658, 20, 20);
-	  Ellipse2D srta_peacock = new Ellipse2D.Double(635,212, 20, 20);
-	  Ellipse2D srta_white = new Ellipse2D.Double(275,50, 20, 20);
-	  Ellipse2D rev_green = new Ellipse2D.Double(403,55, 20, 20);
-	  Ellipse2D cor_mustard = new Ellipse2D.Double(55,483, 20, 20);
-	  Ellipse2D prof_plum = new Ellipse2D.Double(635,534, 20, 20);
-
-
-	  g2D.setPaint(Color.red);
-	  g2D.fill(srta_scarlet);
-
-	  g2D.setPaint(Color.blue);
-	  g2D.fill(srta_peacock);
-
-	  g2D.setPaint(Color.white);
-	  g2D.fill(srta_white);
-
-	  g2D.setPaint(Color.green);
-	  g2D.fill(rev_green);
-
-	  g2D.setPaint(Color.yellow);
-	  g2D.fill(cor_mustard);
-
-	  g2D.setPaint(Color.black);
-	  g2D.fill(prof_plum);
-
-
-
-      
    }
 
 @Override
