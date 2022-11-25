@@ -69,9 +69,10 @@ public class JogoClue extends JFrame implements ActionListener {
            texto2.setBounds(700, 10, 200, 40);
            
            prox.setBounds(700,50,400,45);
-           
-           
-           mostrar_cartas.setBounds(700,100,400,45);
+
+      prox.addActionListener(this);
+
+      mostrar_cartas.setBounds(700,100,400,45);
            mostrar_cartas.addActionListener(this);
            
            bloco_notas.setBounds(700,150,400,45);
@@ -169,6 +170,14 @@ public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == bloco_notas) {
 		Controller.mudaNote();
 	}
+    else if (e.getSource() == prox){
+        System.out.println("here\n");
+        Controller.pass_turn();
+        texto1.setText(String.format("Jogador da vez:  %s",Controller.get_current_player().getCharacter() ,SwingConstants.CENTER));
+        texto2.setText(String.format("Proximo: %s  ", Controller.get_next_player().getCharacter(),SwingConstants.CENTER));
+
+        repaint();
+    }
 	
 	else if(e.getSource() == jogar_dados) {
         Controller.joga_dados();
@@ -237,15 +246,4 @@ public void actionPerformed(ActionEvent e) {
 
     }
 }
-	public void mousePressed(MouseEvent e) {
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
-	}
 }
