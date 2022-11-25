@@ -82,7 +82,7 @@ public class Board {
 		snip(6,21,1,4);
 		set_room("Conservatory", 5, 20);
 		snip(7,24,1,1);
-		configura_passagem(5,18,20,16);
+		configura_passagem(5,18,20,6);
 
 		//Billard Room
 		snip(1,13,6,5);

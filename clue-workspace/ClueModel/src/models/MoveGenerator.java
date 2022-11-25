@@ -35,6 +35,7 @@ public class MoveGenerator {
     // Reinicia variáveis
     private void reset_variables() {
         this.last = 0;
+        this.first = 0;
         this.first_iteration = true;
     }
     // Reinicia o gerador para configurar uma nova casa de início

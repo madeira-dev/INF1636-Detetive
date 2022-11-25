@@ -16,7 +16,7 @@ public class MoveNode {
     MoveNode(Cell cell, MoveNode src) {
         this.cell = cell;
         if(src == null){
-            this.passed_by = new Cell[13];
+            this.passed_by = new Cell[14];
             this.passed_by[0]= cell;
             this.num_passed = 1;
 

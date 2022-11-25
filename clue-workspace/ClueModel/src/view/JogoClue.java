@@ -129,6 +129,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
        if(lista_quadrados != null){
            for(int[] coord: lista_quadrados){
+               System.out.printf("%d %d\n", coord[0], coord[1]);
                g2D.drawImage(img_casa_valida, 650 - 25 * coord[0], 675 - 25 * coord[1], this);
            }
        }
@@ -237,10 +238,7 @@ public void actionPerformed(ActionEvent e) {
 	public void mouseClicked(MouseEvent e) {
 		int x_coordenada = (675-e.getX()  ) /25 ;
 		int y_coordenada = (700-e.getY())  /25;
-        int[][] coord = Controller.casas_disponiveis(x_coordenada, y_coordenada);
-        for(int[] c: coord){
-            System.out.printf("%d %d\n", c[0], c[1]);
-        }
+        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
         repaint();
 	}
 	
