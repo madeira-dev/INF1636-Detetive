@@ -217,7 +217,7 @@ public void actionPerformed(ActionEvent e) {
     		dado1_valor = (result/2) + 1;
     		dado2_valor = (result/2);
     	} 
-    	
+    	Controller.set_valores_dado(dado1_valor, dado2_valor);
     	System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
     	try {
 			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado1_valor));
@@ -241,6 +241,7 @@ public void actionPerformed(ActionEvent e) {
         for(int[] c: coord){
             System.out.printf("%d %d\n", c[0], c[1]);
         }
+        repaint();
 	}
 	
 	public void mousePressed(MouseEvent e) {
