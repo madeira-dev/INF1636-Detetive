@@ -122,26 +122,45 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
        }
 
    public void paint(Graphics g) {
-	   Graphics2D g2D = (Graphics2D) g;
+	  super.paint(g);
+	  Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
-      if(lista_quadrados != null){
-          for(int[] coord: lista_quadrados){
-              g2D.drawImage(img_casa_valida, 650 - 25 * coord[0], 675 - 25 * coord[1], this);
-          }
-      }
-      this.prox.repaint();
-      this.mostrar_cartas.repaint();
-      this.bloco_notas.repaint();
-      this.palpite.repaint();
-      this.salvar_jogo.repaint();
-      this.acusar.repaint();
-      this.jogar_dados.repaint();
-      this.escolher_dados.repaint();
-      this.dados_escolha.repaint();
-      this.texto1.repaint();
-      this.texto2.repaint();
+       if(lista_quadrados != null){
+           for(int[] coord: lista_quadrados){
+               g2D.drawImage(img_casa_valida, 650 - 25 * coord[0], 675 - 25 * coord[1], this);
+           }
+       }
+
+	  Ellipse2D srta_scarlet = new Ellipse2D.Double(232,658, 20, 20);
+	  Ellipse2D srta_peacock = new Ellipse2D.Double(635,212, 20, 20);
+	  Ellipse2D srta_white = new Ellipse2D.Double(275,50, 20, 20);
+	  Ellipse2D rev_green = new Ellipse2D.Double(403,55, 20, 20);
+	  Ellipse2D cor_mustard = new Ellipse2D.Double(55,483, 20, 20);
+	  Ellipse2D prof_plum = new Ellipse2D.Double(635,534, 20, 20);
+
+
+	  g2D.setPaint(Color.red);
+	  g2D.fill(srta_scarlet);
+
+	  g2D.setPaint(Color.blue);
+	  g2D.fill(srta_peacock);
+
+	  g2D.setPaint(Color.white);
+	  g2D.fill(srta_white);
+
+	  g2D.setPaint(Color.green);
+	  g2D.fill(rev_green);
+
+	  g2D.setPaint(Color.yellow);
+	  g2D.fill(cor_mustard);
+
+	  g2D.setPaint(Color.black);
+	  g2D.fill(prof_plum);
+
+
+
       
    }
 
@@ -169,7 +188,7 @@ public void actionPerformed(ActionEvent e) {
 		repaint();
 
 		System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
-		System.out.printf("%d\n",  Controller.pega_dados()[1]);
+		System.out.printf("%d",  Controller.pega_dados()[1]);
 		}
     else if(e.getSource() == palpite){
         Palpite palpite = new Palpite(false, Controller.get_current_player());
@@ -200,7 +219,6 @@ public void actionPerformed(ActionEvent e) {
     	} 
     	
     	System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
-        Controller.set_valores_dado(dado1_valor, dado2_valor);
     	try {
 			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado1_valor));
 			dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado2_valor));
@@ -219,8 +237,10 @@ public void actionPerformed(ActionEvent e) {
 	public void mouseClicked(MouseEvent e) {
 		int x_coordenada = (675-e.getX()  ) /25 ;
 		int y_coordenada = (700-e.getY())  /25;
-        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
-        repaint();
+        int[][] coord = Controller.casas_disponiveis(x_coordenada, y_coordenada);
+        for(int[] c: coord){
+            System.out.printf("%d %d\n", c[0], c[1]);
+        }
 	}
 	
 	public void mousePressed(MouseEvent e) {
