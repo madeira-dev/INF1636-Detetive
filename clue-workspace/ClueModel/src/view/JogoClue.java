@@ -45,11 +45,13 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
     boolean[] armas_bool = new boolean[6];
     boolean[] suspeitos_bool = new boolean[6];
     boolean[] comodos_bool = new boolean[9];
+    int[][] lista_quadrados;
 
   public JogoClue() {	  
 	  try {
-		  File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
-          File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
+          File tabuleiro = new File("clue-workspace/ClueModel/imagens/Tabuleiros/Tabuleiro.jpg");
+          //File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
+          File casa_valida = new File("clue-workspace/ClueModel/imagens/Tabuleiros/quadrado_laranja.png");
 		  img_tabuleiro = ImageIO.read(tabuleiro);
           img_casa_valida = ImageIO.read(casa_valida);
 		  }
@@ -124,7 +126,11 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
-	
+      if(lista_quadrados != null){
+          for(int[] coord: lista_quadrados){
+              g2D.drawImage(img_casa_valida, 650 - 25 * coord[0], 675 - 25 * coord[1], this);
+          }
+      }
       this.prox.repaint();
       this.mostrar_cartas.repaint();
       this.bloco_notas.repaint();
@@ -163,7 +169,7 @@ public void actionPerformed(ActionEvent e) {
 		repaint();
 
 		System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
-		System.out.printf("%d",  Controller.pega_dados()[1]);
+		System.out.printf("%d\n",  Controller.pega_dados()[1]);
 		}
     else if(e.getSource() == palpite){
         Palpite palpite = new Palpite(false, Controller.get_current_player());
@@ -194,6 +200,7 @@ public void actionPerformed(ActionEvent e) {
     	} 
     	
     	System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
+        Controller.set_valores_dado(dado1_valor, dado2_valor);
     	try {
 			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado1_valor));
 			dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado2_valor));
@@ -212,10 +219,8 @@ public void actionPerformed(ActionEvent e) {
 	public void mouseClicked(MouseEvent e) {
 		int x_coordenada = (675-e.getX()  ) /25 ;
 		int y_coordenada = (700-e.getY())  /25;
-        int[][] coord = Controller.casas_disponiveis(x_coordenada, y_coordenada);
-        for(int[] c: coord){
-            System.out.printf("%d %d\n", c[0], c[1]);
-        }
+        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
+        repaint();
 	}
 	
 	public void mousePressed(MouseEvent e) {

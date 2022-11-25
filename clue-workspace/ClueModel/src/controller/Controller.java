@@ -36,7 +36,10 @@ public class Controller {
         players = new Player[6];
         move_generator = new MoveGenerator(board);
     }
-    
+    public static void set_valores_dado(int v1, int v2){
+        valores_dado[0] = v1;
+        valores_dado[1] = v2;
+    }
     public static int[][] casas_disponiveis(int x, int y) {
     	move_generator.reset_generator(board.get_cell(x, y));
     	return move_generator.cell_to_coord(move_generator.get_moves(valores_dado[0] + valores_dado[1]));

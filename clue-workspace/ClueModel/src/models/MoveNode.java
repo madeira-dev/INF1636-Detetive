@@ -13,16 +13,24 @@ public class MoveNode {
     // O nó atual é final? (Destino válido para se mover para)
     boolean is_final;
 
-    MoveNode(Cell cell) {
+    MoveNode(Cell cell, MoveNode src) {
         this.cell = cell;
-        this.passed_by = new Cell[12];
-        this.num_passed = 0;
+        if(src == null){
+            this.passed_by = new Cell[13];
+            this.passed_by[0]= cell;
+            this.num_passed = 1;
+
+        }
+        else{
+            this.passed_by = Arrays.copyOf(src.passed_by, src.passed_by.length);
+            this.num_passed = src.num_passed;
+        }
         this.is_final = false;
     }
     
     // Adiciona um nó à lista de nós atravessados para chegar a determinada casa
-    public void pass_node(MoveNode node) {
-        passed_by[num_passed] = node.getCell();
+    public void pass_node() {
+        passed_by[num_passed] = cell;
         num_passed++;
     }
     
@@ -44,7 +52,7 @@ public class MoveNode {
     public boolean has_passed(Cell cell) {
         for(int i=0; i <num_passed; i++) {
             Cell c = passed_by[i];
-            if(c == cell) {
+            if(c.get_x() == cell.get_x() && c.get_y() == cell.get_y()) {
                 return true;
             }
         }

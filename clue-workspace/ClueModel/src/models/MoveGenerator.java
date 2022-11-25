@@ -17,7 +17,7 @@ public class MoveGenerator {
 
     public MoveGenerator(Board board){
         this.board = board;
-        this.nodes = new MoveNode[1000];
+        this.nodes = new MoveNode[100000];
     }
 
 	public static MoveGenerator getInstance(Board b) {
@@ -44,7 +44,7 @@ public class MoveGenerator {
     }
     // Configura pela primeira vez um gerador para cada casa inicial
     public void set_generator(Cell start) {
-        this.current_cell = new MoveNode(start);
+        this.current_cell = new MoveNode(start, null);
         nodes[0] = current_cell;
         last++;
     }
@@ -65,7 +65,7 @@ public class MoveGenerator {
                 if(current_cell.has_shortcut()) {
                 	
                     // Caso começamos numa passagem secreta, podemos atravessar para o outro lado
-                    add_node(current_cell.get_shortcut());
+                    add_node(current_cell.get_shortcut(), current_cell);
                     
                     nodes[last-1].setIs_final();
                     old_last++;
@@ -74,7 +74,7 @@ public class MoveGenerator {
                 temp = get_coord_room(nodes[0].get_room());
                 
                 for (int[] coord: temp) {
-                    add_node(board.get_cell(coord[0], coord[1]));
+                    add_node(board.get_cell(coord[0], coord[1]), current_cell);
                     old_last++;
                 }
             }
@@ -96,8 +96,7 @@ public class MoveGenerator {
                 Cell c = board.get_cell(current_cell.get_x() + mov[j][0], current_cell.get_y() + mov[j][1]);
                 if (neighbors[j]) {
                     // Se está livre, adicionamos à lista
-                    add_node(c);
-                    nodes[last-1].pass_node(current_cell);
+                    add_node(c, current_cell);
                     if(depth==1 || c.is_room()) {
                         // Se é a última iteração ou uma porta, é um destino final
                         nodes[last-1].setIs_final();
@@ -148,8 +147,10 @@ public class MoveGenerator {
         return Arrays.copyOf(cells, added);
     }
 
-    private void add_node(Cell to_add){
-        nodes[last] = new MoveNode(to_add);
+    private void add_node(Cell to_add, MoveNode src){
+        MoveNode m = new MoveNode(to_add, src);
+        m.pass_node();
+        nodes[last] = m;
         last++;
     }
     
@@ -239,11 +240,12 @@ public class MoveGenerator {
     }
     public int[][] cell_to_coord(Cell[] cells){
         int size = cells.length;
-        int[][] coord = new int[2][size];
+        int[][] coord = new int[size][2];
         for(int i=0; i < size; i++){
             coord[i][0] = cells[i].get_x();
             coord[i][1] = cells[i].get_y();
         }
         return coord;
     }
+
 }
