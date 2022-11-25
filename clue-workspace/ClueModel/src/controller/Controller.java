@@ -118,18 +118,20 @@ public class Controller {
 
         for(Card arma : armas){
             if(!Objects.equals(arma.getName(), arquivo_confidencial[0].getName())){
-                cards[i] = arma;
-                i++;
+            	cards[i] = arma;
+            	i++;
             }
         }
 
         for(Card local : locais){
             if(!Objects.equals(local.getName(), arquivo_confidencial[2].getName())){
                 cards[i] = local;
+                
                 i++;
             }
         }
 
+       
         for(int j=0; j < 18; j++){
             ja_usado[j] = false;
         }
@@ -142,6 +144,8 @@ public class Controller {
             while (true){
                 if(!ja_usado[val]){
                     players[j % num_players].addCard(cards[val]);
+                    players[j % num_players].setNoteOptions(cards[val], val);;
+                    
                     ja_usado[val] = true;
                     break;
                 }
@@ -150,8 +154,14 @@ public class Controller {
                     val = (val + 1) % 18;
                 }
             }
+            
         }
+        players[turn].printNote();
 
+    }
+    @SuppressWarnings("unused")
+	private static void mudaNote() {
+    	
     }
     private static void gera_arquivo(){
         arquivo_confidencial = Componentes.arquivo_confidencial();
