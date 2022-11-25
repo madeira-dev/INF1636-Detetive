@@ -12,7 +12,7 @@ import javax.swing.*;
 import controller.*;
 
 // I'm really sorry for the code below, but the deadline is close
-public class JogoClue extends JFrame implements ActionListener {
+public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
     Image img_tabuleiro;
     Image img_casa_valida;
@@ -49,9 +49,9 @@ public class JogoClue extends JFrame implements ActionListener {
 
   public JogoClue() {	  
 	  try {
-          File tabuleiro = new File("clue-workspace/ClueModel/imagens/Tabuleiros/Tabuleiro.jpg");
+          File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
           //File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
-          File casa_valida = new File("clue-workspace/ClueModel/imagens/Tabuleiros/quadrado_laranja.png");
+          File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
 		  img_tabuleiro = ImageIO.read(tabuleiro);
           img_casa_valida = ImageIO.read(casa_valida);
 		  }
@@ -100,6 +100,7 @@ public class JogoClue extends JFrame implements ActionListener {
            this.setSize(1200, 700);
            this.setTitle("Gameplay - Clue");
            this.setBounds(x, y, 1200, 700);
+            this.addMouseListener(this);
 
            this.add(prox);
            this.add(mostrar_cartas);
@@ -246,4 +247,41 @@ public void actionPerformed(ActionEvent e) {
 
     }
 }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        if(x > 700){
+            return;
+        }
+        for(int[] coord: lista_quadrados){
+            if(coord[0] == (675 - x) / 25 && coord[1] == (700 - y) / 25){
+                Controller.get_current_player().move(coord[0], coord[1]);
+                lista_quadrados = null;
+                repaint();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }

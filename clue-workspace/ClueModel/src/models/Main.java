@@ -8,7 +8,6 @@ public class Main {
 		b.init_all();
 		b.print_board();
 
-
 		Cell start = b.get_cell(7, 6);
 		m.set_generator(start);
 
@@ -19,7 +18,5 @@ public class Main {
 			}
 			move.print_coord();
 		}
-
 	}
-
 }
