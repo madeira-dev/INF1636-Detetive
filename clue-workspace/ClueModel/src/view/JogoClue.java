@@ -12,7 +12,7 @@ import javax.swing.*;
 import controller.*;
 
 // I'm really sorry for the code below, but the deadline is close
-public class JogoClue extends JFrame implements ActionListener, MouseListener {
+public class JogoClue extends JFrame implements ActionListener {
 
     Image img_tabuleiro;
     Image img_casa_valida;
@@ -92,10 +92,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            
            dados_escolha.setBounds(800,550,90,55);
            dados_escolha.addActionListener(this);
-           
-           
-           this.addMouseListener(this);
-           
            
 
            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -186,8 +182,11 @@ public void actionPerformed(ActionEvent e) {
 		} catch (IOException exception) {
 			System.out.println(exception.getMessage());
 		}
-		
-		repaint();
+        int x_coordenada = Controller.get_current_player().get_coord()[0];
+        int y_coordenada = Controller.get_current_player().get_coord()[1];
+        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
+
+        repaint();
 
 		System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 		System.out.printf("%d",  Controller.pega_dados()[1]);
@@ -231,18 +230,13 @@ public void actionPerformed(ActionEvent e) {
 			System.out.println(exception.getMessage());
 		}
 
+        int x_coordenada = Controller.get_current_player().get_coord()[0];
+        int y_coordenada = Controller.get_current_player().get_coord()[1];
+        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
     	repaint();
 
     }
 }
-
-	public void mouseClicked(MouseEvent e) {
-		int x_coordenada = (675-e.getX()  ) /25 ;
-		int y_coordenada = (700-e.getY())  /25;
-        lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
-        repaint();
-	}
-	
 	public void mousePressed(MouseEvent e) {
 	}
 
