@@ -1,6 +1,7 @@
 package controller;
 
 import models.*;
+import view.Notepad;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -163,8 +164,8 @@ public class Controller {
 
     }
     @SuppressWarnings("unused")
-	private static void mudaNote() {
-    	
+	public static void mudaNote() {
+    	Notepad notes = new Notepad(players[turn].getNoteOptionsWeapons(), players[turn].getNoteOptionsSuspects(), players[turn].getNoteOptionsRooms());
     }
     private static void gera_arquivo(){
         arquivo_confidencial = Componentes.arquivo_confidencial();

@@ -169,7 +169,7 @@ public void actionPerformed(ActionEvent e) {
 	File dado1,dado2;
 	
 	if (e.getSource() == bloco_notas) {
-		Notepad notes = new Notepad(armas_bool, suspeitos_bool, comodos_bool);
+		Controller.mudaNote();
 	}
 	
 	else if(e.getSource() == jogar_dados) {

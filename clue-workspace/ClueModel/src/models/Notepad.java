@@ -19,6 +19,10 @@ class Notepad {
 	
 	public void printRooms() { System.out.println(Arrays.toString(this.rooms)); }
 	
+	public Boolean[] getWeapons() {return weapons;}
+	public Boolean[] getSuspects() {return suspects;}
+	public Boolean[] getRooms() {return rooms;}
+	
 	public void setTrue(Card arr, int index) {
 		
 		if(Objects.equals(arr.getType(), "comodo")) {
