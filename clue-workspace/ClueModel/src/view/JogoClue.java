@@ -58,7 +58,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            p = new MyPanel(img_tabuleiro);
            
            texto1 = new JLabel(String.format("Jogador da vez:  %s",Controller.get_current_player().getCharacter() ,SwingConstants.CENTER));
-           texto2 = new JLabel(String.format("Proximo: %s", Controller.get_next_player().getCharacter(),SwingConstants.CENTER));
+           texto2 = new JLabel(String.format("Proximo: %s  ", Controller.get_next_player().getCharacter(),SwingConstants.CENTER));
            
            texto1.setBounds(700, 0, 200, 30);
            texto2.setBounds(700, 10, 200, 40);
