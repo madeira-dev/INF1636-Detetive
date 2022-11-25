@@ -56,11 +56,19 @@ public class Player implements PlayerFactory {
 		return possui;
 	}
 
+	
 	public Player getVizinho() { return this.vizinho; }
 
 	public void setVizinho(Player vizinho) { this.vizinho = vizinho; }
 
 	public Cell get_cell() { return cell; }
+	
+	public int get_coordenadaX() {
+		return cell.get_x();
+	}
+	public int get_coordenadaY() {
+		return cell.get_y();
+	}
 
 	public void set_cell(Cell c) { cell = c; }
 

@@ -119,19 +119,19 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
        }
 
    public void paint(Graphics g) {
-	  super.paint(g);
-	  
+	  super.paint(g); 
 	  Graphics2D g2D = (Graphics2D) g;
       g2D.drawImage(img_tabuleiro,0,0,this);
       g2D.drawImage(dado_resultado1, 730, 400, this);
 	  g2D.drawImage(dado_resultado2, 830, 400, this);
 	  
+	  
 	  Ellipse2D srta_scarlet = new Ellipse2D.Double(232,658, 20, 20);
-	  Ellipse2D srta_peacock = new Ellipse2D.Double(240,650, 20, 20);
-	  Ellipse2D srta_white = new Ellipse2D.Double(280,650, 20, 20);
-	  Ellipse2D rev_green = new Ellipse2D.Double(310,650, 20, 20);
-	  Ellipse2D cor_mustard = new Ellipse2D.Double(410,650, 20, 20);
-	  Ellipse2D prof_plum = new Ellipse2D.Double(10,650, 20, 20);
+	  Ellipse2D srta_peacock = new Ellipse2D.Double(635,212, 20, 20);
+	  Ellipse2D srta_white = new Ellipse2D.Double(275,50, 20, 20);
+	  Ellipse2D rev_green = new Ellipse2D.Double(403,55, 20, 20);
+	  Ellipse2D cor_mustard = new Ellipse2D.Double(55,483, 20, 20);
+	  Ellipse2D prof_plum = new Ellipse2D.Double(635,534, 20, 20);
 	
 		 
 	  g2D.setPaint(Color.red);
@@ -149,7 +149,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	  g2D.setPaint(Color.yellow);
 	  g2D.fill(cor_mustard);
 	  
-	  g2D.setPaint(Color.getColor("purple"));
+	  g2D.setPaint(Color.black);
 	  g2D.fill(prof_plum);
 	  
 	  

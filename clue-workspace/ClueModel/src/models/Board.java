@@ -103,6 +103,7 @@ public class Board {
 		set_character("Srta. Peacock",14,25);
 		set_character("Professor Plum",0,6);
 		set_character("Srta. White",0,19);
+		
 	}
 	
 	public void generate_grid(){

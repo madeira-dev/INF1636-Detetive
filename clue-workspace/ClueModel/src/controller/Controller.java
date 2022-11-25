@@ -57,6 +57,13 @@ public class Controller {
     public static Player get_next_player() {
         return players[(turn+1)%get_num_players()];
     }
+    public static int get_coordX() {
+		return players[turn].get_coordenadaX();
+	}
+	public static int get_coordY() {
+		return players[turn].get_coordenadaX();
+	}
+
     public static InfoPalpite guess(Player guesser, Card[] cards){
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1].getName());
