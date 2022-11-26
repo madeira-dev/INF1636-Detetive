@@ -31,7 +31,7 @@ public class Palpite extends JFrame implements ActionListener {
         armas_group = new ButtonGroup();
         personagens_group = new ButtonGroup();
 
-        panels = new JPanel[4];
+        panels = new JPanel[3];
         if(acusacao){
             palpite = new JButton("Acusar");
         }
@@ -45,7 +45,7 @@ public class Palpite extends JFrame implements ActionListener {
         this.setTitle("Tela de Palpite");
         this.setLayout(new GridLayout(1, 3));
 
-        for(int i=0; i< 3; i++){
+        for(int i=0; i< 2; i++){
             panels[i] = new JPanel();
             panels[i].setLayout(new BoxLayout(panels[i], BoxLayout.PAGE_AXIS));
             this.add(panels[i]);
