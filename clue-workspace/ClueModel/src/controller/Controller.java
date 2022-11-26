@@ -208,4 +208,12 @@ public class Controller {
     public static int[] pega_dados(){
         return valores_dado;
     }
+    public static boolean acusar(Card[] cards){
+        for(int i=0; i < 3; i ++){
+            if(!Objects.equals(cards[i].getName(), arquivo_confidencial[i].getName())){
+                return false;
+            }
+        }
+        return true;
+    }
 }

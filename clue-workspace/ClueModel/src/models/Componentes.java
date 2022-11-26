@@ -1,4 +1,5 @@
 package models;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -65,7 +66,9 @@ public final class Componentes {
 		arquivo[0] = armas[index_arma];
 		arquivo[1] = personagens[index_suspeito];
 		arquivo[2] = comodos[index_comodo];
-		
+		for(int i=0; i < 3; i++){
+			System.out.println(arquivo[i].getName());
+		}
 		return arquivo;
 	}
 	public static Card get_room_by_name(String name){
