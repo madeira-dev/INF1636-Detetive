@@ -1,19 +1,14 @@
 package view;
 
-import controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Objects;
 
-public class Vitoria extends JFrame{
+public class Final extends JFrame{
     JLabel texto;
 
-    Vitoria(){
+    Final(boolean result){
         this.setLayout(new GridLayout(2, 1));
-        texto = new JLabel("Você venceu!!! :D", SwingConstants.CENTER);
+        texto = new JLabel(String.format("Você %s", result ? "venceu! :D": "perdeu :("), SwingConstants.CENTER);
         this.add(texto);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(500, 400);

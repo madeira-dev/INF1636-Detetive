@@ -114,9 +114,7 @@ public class Palpite extends JFrame implements ActionListener {
             }
             if(acusacao){
                 boolean r = Controller.acusar(cards);
-                if(r){
-                    Vitoria v = new Vitoria();
-                }
+                Final f = new Final(r);
             }
             else{
                 InfoPalpite info = Controller.guess(guesser, cards);
