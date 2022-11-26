@@ -43,7 +43,7 @@ public class Palpite extends JFrame implements ActionListener {
         this.setSize(500, 400);
         this.setVisible(true);
         this.setTitle("Tela de Palpite");
-        this.setLayout(new GridLayout(1, 4));
+        this.setLayout(new GridLayout(1, 3));
 
         for(int i=0; i< 3; i++){
             panels[i] = new JPanel();
@@ -63,10 +63,10 @@ public class Palpite extends JFrame implements ActionListener {
         }
         palpite.addActionListener(this);
 
-        this.panels[3] = new JPanel();
-        this.panels[3].setLayout(new BorderLayout());
-        this.panels[3].add(palpite);
-        this.add(panels[3]);
+        this.panels[2] = new JPanel();
+        this.panels[2].setLayout(new BorderLayout());
+        this.panels[2].add(palpite);
+        this.add(panels[2]);
         this.pack();
     }
     @Override
