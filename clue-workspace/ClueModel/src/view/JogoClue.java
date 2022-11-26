@@ -207,6 +207,7 @@ public void actionPerformed(ActionEvent e) {
 		}
     else if(e.getSource() == palpite && Controller.prepara_palpite() != null){
         Palpite palpite = new Palpite(false, Controller.get_current_player(), Controller.prepara_palpite());
+       
         }
 
     else if(e.getSource() == palpite && Controller.prepara_palpite() != null){

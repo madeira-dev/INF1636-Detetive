@@ -87,6 +87,7 @@ public class Palpite extends JFrame implements ActionListener {
             }
             cards[2] = room;
             InfoPalpite info = Controller.guess(guesser, cards);
+           
             try {
                 ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());
             } catch (IOException ex) {
