@@ -216,4 +216,18 @@ public class Controller {
         }
         return true;
     }
+    public static void remove_player(){
+        int counter = 0;
+        Player p = players[turn];
+        Player[] new_array = new Player[num_players - 1];
+
+        for(Player pl: players){
+            if(pl != get_current_player()){
+                new_array[counter] = pl;
+                counter++;
+            }
+        }
+        num_players--;
+        players = new_array;
+    }
 }
