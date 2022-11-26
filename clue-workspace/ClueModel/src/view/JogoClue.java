@@ -201,12 +201,12 @@ public void actionPerformed(ActionEvent e) {
 		System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 		System.out.printf("%d",  Controller.pega_dados()[1]);
 		}
-    else if(e.getSource() == palpite){
-        Palpite palpite = new Palpite(false, Controller.get_current_player());
+    else if(e.getSource() == palpite && Controller.prepara_palpite() != null){
+        Palpite palpite = new Palpite(false, Controller.get_current_player(), Controller.prepara_palpite());
         }
-    
-    else if(e.getSource() == acusar){
-        Palpite palpite = new Palpite(true, Controller.get_current_player());
+
+    else if(e.getSource() == palpite && Controller.prepara_palpite() != null){
+        Palpite palpite = new Palpite(true, Controller.get_current_player(), Controller.prepara_palpite());
     }
     
     else if(e.getSource()== mostrar_cartas) {
@@ -250,7 +250,7 @@ public void actionPerformed(ActionEvent e) {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      if(Controller.get_ja_andou()){
+      if(Controller.get_acoes()[0]){
           return;
       }
         int x = e.getX();
@@ -263,7 +263,7 @@ public void actionPerformed(ActionEvent e) {
                 Controller.get_current_player().move(coord[0], coord[1]);
                 lista_quadrados = null;
                 repaint();
-                Controller.anda();
+                Controller.atualiza_acoes(0);
                 break;
             }
         }

@@ -15,24 +15,21 @@ import java.io.IOException;
 public class Palpite extends JFrame implements ActionListener {
     JRadioButton[] armas;
     JRadioButton[] personagens;
-    JRadioButton[] comodos;
     ButtonGroup armas_group;
     ButtonGroup personagens_group;
-    ButtonGroup comodos_group;
     JPanel[] panels;
     JButton palpite;
     Player guesser;
     Card[] cards;
-    public Palpite(boolean acusacao, Player guesser){
+    Card room;
+    public Palpite(boolean acusacao, Player guesser, Card room){
         this.guesser = guesser;
-
+        this.room = room;
         armas = new JRadioButton[Componentes.num_armas()];
         personagens = new JRadioButton[Componentes.num_personagens()];
-        comodos = new JRadioButton[Componentes.num_comodos()];
 
         armas_group = new ButtonGroup();
         personagens_group = new ButtonGroup();
-        comodos_group = new ButtonGroup();
 
         panels = new JPanel[4];
         if(acusacao){
@@ -64,11 +61,6 @@ public class Palpite extends JFrame implements ActionListener {
             this.panels[1].add(personagens[i]);
             personagens_group.add(personagens[i]);
         }
-        for(int i=0; i < Componentes.num_comodos(); i++){
-            comodos[i] = new JRadioButton(Componentes.comodos_cartas()[i].getName());
-            this.panels[2].add(comodos[i]);
-            comodos_group.add(comodos[i]);
-        }
         palpite.addActionListener(this);
 
         this.panels[3] = new JPanel();
@@ -87,20 +79,13 @@ public class Palpite extends JFrame implements ActionListener {
                     break;
                 }
             }
-
-            for(int i=0; i < comodos.length; i++){
-                if(comodos[i].isSelected()){
-                    cards[2] = Componentes.comodos_cartas()[i];
-                    break;
-                }
-            }
-
             for(int i=0; i < personagens.length; i++){
                 if(personagens[i].isSelected()){
                     cards[1] = Componentes.armas_cartas()[i];
                     break;
                 }
             }
+            cards[2] = room;
             InfoPalpite info = Controller.guess(guesser, cards);
             try {
                 ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());

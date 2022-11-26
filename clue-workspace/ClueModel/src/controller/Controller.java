@@ -20,7 +20,8 @@ public class Controller {
 
     private static Controller instance = null;
     private static MoveGenerator move_generator;
-    private static boolean ja_andou;
+    // ja andou, ja palpitou
+    private static boolean[] acoes;
     private static int[] valores_dado;
     public static Controller getInstance() {
         if (instance == null) {
@@ -33,15 +34,15 @@ public class Controller {
         valores_dado = new int[2];
         players = new Player[6];
         move_generator = new MoveGenerator(board);
-        ja_andou = false;
+        acoes = new boolean[]{false, false};
     }
     public static int get_num_players(){
         return num_players;
     }
-    public static void pass_turn(){turn = (turn + 1) % num_players;ja_andou=false;}
-    public static void anda(){ja_andou = true;}
-    public static boolean get_ja_andou(){
-        return ja_andou;
+    public static void pass_turn(){turn = (turn + 1) % num_players;acoes= new boolean[]{false, false};}
+    public static void atualiza_acoes(int id){acoes[id] = true;}
+    public static boolean[] get_acoes(){
+        return acoes;
     }
     public static void set_valores_dado(int v1, int v2){
         valores_dado[0] = v1;
@@ -70,6 +71,12 @@ public class Controller {
     }
     public static Player get_player(int i){
         return players[i];
+    }
+    public static Card prepara_palpite(){
+        if(acoes[1]){
+            return null;
+        }
+        return board.get_room(get_current_player());
     }
     public static InfoPalpite guess(Player guesser, Card[] cards){
         // Move o acusado para a sala

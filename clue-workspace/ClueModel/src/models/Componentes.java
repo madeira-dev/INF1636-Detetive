@@ -1,4 +1,5 @@
 package models;
+import java.util.Objects;
 import java.util.Random;
 
 public final class Componentes {
@@ -66,7 +67,14 @@ public final class Componentes {
 		arquivo[2] = comodos[index_comodo];
 		
 		return arquivo;
-		
+	}
+	public static Card get_room_by_name(String name){
+		for(Card c: comodos_cartas()){
+			if(Objects.equals(c.getName(), name)){
+				return c;
+			}
+		}
+		return null;
 	}
 	
 }
