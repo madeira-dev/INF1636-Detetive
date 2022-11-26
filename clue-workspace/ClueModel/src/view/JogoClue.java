@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.*;
+import java.awt.geom.Arc2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -136,6 +137,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            switch (Controller.get_player(i).getCharacter()){
                case "Reverendo Green":{
                    g2D.setPaint(Color.green);
+                   
                    break;
                }
                case "Coronel Mustard":{
@@ -160,6 +162,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
                }
            }
            g2D.fill(e);
+           g2D.setPaint(Color.black);
+           g2D.draw(new Arc2D.Double(650 - 25 * Controller.get_player(i).get_coord()[0],  675 - 25 * Controller.get_player(i).get_coord()[1],25, 25, 90, 360, Arc2D.PIE));
        }
 
    }
