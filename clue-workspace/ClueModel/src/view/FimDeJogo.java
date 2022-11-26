@@ -3,10 +3,10 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class Final extends JFrame{
+public class FimDeJogo extends JFrame{
     JLabel texto;
 
-    Final(boolean result){
+    FimDeJogo(boolean result){
         this.setLayout(new GridLayout(2, 1));
         texto = new JLabel(String.format("Você %s", result ? "venceu! :D": "perdeu :("), SwingConstants.CENTER);
         this.add(texto);
