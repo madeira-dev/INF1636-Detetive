@@ -3,9 +3,14 @@ package view;
 import javax.imageio.ImageIO;
 
 import javax.swing.*;
+
+import controller.Controller;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
     class MenuClue extends JFrame implements ActionListener {
 
@@ -52,10 +57,12 @@ import java.io.IOException;
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
         	else if(e.getSource()==continuar){
-        		j.showSaveDialog(null);
+        		Controller.continuaJogo();
         		
         	}
+        			
         }
+       
         
         public void paint(Graphics g2d) {
             super.paint(g2d);
