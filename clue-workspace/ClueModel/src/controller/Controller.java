@@ -3,10 +3,13 @@ package controller;
 import models.*;
 import view.Notepad;
 
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
+
+import javax.swing.JFileChooser;
 
 public class Controller {
     private static Board board;
@@ -23,6 +26,9 @@ public class Controller {
     // ja andou, ja palpitou
     private static boolean[] acoes;
     private static int[] valores_dado;
+    
+    
+    
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();
@@ -93,7 +99,7 @@ public class Controller {
             // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
             options = temp.possui_algum(cards);
             // Debug
-            System.out.printf("%s pode mostrar\n", temp.getCharacter());
+            System.out.printf("\n%s pode mostrar\n", temp.getCharacter());
             for(Card c: options){
                 System.out.println(c.getName());
             }
@@ -213,9 +219,10 @@ public class Controller {
             if(!Objects.equals(cards[i].getName(), arquivo_confidencial[i].getName())){
                 return false;
             }
-        }
+       }
         return true;
     }
+   
     public static void remove_player(){
         int counter = 0;
         Player p = players[turn];
@@ -230,4 +237,24 @@ public class Controller {
         num_players--;
         players = new_array;
     }
+public static void salvaJogo() {
+		JFileChooser j = new JFileChooser();
+		j.setMultiSelectionEnabled(false);
+		int r = j.showSaveDialog(null);
+		
+		if(r == JFileChooser.APPROVE_OPTION) {
+			System.out.println("opa");
+		try {	
+			String dado;
+			FileWriter escritor = new FileWriter(new File(j.getSelectedFile().getPath()));
+			
+			dado="aia ia%d";
+			escritor.write(dado);
+			
+		}catch(IOException e) {
+			System.out.println("erro");
+		}
+	}
+	}
+    
 }

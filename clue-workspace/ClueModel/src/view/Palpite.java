@@ -92,12 +92,14 @@ public class Palpite extends JFrame implements ActionListener {
             for(int i=0; i < armas.length; i++){
                 if(armas[i].isSelected()){
                     cards[0] = Componentes.armas_cartas()[i];
+                    //System.out.printf("\ncards[0]-> %s", cards[0].getName());
                     break;
                 }
             }
             for(int i=0; i < personagens.length; i++){
                 if(personagens[i].isSelected()){
                     cards[1] = Componentes.personagens_cartas()[i];
+                    //System.out.printf("\\ncards[1]-> %s", cards[1].getName());
                     break;
                 }
             }
@@ -105,6 +107,7 @@ public class Palpite extends JFrame implements ActionListener {
                 for(int i=0; i < comodos.length; i++){
                     if(comodos[i].isSelected()){
                         cards[2] = Componentes.comodos_cartas()[i];
+                       
                         break;
                     }
                 }
@@ -114,13 +117,17 @@ public class Palpite extends JFrame implements ActionListener {
             }
             if(acusacao){
                 boolean r = Controller.acusar(cards);
-                FimDeJogo f = new FimDeJogo(r);
+                FimDeJogo f = new FimDeJogo(r, guesser.getCharacter());
                 if(!r){
                     Controller.remove_player();
                 }
             }
             else{
                 InfoPalpite info = Controller.guess(guesser, cards);
+                /*pode nao estar certo*/
+                guesser.setNoteOptions(info.getCards()[0], 0);
+                
+                
                 try {
                     ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());
                 } catch (IOException ex) {
