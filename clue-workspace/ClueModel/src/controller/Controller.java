@@ -208,4 +208,26 @@ public class Controller {
     public static int[] pega_dados(){
         return valores_dado;
     }
+    public static boolean acusar(Card[] cards){
+        for(int i=0; i < 3; i ++){
+            if(!Objects.equals(cards[i].getName(), arquivo_confidencial[i].getName())){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void remove_player(){
+        int counter = 0;
+        Player p = players[turn];
+        Player[] new_array = new Player[num_players - 1];
+
+        for(Player pl: players){
+            if(pl != get_current_player()){
+                new_array[counter] = pl;
+                counter++;
+            }
+        }
+        num_players--;
+        players = new_array;
+    }
 }

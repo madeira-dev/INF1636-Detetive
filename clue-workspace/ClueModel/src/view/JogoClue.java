@@ -71,9 +71,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            
            prox.setBounds(700,50,400,45);
 
-      prox.addActionListener(this);
+           prox.addActionListener(this);
 
-      mostrar_cartas.setBounds(700,100,400,45);
+           mostrar_cartas.setBounds(700,100,400,45);
            mostrar_cartas.addActionListener(this);
            
            bloco_notas.setBounds(700,150,400,45);
@@ -81,10 +81,12 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            
            palpite.setBounds(700,200,400,45);
            palpite.addActionListener(this);
-           
-           acusar.setBounds(700,250,400,45);
-           
-           salvar_jogo.setBounds(700,300,400,45);
+
+            acusar.setBounds(700,250,400,45);
+            acusar.addActionListener(this);
+
+
+            salvar_jogo.setBounds(700,300,400,45);
            
            jogar_dados.setBounds(700,500,400,45);
            jogar_dados.addActionListener(this);
@@ -210,7 +212,7 @@ public void actionPerformed(ActionEvent e) {
        
         }
 
-    else if(e.getSource() == palpite && Controller.prepara_palpite() != null){
+    else if(e.getSource() == acusar){
         Palpite palpite = new Palpite(true, Controller.get_current_player(), Controller.prepara_palpite());
     }
     
