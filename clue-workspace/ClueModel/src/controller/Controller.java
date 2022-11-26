@@ -169,7 +169,7 @@ public class Controller {
             }
             
         }
-        players[turn].printNote();
+        //players[turn].printNote();
 
     }
     @SuppressWarnings("unused")

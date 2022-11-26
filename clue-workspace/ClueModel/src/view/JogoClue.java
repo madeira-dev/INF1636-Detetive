@@ -203,6 +203,7 @@ public void actionPerformed(ActionEvent e) {
 		}
     else if(e.getSource() == palpite){
         Palpite palpite = new Palpite(false, Controller.get_current_player());
+        
         }
     
     else if(e.getSource() == acusar){
