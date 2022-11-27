@@ -58,10 +58,10 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 
 		p = new MyPanel(img_tabuleiro);
-		texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", Controller.get_current_player().getCharacter(), Controller.get_current_player().get_name(),
-				SwingConstants.CENTER));
+		texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())),
+				SwingConstants.CENTER);
 		texto2 = new JLabel(
-				String.format("Proximo: %s (%s)", Controller.get_next_player().getCharacter(), Controller.get_next_player().get_name(), SwingConstants.CENTER));
+				String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players()), SwingConstants.CENTER));
 
 		texto1.setBounds(700, 0, 300, 30);
 		texto2.setBounds(700, 10, 300, 40);
@@ -131,9 +131,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			}
 		}
 		for (int i = 0; i < Controller.get_num_players(); i++) {
-			Ellipse2D e = new Ellipse2D.Double(650 - 25 * API.get_player(i).get_coord()[0],
-					675 - 25 * API.get_player(i).get_coord()[1], 25, 25);
-			switch (API.get_player(i).getCharacter()) {
+			Ellipse2D e = new Ellipse2D.Double(650 - 25 * API.get_player_coord(i)[0],
+					675 - 25 * API.get_player_coord(i)[1], 25, 25);
+			switch (API.get_player_character(i)) {
 			case "Reverendo Green": {
 				g2D.setPaint(Color.green);
 
@@ -162,8 +162,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			}
 			g2D.fill(e);
 			g2D.setPaint(Color.black);
-			g2D.draw(new Arc2D.Double(650 - 25 * API.get_player(i).get_coord()[0],
-					675 - 25 * API.get_player(i).get_coord()[1], 25, 25, 90, 360, Arc2D.PIE));
+			g2D.draw(new Arc2D.Double(650 - 25 * API.get_player_coord(i)[0],
+					675 - 25 * API.get_player_coord(i)[1], 25, 25, 90, 360, Arc2D.PIE));
 		}
 
 	}
@@ -178,10 +178,10 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			salvar_jogo.setEnabled(true);
 			System.out.println("here\n");
 			Controller.pass_turn();
-			texto1.setText(String.format("Jogador da vez:  %s (%s)", Controller.get_current_player().getCharacter(), Controller.get_current_player().get_name(),
-					SwingConstants.CENTER));
-			texto2.setText(
-					String.format("Proximo: %s (%s)  ", Controller.get_next_player().getCharacter(), Controller.get_next_player().get_name(), SwingConstants.CENTER));
+			texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())),
+					SwingConstants.CENTER);
+			texto2 = new JLabel(
+					String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players()), SwingConstants.CENTER));
 
 			repaint();
 		}
@@ -199,8 +199,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			} catch (IOException exception) {
 				System.out.println(exception.getMessage());
 			}
-			int x_coordenada = Controller.get_current_player().get_coord()[0];
-			int y_coordenada = Controller.get_current_player().get_coord()[1];
+			int x_coordenada = API.get_player_coord(Controller.get_turn())[0];
+			int y_coordenada = API.get_player_coord(Controller.get_turn())[1];
 			lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
 
 			repaint();
@@ -208,19 +208,18 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 			System.out.printf("%d", Controller.pega_dados()[1]);
 		} else if (e.getSource() == palpite && Controller.prepara_palpite() != null) {
-			new Palpite(false, Controller.get_current_player(), API.prepara_palpite(Controller.get_current_player()));
+			new Palpite(false, API.get_current_player_character(), API.prepara_palpite(API.get_current_player()));
 
 		}
 
 		else if (e.getSource() == acusar) {
-			new Palpite(true, Controller.get_current_player(), Controller.prepara_palpite());
+			new Palpite(true, API.get_current_player_character(), Controller.prepara_palpite());
 		}
 
 		else if (e.getSource() == mostrar_cartas) {
 //			notificar observador que cartas foram mostradas
-			PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
-					Controller.get_current_player().get_card_by_type("arma"),
-					Controller.get_current_player().get_card_by_type("personagem"));
+			String[][]  c = API.get_player_cards_by_type(Controller.get_turn());
+			PlayerCards cartas_jogador = new PlayerCards(c[0], c[1], c[2]);
 
 		}
 
@@ -247,8 +246,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 				System.out.println(exception.getMessage());
 			}
 
-			int x_coordenada = Controller.get_current_player().get_coord()[0];
-			int y_coordenada = Controller.get_current_player().get_coord()[1];
+			int x_coordenada = API.get_player_coord(Controller.get_turn())[0];
+			int y_coordenada = API.get_player_coord(Controller.get_turn())[1];
 			lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
 			repaint();
 
@@ -270,7 +269,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 		for (int[] coord : lista_quadrados) {
 			if (coord[0] == (675 - x) / 25 && coord[1] == (700 - y) / 25) {
-				api.move_player(Controller.get_current_player(), coord);
+				API.move_player(API.get_current_player(), coord);
 				lista_quadrados = null;
 				repaint();
 				Controller.atualiza_acoes(0);

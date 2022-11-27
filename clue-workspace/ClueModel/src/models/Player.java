@@ -2,9 +2,8 @@ package models;
 
 import java.util.Arrays;
 import java.util.Objects;
-import models.API;
 
-public class Player{
+class Player{
 	private Player vizinho;
 	private final String character;
 	private final String nome;
@@ -65,7 +64,7 @@ public class Player{
 		return cards;
 	}
 
-	public String getCharacter() {
+	public String get_character() {
 		return this.character;
 	}
 

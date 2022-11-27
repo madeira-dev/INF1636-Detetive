@@ -4,8 +4,6 @@ import controller.Controller;
 import models.API;
 import models.Componentes;
 import models.InfoPalpite;
-import models.Player;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,11 +20,11 @@ public class Palpite extends JFrame implements ActionListener {
     ButtonGroup personagens_group;
     JPanel[] panels;
     JButton palpite;
-    Player guesser;
+    String guesser;
     String[] cards;
     String room;
     boolean acusacao;
-    public Palpite(boolean acusacao, Player guesser, String room){
+    public Palpite(boolean acusacao, String guesser, String room){
         this.guesser = guesser;
         this.room = room;
         this.acusacao = acusacao;
@@ -117,7 +115,7 @@ public class Palpite extends JFrame implements ActionListener {
 			}
 			if (acusacao) {
 				boolean r = API.acusar(cards);
-				FimDeJogo f = new FimDeJogo(r, guesser.getCharacter());
+				FimDeJogo f = new FimDeJogo(r, guesser);
 				if (!r) {
 					API.remove_player();
                     Controller.alter_num_players(-1);
@@ -125,7 +123,7 @@ public class Palpite extends JFrame implements ActionListener {
 			} else {
 				InfoPalpite info = API.guess(guesser, cards);
 				/* pode nao estar certo */
-				guesser.setNoteOptions(info.get_name(), info.get_type());
+				API.set_player_note(guesser, info.get_name(), info.get_type());
 
 				try {
 					ShowCard s = new ShowCard(info.get_name(), info.get_folder(), info.getPlayer());
