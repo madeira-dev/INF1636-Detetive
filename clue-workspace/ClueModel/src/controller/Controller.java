@@ -59,23 +59,17 @@ public class Controller {
 		return api.get_casas(x, y, valores_dado[0] + valores_dado[1]);
 	}
 
-	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso
+	// Procufra entre os jogadores alguém com o personagem. Retorna o personagem caso
 	// ache ou null caso contrário
 
 	// Palpite
-	public static Player get_current_player() {
-		return API.get_player(turn);
-	}
 
-	public static Player get_next_player() {
-		return API.get_player((turn + 1) % get_num_players());
-	}
 
 	public static String prepara_palpite() {
 		if (acoes[1]) {
 			return null;
 		}
-		return api.prepara_palpite(get_current_player());
+		return API.prepara_palpite(API.get_current_player());
 	}
 
     // Funções usadas para configurar lógica do tabuleiro

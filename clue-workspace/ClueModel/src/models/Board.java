@@ -154,7 +154,7 @@ class Board {
 		int[] old_coord = player.get_coord();
 		player.move(coord[0], coord[1]);
 		cells[old_coord[0]][old_coord[1]].aloca_personagem("");
-		cells[coord[0]][coord[1]].aloca_personagem(player.getCharacter());
+		cells[coord[0]][coord[1]].aloca_personagem(player.get_character());
 	}
 
 	public Card get_room(Player p) {

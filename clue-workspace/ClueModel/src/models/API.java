@@ -48,7 +48,8 @@ public class API {
         }
         return true;
     }
-    public static InfoPalpite guess(Player guesser, String[] cards) {
+    public static InfoPalpite guess(String g, String[] cards) {
+        Player guesser = get_player_by_character(g);
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1]);
         if (acusado != null) {
@@ -59,7 +60,7 @@ public class API {
         Card[] options = new Card[0];
 
         // Se chegamos de novo no palpitador, encerramos o loop
-        while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
+        while (!Objects.equals(temp.get_character(), guesser.get_character())){
             // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
             options = temp.possui_algum(cards);
             for(Card c: options){
@@ -76,7 +77,7 @@ public class API {
     }
     public static Player get_player_by_character(String name) {
         for (Player p : players) {
-            if (Objects.equals(p.getCharacter(), name)) {
+            if (Objects.equals(p.get_character(), name)) {
                 return p;
             }
         }
@@ -89,7 +90,7 @@ public class API {
 
     public static void add_player(String character, String name, int num_players){
         for(int i = 0; i < num_players; i++){
-            if(Objects.equals(players[i].getCharacter(), character)){
+            if(Objects.equals(players[i].get_character(), character)){
                 return;
             }
         }
@@ -174,7 +175,7 @@ public class API {
         Player[] new_array = new Player[Controller.get_num_players() - 1];
 
         for (Player pl : players) {
-            if (pl != Controller.get_current_player()) {
+            if (pl != get_current_player()) {
                 new_array[counter] = pl;
                 counter++;
             }
@@ -189,7 +190,7 @@ public class API {
         JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
         j.setMultiSelectionEnabled(false);
         int turn = Controller.get_turn();
-        Player current = Controller.get_current_player();
+        Player current = get_current_player();
         int r = j.showSaveDialog(null);
         int num_players = Controller.get_num_players();
         Card[] arquivo_confidencial = Componentes.getArquivo_secreto();
@@ -202,12 +203,12 @@ public class API {
                 // System.out.printf("%d",players.length );
 
                 escritor.write(Integer.toString(turn) + "\n");
-                escritor.write(current.getCharacter() + "\n");
+                escritor.write(current.get_character() + "\n");
                 escritor.write(Integer.toString(num_players) + "\n");
                 escritor.write(arquivo_confidencial[0].getName() + " " + arquivo_confidencial[1].getName() + " "
                         + arquivo_confidencial[2].getName() + "\n");
                 for (Player c : players) {
-                    escritor.write(c.getCharacter() + "\n");
+                    escritor.write(c.get_character() + "\n");
                     escritor.write(Integer.toString(c.get_coord()[0]) + "\n");
                     escritor.write(Integer.toString(c.get_coord()[1]) + "\n");
                     escritor.write(Integer.toString(c.getCardsArr().length) + "\n");
@@ -284,7 +285,7 @@ public class API {
                     linha = linha_arquivo.readLine();
                     y = Integer.parseInt(linha);
                     players[i].move(x, y); /* i ou turn?, estou com sono */
-                    set_character(players[i].getCharacter(), x, y);
+                    set_character(players[i].get_character(), x, y);
                     linha = linha_arquivo.readLine();
                     qtd_cards = Integer.parseInt(linha);
 
@@ -327,5 +328,32 @@ public class API {
             }
         }
     }
+    public static Player get_current_player() {
+        return get_player(Controller.get_turn());
+    }
+    public static String get_current_player_character(){return get_current_player().get_character();}
+    public static Player get_next_player() {
+        return API.get_player((Controller.get_turn() + 1) % Controller.get_num_players());
+    }
+    public static int[] get_player_coord(int i){
+        return players[i].get_coord();
+    }
+    public static String get_player_character(int i){
+        return players[i].get_character();
+    }
+    public static String get_player_name(int i){
+        return players[i].get_name();
+    }
+    public static String[][] get_player_cards_by_type(int i){
+        Player p = get_player(i);
+        String[] armas = p.get_card_by_type("arma");
+        String[] personagens = p.get_card_by_type("personagem");
+        String[] comodos = p.get_card_by_type("comodo");
 
+        return new String[][]{comodos, armas, personagens};
+    }
+    public static void set_player_note(String name, String card, String type){
+        Player p = get_player_by_character(name);
+        p.setNoteOptions(card, type);
+    }
 }
