@@ -123,10 +123,16 @@ public class Palpite extends JFrame implements ActionListener {
 			} else {
 				InfoPalpite info = API.guess(guesser, cards);
 				/* pode nao estar certo */
-				API.set_player_note(guesser, info.get_name(), info.get_type());
-
+                if(info != null){
+                    API.set_player_note(guesser, info.get_name(), info.get_type());
+                }
 				try {
-					ShowCard s = new ShowCard(info.get_name(), info.get_folder(), info.getPlayer());
+                    if(info != null){
+                        new ShowCard(info.get_character(), info.get_name(), info.get_folder(), info.getPlayer());
+                    }
+                    else{
+                        new ShowCard(null, null, null, null);
+                    }
 				} catch (IOException ex) {
 					throw new RuntimeException(ex);
 				}

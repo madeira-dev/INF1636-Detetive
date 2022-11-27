@@ -200,6 +200,7 @@ public class API implements ObservadorIF {
                 escritor.write(arquivo_confidencial[0].getName() + " " + arquivo_confidencial[1].getName() + " "
                         + arquivo_confidencial[2].getName() + "\n");
                 for (Player c : players) {
+                	escritor.write(c.get_name() + "\n");
                     escritor.write(c.get_character() + "\n");
                     escritor.write(c.get_coord()[0] + "\n");
                     escritor.write(c.get_coord()[1] + "\n");
@@ -231,11 +232,12 @@ public class API implements ObservadorIF {
         j.setMultiSelectionEnabled(false);
         int turn = Controller.get_turn();
         int r = j.showSaveDialog(null);
+        String nome_jogador;
 
         if (r == JFileChooser.APPROVE_OPTION) {
 
             try {
-                FileReader arquivo = new FileReader(j.getSelectedFile().getPath());
+                FileReader arquivo = new FileReader(new File(j.getSelectedFile().getPath()));
                 BufferedReader linha_arquivo = new BufferedReader(arquivo);
                 Player current_player;
                 String[] aux;
@@ -264,9 +266,13 @@ public class API implements ObservadorIF {
                 Componentes.setArquivo_secreto(2, new Card(aux[2], "comodo"));
 
                 linha = linha_arquivo.readLine();
+                
 
                 while (linha != null) {
-                    players[i] = new Player(linha, "temp"); /* i ou turn?, estou com sono */
+                	
+                	nome_jogador=linha;
+                	linha=linha_arquivo.readLine();
+                    players[i] = new Player(linha, nome_jogador); /* i ou turn?, estou com sono */
 
                     linha = linha_arquivo.readLine();
                     x = Integer.parseInt(linha);

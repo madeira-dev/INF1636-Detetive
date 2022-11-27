@@ -177,10 +177,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		} else if (e.getSource() == prox) {
 			salvar_jogo.setEnabled(true);
 			Controller.pass_turn();
-			texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())),
-					SwingConstants.CENTER);
-			texto2 = new JLabel(
-					String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players()), SwingConstants.CENTER));
+			texto1.setText(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())));
+			texto2.setText(String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players())));
 
 			repaint();
 		}
