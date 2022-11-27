@@ -13,6 +13,7 @@ import javax.swing.*;
 import controller.*;
 import models.ObservadoIF;
 import models.API;
+import models.ObservadorIF;
 
 // I'm really sorry for the code below, but the deadline is close
 public class JogoClue extends JFrame implements ActionListener, MouseListener, ObservadoIF {
@@ -43,6 +44,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	int sa = screenSize.height;
 	int x = sl / 2 - 1200 / 2;
 	int y = sa / 2 - 700 / 2;
+	ObservadorIF ob;
 
 	int[][] lista_quadrados;
 
@@ -292,5 +294,10 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	@Override
+	public void add_obs(ObservadorIF obs) {
+		ob = obs;
 	}
 }

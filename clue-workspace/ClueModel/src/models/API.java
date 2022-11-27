@@ -10,11 +10,19 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class API {
+public class API implements ObservadorIF{
     static Board board;
     static MoveGenerator move_generator;
     private static Player[] players;
-    public static void init() {
+    private static API instance;
+
+    public static API getInstance(){
+        if(instance == null){
+            instance = new API();
+        }
+        return instance;
+    }
+    public API() {
         board = Board.getInstance();
         move_generator = new MoveGenerator(board);
         players = new Player[6];
@@ -342,5 +350,10 @@ public class API {
         Player p = get_player_by_character(name);
         assert p != null;
         p.setNoteOptions(card, type);
+    }
+
+    @Override
+    public void notify_dado_jogado(ObservadoIF ob) {
+
     }
 }

@@ -1,12 +1,15 @@
 package models;
 
-public interface ObservadorIF {
-	
-	public void notify_dice_rolled(ObservadoIF observed);
-	
-	public void notify_player_moved(ObservadoIF observed);
-	
-	public void notify_notepad_used(ObservadoIF observed);
-	
-	public void notify_cards_shown(ObservadoIF observed);
+public interface ObservadorIF
+{
+	public void notify_dado_jogado(ObservadoIF ob);
+	/*
+	public void notify_jogador_moveu(ObservadoIF ob);
+
+	public void notify_usou_passagem(ObservadoIF ob);
+
+	public void notify_palpite_feito(ObservadoIF ob);
+
+	public void notify_fez_palpite(ObservadoIF ob);
+	*/
 }
