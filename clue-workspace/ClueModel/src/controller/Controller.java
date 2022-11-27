@@ -3,6 +3,7 @@ package controller;
 import models.*;
 import view.JogoClue;
 import view.Notepad;
+import view.JogoClue;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -285,10 +286,6 @@ public class Controller {
 	public static void salvaJogo() {
 		/*
 		 * bonecos escolhidos na partida bonecos vivos/mortos
-		 *
-		 *
-		 *
-		 * d
 		 */
 		JFileChooser j = new JFileChooser();
 		j.setMultiSelectionEnabled(false);
@@ -410,20 +407,20 @@ public class Controller {
 						linha=linha_arquivo.readLine();
 
 						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(comodos_cartas[p],9);
+							players[i].setNoteOptions(comodos_cartas[p],p);
 						}
 
 					}
 					for ( p = 0; p < 6; p++) {
 						linha=linha_arquivo.readLine();
 						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(armas_cartas[p],9);
+							players[i].setNoteOptions(armas_cartas[p],p);
 						}
 					}
 					for ( p = 0; p < 6; p++) {
 						linha=linha_arquivo.readLine();
 						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(personagens[p],9);
+							players[i].setNoteOptions(personagens[p],p);
 						}
 					}
 					players[i].printNote();
@@ -432,7 +429,8 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 
 				}
-				JogoClue cl = new JogoClue();
+				JogoClue jogo = new JogoClue();
+
 			} catch (IOException ex) {
 				ex.getMessage();
 			}
