@@ -144,19 +144,22 @@ public class Controller {
         return null;
     }
     // Funções usadas para configurar lógica do tabuleiro
-    public static void add_player(String character){
+    public static void add_player(String character, String name){
         for(int i = 0; i < num_players; i++){
             if(Objects.equals(players[i].getCharacter(), character)){
                 return;
             }
         }
-        players[num_players] = new Player(character);
+        players[num_players] = new Player(character, name);
         num_players++;
     }
     private static void set_neighbors(){
         for(int i=0; i < num_players; i++){
             players[i].setVizinho(players[(i + 1) % num_players]);
         }
+    }
+    public static void move(int[] coord){
+        board.move_player(get_current_player(), coord);
     }
     private static void deal_cards(){
         int i = 0;
@@ -201,7 +204,7 @@ public class Controller {
 				if (!ja_usado[val]) {
 					players[j % num_players].addCard(cards[val]);
 					players[j % num_players].setNoteOptions(cards[val], val);
-					;
+					
 
 					ja_usado[val] = true;
 					break;
@@ -287,7 +290,7 @@ public class Controller {
 		/*
 		 * bonecos escolhidos na partida bonecos vivos/mortos
 		 */
-		JFileChooser j = new JFileChooser();
+		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
 		j.setMultiSelectionEnabled(false);
 		int r = j.showSaveDialog(null);
 
@@ -335,7 +338,7 @@ public class Controller {
 	}
 
 	public static void continuaJogo() {
-		JFileChooser j = new JFileChooser();
+		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
 		j.setMultiSelectionEnabled(false);
 
 		int r = j.showSaveDialog(null);
@@ -348,7 +351,7 @@ public class Controller {
 				Player current_player;
 				Card[] arq_confidencial = new Card[3];
 				String[] aux;
-				Card[] personagens = Componentes.personagens_cartas();
+				Card[] personagens =  Componentes.personagens_cartas();
 				Card[] armas_cartas =  Componentes.armas_cartas();
 				Card[] comodos_cartas =  Componentes.comodos_cartas();
 
@@ -358,7 +361,7 @@ public class Controller {
 				set_turn(Integer.parseInt(linha));
 
 				linha = linha_arquivo.readLine();
-				current_player = new Player(linha);
+				current_player = new Player(linha, "temp");
 				set_current_player(current_player);
 
 				linha = linha_arquivo.readLine();
@@ -384,14 +387,14 @@ public class Controller {
 				while (linha != null) {
 
 
-					players[i] = new Player(linha); /* i ou turn?, estou com sono */
+					players[i] = new Player(linha, "temp"); /* i ou turn?, estou com sono */
 
 					linha = linha_arquivo.readLine();
 					x = Integer.parseInt(linha);
 					linha = linha_arquivo.readLine();
 					y = Integer.parseInt(linha);
 					players[i].move(x, y); /* i ou turn?, estou com sono */
-
+					board.set_character(players[i].getCharacter(), x, y);
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
 					System.out.printf("players[%d]: %s\n Coordenadas(x,y) = (%d,%d)\n qtd_cards: %d\n",i,players[i].getCharacter(),x,y, qtd_cards);

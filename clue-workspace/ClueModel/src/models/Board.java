@@ -130,7 +130,7 @@ public class Board {
 		cells[x][y].coloca_no_mapa();
 	}
 
-	private void set_character(String character, int x, int y) {
+	public void set_character(String character, int x, int y) {
 		cells[x][y].aloca_personagem(character);
 	}
 
@@ -155,8 +155,11 @@ public class Board {
 	}
 
 	// Move jogador
-	public void move_player(Player player, int[] coord) {
+	public void move_player(Player player,int[] coord) {
+		int[] old_coord = player.get_coord();
 		player.move(coord[0], coord[1]);
+		cells[old_coord[0]][old_coord[1]].aloca_personagem("");
+		cells[coord[0]][coord[1]].aloca_personagem(player.getCharacter());
 	}
 
 	public Card get_room(Player p) {

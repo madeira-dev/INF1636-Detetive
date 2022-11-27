@@ -6,14 +6,15 @@ import models.API;
 
 public class Player implements PlayerFactory {
 	private Player vizinho;
-	private String character;
+	private final String character;
+	private final String nome;
 	private int[] coord;
 	private Notepad note = new Notepad();
 	private Card[] cardsArr = new Card[0];
 	public API player_api = new API();
 
-	public Player (String character) {
-
+	public Player (String character, String nome) {
+		this.nome = nome;
 		this.character = character;
 		switch (character) {
 		case "Reverendo Green": {
