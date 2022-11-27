@@ -82,11 +82,12 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            palpite.setBounds(700,200,400,45);
            palpite.addActionListener(this);
 
-            acusar.setBounds(700,250,400,45);
-            acusar.addActionListener(this);
+           acusar.setBounds(700,250,400,45);
+           acusar.addActionListener(this);
 
 
-            salvar_jogo.setBounds(700,300,400,45);
+           salvar_jogo.setBounds(700,300,400,45);
+           salvar_jogo.addActionListener(this);
            
            jogar_dados.setBounds(700,500,400,45);
            jogar_dados.addActionListener(this);
@@ -103,7 +104,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
            this.setSize(1200, 700);
            this.setTitle("Gameplay - Clue");
            this.setBounds(x, y, 1200, 700);
-            this.addMouseListener(this);
+           this.addMouseListener(this);
 
            this.add(prox);
            this.add(mostrar_cartas);
@@ -170,6 +171,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
    }
 
+@SuppressWarnings("deprecation")
 @Override
 public void actionPerformed(ActionEvent e) {
 	File dado1,dado2;
@@ -178,6 +180,7 @@ public void actionPerformed(ActionEvent e) {
 		Controller.mudaNote();
 	}
     else if (e.getSource() == prox){
+    	salvar_jogo.setEnabled(true);
         System.out.println("here\n");
         Controller.pass_turn();
         texto1.setText(String.format("Jogador da vez:  %s",Controller.get_current_player().getCharacter() ,SwingConstants.CENTER));
@@ -188,6 +191,7 @@ public void actionPerformed(ActionEvent e) {
 	
 	else if(e.getSource() == jogar_dados) {
         Controller.joga_dados();
+        salvar_jogo.setEnabled(false);
 		
 		try {
 			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", Controller.pega_dados()[0]));
@@ -226,6 +230,7 @@ public void actionPerformed(ActionEvent e) {
     else if(e.getSource() == escolher_dados) {
     	int result = 0, dado1_valor = 0, dado2_valor = 0;
     	result = dados_escolha.getSelectedIndex() + 2;
+    	salvar_jogo.setEnabled(false);
     	
     	if(result%2==0) {
     		dado1_valor = result/2;
@@ -236,7 +241,7 @@ public void actionPerformed(ActionEvent e) {
     		dado2_valor = (result/2);
     	} 
     	Controller.set_valores_dado(dado1_valor, dado2_valor);
-    	System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
+    	//System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
     	try {
 			dado1 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado1_valor));
 			dado2 = new File(String.format("imagens/Tabuleiros/dado%d.jpg", dado2_valor));
@@ -251,7 +256,10 @@ public void actionPerformed(ActionEvent e) {
         int y_coordenada = Controller.get_current_player().get_coord()[1];
         lista_quadrados = Controller.casas_disponiveis(x_coordenada, y_coordenada);
     	repaint();
-
+    	
+    }
+    else if(e.getSource() == salvar_jogo) {
+    	Controller.salvaJogo();
     }
 }
 

@@ -3,9 +3,14 @@ package view;
 import javax.imageio.ImageIO;
 
 import javax.swing.*;
+
+import controller.Controller;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
     class MenuClue extends JFrame implements ActionListener {
 
@@ -13,6 +18,8 @@ import java.io.IOException;
         JPanel p;
         JButton continuar= new JButton("Continuar");
         JButton nova_partida = new JButton("Nova Partida");
+        JFileChooser j = new JFileChooser();
+		
 
 
 
@@ -29,6 +36,8 @@ import java.io.IOException;
             continuar.setBounds(700,370,150,40);
             nova_partida.setBounds(700,300,150,40);
             nova_partida.addActionListener(this);
+            continuar.addActionListener(this);
+            
 
            
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -37,6 +46,7 @@ import java.io.IOException;
             this.setTitle("Menu Inicial");
             this.add(nova_partida);
             this.add(continuar);
+            
             this.setVisible(true);
             this.revalidate();
             this.repaint();
@@ -46,7 +56,13 @@ import java.io.IOException;
         	if(e.getSource() == nova_partida) {
         		SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
         	}
+        	else if(e.getSource()==continuar){
+        		Controller.continuaJogo();
+        		
+        	}
+        			
         }
+       
         
         public void paint(Graphics g2d) {
             super.paint(g2d);
