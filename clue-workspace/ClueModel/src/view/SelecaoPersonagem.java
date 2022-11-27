@@ -27,7 +27,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	JButton jogar = new JButton("Jogar");
 
 	public SelecaoPersonagem() {
-		for(int i=0; i < 6; i++){
+		for (int i = 0; i < 6; i++) {
 			nomes[i] = new JTextField();
 		}
 		try {
@@ -46,11 +46,10 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 		plum.setBounds(600, 350, 150, 40);
 		peacock.setBounds(600, 390, 150, 40);
 
-		for(int i=0; i < 6; i++){
-			nomes[i].setBounds(750, 190 + 40*i, 150, 40);
+		for (int i = 0; i < 6; i++) {
+			nomes[i].setBounds(750, 190 + 40 * i, 150, 40);
 			this.add(nomes[i]);
 		}
-		// nova_partida.setBounds(700,370,150,40);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		this.setSize(966, 700);
@@ -72,6 +71,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	}
 
 	public void inicia_jogo() {
+
 		if (scarlett.isSelected()) {
 			Controller.add_player("Srta. Scarlett", nomes[0].getText());
 		}
