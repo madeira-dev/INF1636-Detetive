@@ -123,49 +123,46 @@ public class Controller {
 		Player temp = guesser.getVizinho();
 		Card[] options = new Card[0];
 
-		// Se chegamos de novo no palpitador, encerramos o loop
-		while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())) {
-			// Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
-			options = temp.possui_algum(cards);
-			// Debug
-			System.out.printf("\n%s pode mostrar\n", temp.getCharacter());
-			for (Card c : options) {
-				System.out.println(c.getName());
-			}
-			// Se o jogador pode mostrar algo, encerramos
-			if (options.length != 0) {
-				return new InfoPalpite(temp, options);
-			}
-			// Se não, avançamos para o próximo
-			temp = temp.getVizinho();
-		}
-		return new InfoPalpite(temp, options);
-	}
-
-	// Funções usadas para configurar lógica do tabuleiro
-	public static void add_player(String character) {
-		for (int i = 0; i < num_players; i++) {
-			if (Objects.equals(players[i].getCharacter(), character)) {
-				return;
-			}
-		}
-		players[num_players] = new Player(character);
-		num_players++;
-	}
-
-	private static void set_neighbors() {
-		for (int i = 0; i < num_players; i++) {
-			players[i].setVizinho(players[(i + 1) % num_players]);
-		}
-	}
-
-	private static void deal_cards() {
-		int i = 0;
-		boolean[] ja_usado = new boolean[18];
-		Card[] cards = new Card[18];
-		Card[] suspeitos = Componentes.personagens_cartas();
-		Card[] armas = Componentes.armas_cartas();
-		Card[] locais = Componentes.comodos_cartas();
+        // Se chegamos de novo no palpitador, encerramos o loop
+        while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
+            // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
+            options = temp.possui_algum(cards);
+            // Debug
+            System.out.printf("\n%s pode mostrar\n", temp.getCharacter());
+            for(Card c: options){
+                System.out.println(c.getName());
+            }
+            // Se o jogador pode mostrar algo, encerramos
+            if(options.length != 0){
+                return new InfoPalpite(temp, options);
+            }
+            // Se não, avançamos para o próximo
+            temp = temp.getVizinho();
+        }
+        return null;
+    }
+    // Funções usadas para configurar lógica do tabuleiro
+    public static void add_player(String character){
+        for(int i = 0; i < num_players; i++){
+            if(Objects.equals(players[i].getCharacter(), character)){
+                return;
+            }
+        }
+        players[num_players] = new Player(character);
+        num_players++;
+    }
+    private static void set_neighbors(){
+        for(int i=0; i < num_players; i++){
+            players[i].setVizinho(players[(i + 1) % num_players]);
+        }
+    }
+    private static void deal_cards(){
+        int i = 0;
+        boolean[] ja_usado = new boolean[18];
+        Card[] cards = new Card[18];
+        Card[] suspeitos = Componentes.personagens_cartas();
+        Card[] armas = Componentes.armas_cartas();
+        Card[] locais = Componentes.comodos_cartas();
 
 		for (Card sus : suspeitos) {
 			if (!Objects.equals(sus.getName(), arquivo_confidencial[1].getName())) {
@@ -287,9 +284,9 @@ public class Controller {
 	public static void salvaJogo() {
 		/*
 		 * bonecos escolhidos na partida bonecos vivos/mortos
-		 * 
-		 * 
-		 * 
+		 *
+		 *
+		 *
 		 * d
 		 */
 		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop");
@@ -356,7 +353,7 @@ public class Controller {
 				Card[] personagens = Componentes.personagens_cartas();
 				Card[] armas_cartas =  Componentes.armas_cartas();
 				Card[] comodos_cartas =  Componentes.comodos_cartas();
-			
+
 				int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;
 
 				String linha = linha_arquivo.readLine();
@@ -376,19 +373,19 @@ public class Controller {
 				arquivo_confidencial[0] = new Card(aux[0], "arma");
 				arquivo_confidencial[1] = new Card(aux[1], "personagens");
 				arquivo_confidencial[2] = new Card(aux[2], "comodo");
-				
+
 				System.out.printf("turno: %d\ncurrent_player: %s\nqtd_jogadores: %d\n", turn,get_current_player().getCharacter(),qtd_jogadores);
 				int u = 0;
 				for(Card c : arquivo_confidencial) {
 					System.out.printf("arquvivo_confidencial[%d] -> %s\n",u,c.getName());
 					u++;
 				}
-				
+
 				linha = linha_arquivo.readLine();
-				
+
 				while (linha != null) {
 
-					
+
 					players[i] = new Player(linha); /* i ou turn?, estou com sono */
 
 					linha = linha_arquivo.readLine();
@@ -396,25 +393,25 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 					y = Integer.parseInt(linha);
 					players[i].move(x, y); /* i ou turn?, estou com sono */
-					
+
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
 					System.out.printf("players[%d]: %s\n Coordenadas(x,y) = (%d,%d)\n qtd_cards: %d\n",i,players[i].getCharacter(),x,y, qtd_cards);
-			
+
 					for ( p = 0; p < qtd_cards; p++) {
 						linha = linha_arquivo.readLine();
 						aux = linha.split(" ");
 						players[i].addCard(new Card(aux[1], aux[0]));
 						System.out.printf("Personagem: %s tem a carta-> %s\n",players[i].getCharacter(),players[i].getCardsArr()[p].getName() );
 					}
-					
+
 					for ( p = 0; p < 9; p++) {
 						linha=linha_arquivo.readLine();
-						
+
 						if(Objects.equals(linha, "true")) {
 							players[i].setNoteOptions(comodos_cartas[p],9);
 						}
-							
+
 					}
 					for ( p = 0; p < 6; p++) {
 						linha=linha_arquivo.readLine();
@@ -429,7 +426,7 @@ public class Controller {
 						}
 					}
 					players[i].printNote();
-					
+
 					i++;
 					linha = linha_arquivo.readLine();
 
