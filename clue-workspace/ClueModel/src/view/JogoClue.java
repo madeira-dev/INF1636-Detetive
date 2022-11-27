@@ -11,9 +11,10 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
+import models.ObservadoIF;
 
 // I'm really sorry for the code below, but the deadline is close
-public class JogoClue extends JFrame implements ActionListener, MouseListener {
+public class JogoClue extends JFrame implements ActionListener, MouseListener, ObservadoIF {
 
 	Image img_tabuleiro;
 	Image img_casa_valida;
@@ -175,6 +176,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		File dado1, dado2;
 
 		if (e.getSource() == bloco_notas) {
+//			notificar observador que bloco de notas foi selecionado
 			Controller.mudaNote();
 		} else if (e.getSource() == prox) {
 			salvar_jogo.setEnabled(true);
@@ -189,6 +191,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 
 		else if (e.getSource() == jogar_dados) {
+//			notificar observador que dados foram jogados
 			Controller.joga_dados();
 			salvar_jogo.setEnabled(false);
 
@@ -219,6 +222,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 
 		else if (e.getSource() == mostrar_cartas) {
+//			notificar observador que cartas foram mostradas
 			PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
 					Controller.get_current_player().get_card_by_type("arma"),
 					Controller.get_current_player().get_card_by_type("personagem"));
@@ -226,6 +230,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 
 		else if (e.getSource() == escolher_dados) {
+//			acho que também precisa notificar que os dados foram "jogados" aqui
 			int result = 0, dado1_valor = 0, dado2_valor = 0;
 			result = dados_escolha.getSelectedIndex() + 2;
 			salvar_jogo.setEnabled(false);
