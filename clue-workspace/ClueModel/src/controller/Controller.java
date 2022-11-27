@@ -287,7 +287,7 @@ public class Controller {
 		/*
 		 * bonecos escolhidos na partida bonecos vivos/mortos
 		 */
-		JFileChooser j = new JFileChooser();
+		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
 		j.setMultiSelectionEnabled(false);
 		int r = j.showSaveDialog(null);
 
@@ -335,7 +335,7 @@ public class Controller {
 	}
 
 	public static void continuaJogo() {
-		JFileChooser j = new JFileChooser();
+		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
 		j.setMultiSelectionEnabled(false);
 
 		int r = j.showSaveDialog(null);
@@ -348,8 +348,11 @@ public class Controller {
 				Player current_player;
 				Card[] arq_confidencial = new Card[3];
 				String[] aux;
-				Card[] personagens = Componentes.personagens_cartas();
-				Card[] armas_cartas =  Componentes.armas_cartas();
+				Card[] personagens =  { new Card("White", "personagem"), new Card("Green", "personagem"),
+						new Card("Scarlet", "personagem"), new Card("Plum", "personagem"), new Card("Peacock", "personagem"),
+						new Card("Mustard", "personagem") };
+				Card[] armas_cartas =  { new Card("Cano", "arma"), new Card("Castical", "arma"), new Card("Corda", "arma"),
+						new Card("ChaveInglesa", "arma"), new Card("Faca", "arma"), new Card("Revolver", "arma") };
 				Card[] comodos_cartas =  Componentes.comodos_cartas();
 
 				int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;
