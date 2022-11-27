@@ -1,13 +1,14 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MoveGenerator {
 	Board board;
 
 	// Index do primeiro nó da iteração atual
 	int first;
-
+	String comodo_inicio;
 	// Index do último nó da iteração atual
 	int last;
 	boolean first_iteration;
@@ -18,6 +19,7 @@ public class MoveGenerator {
 	public MoveGenerator(Board board) {
 		this.board = board;
 		this.nodes = new MoveNode[100000];
+		this.comodo_inicio = null;
 	}
 
 	public static MoveGenerator getInstance(Board b) {
@@ -37,6 +39,7 @@ public class MoveGenerator {
 		this.last = 0;
 		this.first = 0;
 		this.first_iteration = true;
+		this.comodo_inicio = null;
 	}
 
 	// Reinicia o gerador para configurar uma nova casa de início
@@ -65,6 +68,7 @@ public class MoveGenerator {
 		// Caso não seja, não podemos sair por outra porta ou pegar passagens secretas
 		if (first_iteration) {
 			if (current_cell.is_room()) {
+				comodo_inicio = current_cell.get_room();
 				if (current_cell.has_shortcut()) {
 
 					// Caso começamos numa passagem secreta, podemos atravessar para o outro lado
@@ -97,7 +101,7 @@ public class MoveGenerator {
 			neighbors = neighbor_availability();
 			for (int j = 0; j < 4; j++) {
 				Cell c = board.get_cell(current_cell.get_x() + mov[j][0], current_cell.get_y() + mov[j][1]);
-				if (neighbors[j]) {
+				if (neighbors[j] && !Objects.equals(c.getRoom(), comodo_inicio)) {
 					// Se está livre, adicionamos à lista
 					add_node(c, current_cell);
 					if (depth == 1 || c.is_room()) {
@@ -161,44 +165,44 @@ public class MoveGenerator {
 	private int[][] get_coord_room(String nome) {
 		int[][] coords = new int[2][0];
 		switch (nome) {
-		case ("Study"):
+		case ("Escritorio"):
 			coords = Arrays.copyOf(coords, 1);
 			coords[0] = new int[] { 7, 4 };
 			break;
 
-		case ("Lounge"):
+		case ("SalaDeEstar"):
 			coords = Arrays.copyOf(coords, 1);
 			coords[0] = new int[] { 18, 6 };
 			break;
 
-		case ("Library"):
+		case ("Biblioteca"):
 			coords = Arrays.copyOf(coords, 2);
 			coords[0] = new int[] { 7, 9 };
 			coords[1] = new int[] { 4, 11 };
 			break;
-		case ("Dining Room"):
+		case ("SalaDeJantar"):
 			coords = Arrays.copyOf(coords, 2);
 			coords[0] = new int[] { 18, 10 };
 			coords[1] = new int[] { 17, 13 };
 			break;
 
-		case ("Kitchen"):
+		case ("Cozinha"):
 			coords = Arrays.copyOf(coords, 1);
 			coords[0] = new int[] { 20, 19 };
 			break;
 
-		case ("Conservatory"):
+		case ("JardimInverno"):
 			coords = Arrays.copyOf(coords, 1);
 			coords[0] = new int[] { 5, 20 };
 			break;
 
-		case ("Billard Room"):
+		case ("SalaoDeJogos"):
 			coords = Arrays.copyOf(coords, 2);
 			coords[0] = new int[] { 2, 13 };
 			coords[1] = new int[] { 6, 16 };
 			break;
 
-		case ("Ball Room"):
+		case ("SalaDeMusica"):
 			coords = Arrays.copyOf(coords, 4);
 			coords[0] = new int[] { 15, 18 };
 			coords[1] = new int[] { 10, 18 };
@@ -206,7 +210,7 @@ public class MoveGenerator {
 			coords[3] = new int[] { 16, 20 };
 			break;
 
-		case ("Hall"):
+		case ("Entrada"):
 			coords = Arrays.copyOf(coords, 3);
 			coords[0] = new int[] { 10, 4 };
 			coords[1] = new int[] { 13, 6 };
