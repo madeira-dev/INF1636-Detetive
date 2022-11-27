@@ -23,11 +23,21 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	JCheckBox peacock = new JCheckBox("Mrs. Peacock");
 	JCheckBox plum = new JCheckBox("Prof. Plum");
 	JCheckBox green = new JCheckBox("Rev. Green");
+
 	JTextField[] nomes = new JTextField[6];
+	JCheckBox[] boxes = new JCheckBox[6];
 
 	JButton jogar = new JButton("Jogar");
 
 	public SelecaoPersonagem() {
+
+		boxes[0] = scarlett;
+		boxes[1] = mustard;
+		boxes[2] = white;
+		boxes[3] = peacock;
+		boxes[4] = plum;
+		boxes[5] = green;
+
 		for (int i = 0; i < 6; i++) {
 			nomes[i] = new JTextField();
 		}
@@ -64,11 +74,34 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 		this.add(mustard);
 		this.add(plum);
 		this.add(peacock);
+
+		/*
+		 * seguindo as regras de que a srta.White é sempre a primeira a jogar então ela
+		 * tem de estar selecionada
+		 */
+		boxes[0].setSelected(true);
+		boxes[0].setEnabled(false);
+	}
+
+	public int check_player_count() {
+		int players_count = 0;
+
+		for (JCheckBox box : boxes) {
+			if (box.isSelected()) {
+				players_count += 1;
+			}
+		}
+		if (players_count < 3)
+			return 0;
+		else
+			return players_count;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		inicia_jogo();
-		this.dispose();
+		if (e.getSource() == jogar && check_player_count() > 0) {
+			inicia_jogo();
+			this.dispose();
+		}
 	}
 
 	public void inicia_jogo() {
@@ -106,7 +139,5 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	public void paint(Graphics g2d) {
 		super.paint(g2d);
 		g2d.drawImage(img_menu, 0, 55, this);
-
 	}
-
 }
