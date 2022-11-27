@@ -90,6 +90,7 @@ public class Palpite extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		cards = new Card[3];
 		if (e.getSource() == palpite) {
+			this.dispose();
 			for (int i = 0; i < armas.length; i++) {
 				if (armas[i].isSelected()) {
 					cards[0] = Componentes.armas_cartas()[i];
@@ -105,10 +106,10 @@ public class Palpite extends JFrame implements ActionListener {
 				}
 			}
 			if (acusacao) {
+				this.dispose();
 				for (int i = 0; i < comodos.length; i++) {
 					if (comodos[i].isSelected()) {
 						cards[2] = Componentes.comodos_cartas()[i];
-
 						break;
 					}
 				}
