@@ -107,7 +107,6 @@ public class Palpite extends JFrame implements ActionListener {
                 for(int i=0; i < comodos.length; i++){
                     if(comodos[i].isSelected()){
                         cards[2] = Componentes.comodos_cartas()[i];
-                       
                         break;
                     }
                 }
@@ -125,12 +124,16 @@ public class Palpite extends JFrame implements ActionListener {
             else{
                 InfoPalpite info = Controller.guess(guesser, cards);
                 /*pode nao estar certo*/
-                guesser.setNoteOptions(info.getCards()[0], 0);
-                
-                
+
                 try {
-                    ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());
-                } catch (IOException ex) {
+                    if(info == null){
+                        ShowCard s = new ShowCard(null, null);
+                    }
+                    else{
+                        guesser.setNoteOptions(info.getCards()[0], 0);
+                        ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());
+                    }
+                }catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
