@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Card implements CardFactory {
+class Card {
 	private String name;
 	private String type;
 
@@ -11,7 +11,6 @@ public class Card implements CardFactory {
 		this.type = type;
 	}
 
-	@Override
 	public String getName() {
 		return this.name;
 	}

@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controller.Controller;
+import models.API;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -49,7 +50,7 @@ class MenuClue extends JFrame implements ActionListener {
 			this.dispose();
 			new SelecaoPersonagem();
 		} else if (e.getSource() == continuar) {
-			Controller.continuaJogo();
+			API.continuaJogo();
 		}
 
 	}

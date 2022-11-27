@@ -40,61 +40,61 @@ class Notepad {
 		return rooms;
 	}
 
-	public void setTrue(Card arr, int index) {
+	public void setTrue(String card, String tipo) {
 
-		if (Objects.equals(arr.getType(), "comodo")) {
-			if (Objects.equals(arr.getName(), "Biblioteca")) {
+		if (Objects.equals(tipo, "comodo")) {
+			if (Objects.equals(card, "Biblioteca")) {
 				rooms[0] = true;
 			}
-			else if(Objects.equals(arr.getName(), "Entrada")) {
+			else if(Objects.equals(card, "Entrada")) {
 				rooms[2] = true;
-			} else if (Objects.equals(arr.getName(), "Escritorio")) {
+			} else if (Objects.equals(card, "Escritorio")) {
 				rooms[3] = true;
-			} else if (Objects.equals(arr.getName(), "JardimInverno")) {
+			} else if (Objects.equals(card, "JardimInverno")) {
 				rooms[4] = true;
-			} else if (Objects.equals(arr.getName(), "SalaDeEstar")) {
+			} else if (Objects.equals(card, "SalaDeEstar")) {
 				rooms[5] = true;
-			} else if (Objects.equals(arr.getName(), "SalaDeJantar")) {
+			} else if (Objects.equals(card, "SalaDeJantar")) {
 				rooms[6] = true;
-			} else if (Objects.equals(arr.getName(), "SalaDeMusica")) {
+			} else if (Objects.equals(card, "SalaDeMusica")) {
 				rooms[7] = true;
-			} else if (Objects.equals(arr.getName(), "SalaoDeJogos")) {
+			} else if (Objects.equals(card, "SalaoDeJogos")) {
 				rooms[8] = true;
-			} else if (Objects.equals(arr.getName(), "Cozinha")) {
+			} else if (Objects.equals(card, "Cozinha")) {
 				rooms[1] = true;
 			}
 		}
-		if (Objects.equals(arr.getType(), "personagem")) {
+		if (Objects.equals(tipo, "personagem")) {
 
-			if (Objects.equals(arr.getName(), "Srta. Scarlett")) {
+			if (Objects.equals(card, "Srta. Scarlett")) {
 				suspects[0] = true;
 			}
-			else if(Objects.equals(arr.getName(), "Reverendo Green")) {
+			else if(Objects.equals(card, "Reverendo Green")) {
 				suspects[1] = true;
-			} else if (Objects.equals(arr.getName(), "Srta. Peacock")) {
+			} else if (Objects.equals(card, "Srta. Peacock")) {
 				suspects[2] = true;
-			} else if (Objects.equals(arr.getName(), "Professor Plum")) {
+			} else if (Objects.equals(card, "Professor Plum")) {
 				suspects[3] = true;
-			} else if (Objects.equals(arr.getName(), "Coronel Mustard")) {
+			} else if (Objects.equals(card, "Coronel Mustard")) {
 				suspects[4] = true;
-			} else if (Objects.equals(arr.getName(), "Srta. White")) {
+			} else if (Objects.equals(card, "Srta. White")) {
 				suspects[5] = true;
 			}
 
 		}
-		if (Objects.equals(arr.getType(), "arma")) {
-			if (Objects.equals(arr.getName(), "Corda")) {
+		if (Objects.equals(tipo, "arma")) {
+			if (Objects.equals(card, "Corda")) {
 				weapons[0] = true;
 			}
-			else if(Objects.equals(arr.getName(), "Cano")) {
+			else if(Objects.equals(card, "Cano")) {
 				weapons[1] = true;
-			} else if (Objects.equals(arr.getName(), "Faca")) {
+			} else if (Objects.equals(card, "Faca")) {
 				weapons[2] = true;
-			} else if (Objects.equals(arr.getName(), "ChaveInglesa")) {
+			} else if (Objects.equals(card, "ChaveInglesa")) {
 				weapons[3] = true;
-			} else if (Objects.equals(arr.getName(), "Castical")) {
+			} else if (Objects.equals(card, "Castical")) {
 				weapons[4] = true;
-			} else if (Objects.equals(arr.getName(), "Revolver")) {
+			} else if (Objects.equals(card, "Revolver")) {
 				weapons[5] = true;
 			}
 

@@ -2,7 +2,7 @@ package models;
 
 import java.util.Arrays;
 
-public class MoveNode {
+class MoveNode {
 	Cell cell;
 
 	// Lista de células que foram atravessadas para chegar até a célula atual

@@ -4,15 +4,13 @@ import java.util.Arrays;
 import java.util.Objects;
 import models.API;
 
-public class Player implements PlayerFactory {
+public class Player{
 	private Player vizinho;
 	private final String character;
 	private final String nome;
 	private int[] coord;
 	private Notepad note = new Notepad();
 	private Card[] cardsArr = new Card[0];
-	public API player_api = new API();
-
 	public Player (String character, String nome) {
 		this.nome = nome;
 		this.character = character;
@@ -44,7 +42,7 @@ public class Player implements PlayerFactory {
 		}
 	}
 
-	public void setNoteOptions(Card arr,int index) {note.setTrue(arr, index);}
+	public void setNoteOptions(String card, String type) {note.setTrue(card, type);}
 
 	public Boolean[] getNoteOptionsWeapons() {return note.getWeapons();}
 	public Boolean[] getNoteOptionsRooms() {return note.getRooms();}
@@ -52,15 +50,14 @@ public class Player implements PlayerFactory {
 
 	public void printNote() {note.printRooms();note.printWeapons();note.printSuspects();}
 
-	@Override
 	public Card[] getCardsArr() { return cardsArr; }
 
-	public Card[] get_card_by_type(String type) {
+	public String[] get_card_by_type(String type) {
 		int counter = 0;
-		Card[] cards = new Card[cardsArr.length];
+		String[] cards = new String[cardsArr.length];
 		for (int i = 0; i < cardsArr.length; i++) {
 			if (Objects.equals(cardsArr[i].getType(), type)) {
-				cards[counter] = cardsArr[i];
+				cards[counter] = cardsArr[i].getName();
 				counter++;
 			}
 		}
@@ -68,13 +65,11 @@ public class Player implements PlayerFactory {
 		return cards;
 	}
 
-	@Override
 	public String getCharacter() {
 		return this.character;
 	}
 
 	public String get_name(){return this.nome;}
-	@Override
 	public void addCard(Card _card) {
 		Card[] newArray = Arrays.copyOf(cardsArr, cardsArr.length + 1);
 		newArray[cardsArr.length] = _card;
@@ -82,11 +77,11 @@ public class Player implements PlayerFactory {
 		cardsArr = newArray;
 	}
 
-	public Card[] possui_algum(Card[] cards) {
+	public Card[] possui_algum(String[] cards) {
 		Card[] possui = new Card[0];
 		for (Card c : cardsArr) {
-			for (Card card : cards) {
-				if (Objects.equals(c.getName(), card.getName())) {
+			for (String card : cards) {
+				if (Objects.equals(c.getName(), card)) {
 					possui = Arrays.copyOf(possui, possui.length + 1);
 					possui[possui.length - 1] = c;
 				}
@@ -110,9 +105,5 @@ public class Player implements PlayerFactory {
 	public void move(int x, int y) {
 		coord[0] = x;
 		coord[1] = y;
-	}
-
-	public void set_api_cards_arr(Card[] cards_arr) {
-		player_api.setPlayerCardsArray(cards_arr);
 	}
 }

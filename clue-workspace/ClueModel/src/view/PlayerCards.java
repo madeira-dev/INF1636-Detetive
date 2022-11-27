@@ -5,7 +5,6 @@ import java.io.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import models.Card;
 
 public class PlayerCards extends JFrame {
 	public final int width = 900;
@@ -14,21 +13,21 @@ public class PlayerCards extends JFrame {
 	File[] images_comodo;
 	File[] images_personagens;
 
-	public PlayerCards(Card[] comodos, Card[] armas, Card[] personagens) {
+	public PlayerCards(String[] comodos, String[] armas, String[] personagens) {
 
 		images_arma = new File[armas.length];
 		images_comodo = new File[comodos.length];
 		images_personagens = new File[personagens.length];
 
 		for (int i = 0; i < armas.length; i++) {
-			System.out.println(armas[i].getName());
-			images_arma[i] = new File(String.format("imagens/Armas/%s.jpg", armas[i].getName()));
+			System.out.println(armas[i]);
+			images_arma[i] = new File(String.format("imagens/Armas/%s.jpg", armas[i]));
 		}
 		for (int i = 0; i < personagens.length; i++) {
-			images_personagens[i] = new File(String.format("imagens/Suspeitos/%s.jpg", personagens[i].getName()));
+			images_personagens[i] = new File(String.format("imagens/Suspeitos/%s.jpg", personagens[i]));
 		}
 		for (int i = 0; i < comodos.length; i++) {
-			images_comodo[i] = new File(String.format("imagens/Comodos/%s.jpg", comodos[i].getName()));
+			images_comodo[i] = new File(String.format("imagens/Comodos/%s.jpg", comodos[i]));
 		}
 
 		this.setTitle("cards");

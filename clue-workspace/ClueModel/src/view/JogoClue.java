@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
 import models.ObservadoIF;
+import models.API;
 
 // I'm really sorry for the code below, but the deadline is close
 public class JogoClue extends JFrame implements ActionListener, MouseListener, ObservadoIF {
@@ -31,7 +32,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	JButton salvar_jogo = new JButton("Salvar Jogo");
 	JButton jogar_dados = new JButton("Jogar Dados");
 	JButton escolher_dados = new JButton("Escolher Dados");
-
+	API api = API.getInstance();
 	String[] valores_dados = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
 	@SuppressWarnings("unchecked")
@@ -130,9 +131,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			}
 		}
 		for (int i = 0; i < Controller.get_num_players(); i++) {
-			Ellipse2D e = new Ellipse2D.Double(650 - 25 * Controller.get_player(i).get_coord()[0],
-					675 - 25 * Controller.get_player(i).get_coord()[1], 25, 25);
-			switch (Controller.get_player(i).getCharacter()) {
+			Ellipse2D e = new Ellipse2D.Double(650 - 25 * API.get_player(i).get_coord()[0],
+					675 - 25 * API.get_player(i).get_coord()[1], 25, 25);
+			switch (API.get_player(i).getCharacter()) {
 			case "Reverendo Green": {
 				g2D.setPaint(Color.green);
 
@@ -161,8 +162,8 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			}
 			g2D.fill(e);
 			g2D.setPaint(Color.black);
-			g2D.draw(new Arc2D.Double(650 - 25 * Controller.get_player(i).get_coord()[0],
-					675 - 25 * Controller.get_player(i).get_coord()[1], 25, 25, 90, 360, Arc2D.PIE));
+			g2D.draw(new Arc2D.Double(650 - 25 * API.get_player(i).get_coord()[0],
+					675 - 25 * API.get_player(i).get_coord()[1], 25, 25, 90, 360, Arc2D.PIE));
 		}
 
 	}
@@ -172,8 +173,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		File dado1, dado2;
 
 		if (e.getSource() == bloco_notas) {
-//			notificar observador que bloco de notas foi selecionado
-			Controller.mudaNote();
+			API.mudaNote();
 		} else if (e.getSource() == prox) {
 			salvar_jogo.setEnabled(true);
 			System.out.println("here\n");
@@ -187,7 +187,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 
 		else if (e.getSource() == jogar_dados) {
-//			notificar observador que dados foram jogados
 			Controller.joga_dados();
 			salvar_jogo.setEnabled(false);
 
@@ -209,7 +208,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 			System.out.printf("%d", Controller.pega_dados()[1]);
 		} else if (e.getSource() == palpite && Controller.prepara_palpite() != null) {
-			new Palpite(false, Controller.get_current_player(), Controller.prepara_palpite());
+			new Palpite(false, Controller.get_current_player(), API.prepara_palpite(Controller.get_current_player()));
 
 		}
 
@@ -254,7 +253,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			repaint();
 
 		} else if (e.getSource() == salvar_jogo) {
-			Controller.salvaJogo();
+			API.salvaJogo();
 			this.dispose();
 		}
 	}
@@ -271,7 +270,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 		for (int[] coord : lista_quadrados) {
 			if (coord[0] == (675 - x) / 25 && coord[1] == (700 - y) / 25) {
-				Controller.move(coord);
+				api.move_player(Controller.get_current_player(), coord);
 				lista_quadrados = null;
 				repaint();
 				Controller.atualiza_acoes(0);
