@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import models.API;
 
-public class Player implements PlayerFactory {
+public class Player{
 	private Player vizinho;
 	private final String character;
 	private final String nome;
@@ -50,7 +50,6 @@ public class Player implements PlayerFactory {
 
 	public void printNote() {note.printRooms();note.printWeapons();note.printSuspects();}
 
-	@Override
 	public Card[] getCardsArr() { return cardsArr; }
 
 	public String[] get_card_by_type(String type) {
@@ -66,13 +65,11 @@ public class Player implements PlayerFactory {
 		return cards;
 	}
 
-	@Override
 	public String getCharacter() {
 		return this.character;
 	}
 
 	public String get_name(){return this.nome;}
-	@Override
 	public void addCard(Card _card) {
 		Card[] newArray = Arrays.copyOf(cardsArr, cardsArr.length + 1);
 		newArray[cardsArr.length] = _card;
