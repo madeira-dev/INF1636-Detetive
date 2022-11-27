@@ -180,8 +180,11 @@ public void actionPerformed(ActionEvent e) {
 		Controller.mudaNote();
 	}
     else if (e.getSource() == prox){
+    	
+    	escolher_dados.setEnabled(true);
+    	jogar_dados.setEnabled(true);
     	salvar_jogo.setEnabled(true);
-        System.out.println("here\n");
+    	
         Controller.pass_turn();
         texto1.setText(String.format("Jogador da vez:  %s",Controller.get_current_player().getCharacter() ,SwingConstants.CENTER));
         texto2.setText(String.format("Proximo: %s  ", Controller.get_next_player().getCharacter(),SwingConstants.CENTER));
@@ -190,6 +193,7 @@ public void actionPerformed(ActionEvent e) {
     }
 	
 	else if(e.getSource() == jogar_dados) {
+		jogar_dados.setEnabled(false);
         Controller.joga_dados();
         salvar_jogo.setEnabled(false);
 		
@@ -230,6 +234,8 @@ public void actionPerformed(ActionEvent e) {
     else if(e.getSource() == escolher_dados) {
     	int result = 0, dado1_valor = 0, dado2_valor = 0;
     	result = dados_escolha.getSelectedIndex() + 2;
+    	escolher_dados.setEnabled(false);
+    	jogar_dados.setEnabled(false);
     	salvar_jogo.setEnabled(false);
     	
     	if(result%2==0) {

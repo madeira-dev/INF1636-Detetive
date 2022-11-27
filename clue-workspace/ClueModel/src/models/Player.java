@@ -49,8 +49,6 @@ public class Player implements PlayerFactory {
 	public Boolean[] getNoteOptionsRooms() {return note.getRooms();}
 	public Boolean[] getNoteOptionsSuspects() {return note.getSuspects();}
 	
-	public void printNote() {note.printRooms();note.printSuspects();note.printWeapons();}
-	
 	@Override
 	public Card[] getCardsArr() { return cardsArr; }
 
