@@ -1,6 +1,7 @@
 package controller;
 
 import models.*;
+import view.JogoClue;
 import view.Notepad;
 
 import java.io.*;
@@ -289,7 +290,7 @@ public class Controller {
 		 *
 		 * d
 		 */
-		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop");
+		JFileChooser j = new JFileChooser();
 		j.setMultiSelectionEnabled(false);
 		int r = j.showSaveDialog(null);
 
@@ -337,7 +338,7 @@ public class Controller {
 	}
 
 	public static void continuaJogo() {
-		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
+		JFileChooser j = new JFileChooser();
 		j.setMultiSelectionEnabled(false);
 
 		int r = j.showSaveDialog(null);
@@ -431,7 +432,7 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 
 				}
-
+				JogoClue cl = new JogoClue();
 			} catch (IOException ex) {
 				ex.getMessage();
 			}
