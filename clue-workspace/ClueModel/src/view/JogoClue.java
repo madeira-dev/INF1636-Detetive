@@ -172,6 +172,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		File dado1, dado2;
 
 		if (e.getSource() == bloco_notas) {
+//			implementar observer aqui
 			API.mudaNote();
 		} else if (e.getSource() == prox) {
 			salvar_jogo.setEnabled(true);
@@ -185,6 +186,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 
 		else if (e.getSource() == jogar_dados) {
+//			implementar observer aqui
 			Controller.joga_dados();
 			salvar_jogo.setEnabled(false);
 
@@ -215,13 +217,14 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 
 		else if (e.getSource() == mostrar_cartas) {
-//			notificar observador que cartas foram mostradas
+//			implementar observer aqui
 			String[][]  c = API.get_player_cards_by_type(Controller.get_turn());
 			PlayerCards cartas_jogador = new PlayerCards(c[0], c[1], c[2]);
 
 		}
 
 		else if (e.getSource() == escolher_dados) {
+//			implementar observer aqui
 			int result = 0, dado1_valor = 0, dado2_valor = 0;
 			result = dados_escolha.getSelectedIndex() + 2;
 			salvar_jogo.setEnabled(false);
@@ -251,7 +254,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 
 		} else if (e.getSource() == salvar_jogo) {
 			API.salvaJogo();
-			this.dispose();
 		}
 	}
 
@@ -294,5 +296,15 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	@Override
+	public void show_cards(boolean enable) {
+		mostrar_cartas.setEnabled(enable);
+	}
+
+	@Override
+	public void check_notepad(boolean enable) {
+		bloco_notas.setEnabled(enable);
 	}
 }

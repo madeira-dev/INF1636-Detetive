@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class API {
+public class API implements ObservadorIF {
     static Board board;
     static MoveGenerator move_generator;
     private static Player[] players;
@@ -343,4 +343,24 @@ public class API {
         assert p != null;
         p.setNoteOptions(card, type);
     }
+	@Override
+	public void notify_dice_rolled(ObservadoIF observed) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void notify_player_moved(ObservadoIF observed) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void notify_notepad_used(ObservadoIF observed) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void notify_cards_shown(ObservadoIF observed) {
+		// TODO Auto-generated method stub
+		
+	}
 }
