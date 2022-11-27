@@ -353,7 +353,11 @@ public class Controller {
 				Player current_player;
 				Card[] arq_confidencial = new Card[3];
 				String[] aux;
-				int qtd_jogadores, x, y, i = 0, qtd_cards,p;
+				Card[] personagens = Componentes.personagens_cartas();
+				Card[] armas_cartas =  Componentes.armas_cartas();
+				Card[] comodos_cartas =  Componentes.comodos_cartas();
+			
+				int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;
 
 				String linha = linha_arquivo.readLine();
 				set_turn(Integer.parseInt(linha));
@@ -372,10 +376,19 @@ public class Controller {
 				arquivo_confidencial[0] = new Card(aux[0], "arma");
 				arquivo_confidencial[1] = new Card(aux[1], "personagens");
 				arquivo_confidencial[2] = new Card(aux[2], "comodo");
-
+				
+				System.out.printf("turno: %d\ncurrent_player: %s\nqtd_jogadores: %d\n", turn,get_current_player().getCharacter(),qtd_jogadores);
+				int u = 0;
+				for(Card c : arquivo_confidencial) {
+					System.out.printf("arquvivo_confidencial[%d] -> %s\n",u,c.getName());
+					u++;
+				}
+				
+				linha = linha_arquivo.readLine();
+				
 				while (linha != null) {
 
-					linha = linha_arquivo.readLine();
+					
 					players[i] = new Player(linha); /* i ou turn?, estou com sono */
 
 					linha = linha_arquivo.readLine();
@@ -383,30 +396,42 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 					y = Integer.parseInt(linha);
 					players[i].move(x, y); /* i ou turn?, estou com sono */
-
+					
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
+					System.out.printf("players[%d]: %s\n Coordenadas(x,y) = (%d,%d)\n qtd_cards: %d\n",i,players[i].getCharacter(),x,y, qtd_cards);
+			
 					for ( p = 0; p < qtd_cards; p++) {
 						linha = linha_arquivo.readLine();
 						aux = linha.split(" ");
 						players[i].addCard(new Card(aux[1], aux[0]));
+						System.out.printf("Personagem: %s tem a carta-> %s\n",players[i].getCharacter(),players[i].getCardsArr()[p].getName() );
 					}
+					
 					for ( p = 0; p < 9; p++) {
 						linha=linha_arquivo.readLine();
-						//players[i].setNoteOptions(,i);
+						
+						if(Objects.equals(linha, "true")) {
+							players[i].setNoteOptions(comodos_cartas[p],9);
+						}
+							
 					}
 					for ( p = 0; p < 6; p++) {
 						linha=linha_arquivo.readLine();
-						//players[i].setNoteOptions(,i);
+						if(Objects.equals(linha, "true")) {
+							players[i].setNoteOptions(armas_cartas[p],9);
+						}
 					}
 					for ( p = 0; p < 6; p++) {
 						linha=linha_arquivo.readLine();
-						//players[i].setNoteOptions(,i);
+						if(Objects.equals(linha, "true")) {
+							players[i].setNoteOptions(personagens[p],9);
+						}
 					}
+					players[i].printNote();
 					
 					i++;
-					
-					break;
+					linha = linha_arquivo.readLine();
 
 				}
 

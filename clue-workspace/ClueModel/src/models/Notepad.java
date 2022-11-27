@@ -29,7 +29,7 @@ class Notepad {
 			if(Objects.equals(arr.getName(), "Biblioteca")) {
 				rooms[0] = true;
 			}
-			if(Objects.equals(arr.getName(), "Entrada")) {
+			else if(Objects.equals(arr.getName(), "Entrada")) {
 				rooms[2] = true;
 			}
 			else if(Objects.equals(arr.getName(), "Escritorio")) {
@@ -59,7 +59,7 @@ class Notepad {
 			if(Objects.equals(arr.getName(), "White")) {
 				suspects[0] = true;
 			}
-			if(Objects.equals(arr.getName(), "Green")) {
+			else if(Objects.equals(arr.getName(), "Green")) {
 				suspects[1] = true;
 			}
 			else if(Objects.equals(arr.getName(), "Scarlet")) {
@@ -80,7 +80,7 @@ class Notepad {
 			if(Objects.equals(arr.getName(), "Cano")) {
 				weapons[0] = true;
 			}
-			if(Objects.equals(arr.getName(), "Castical")) {
+			else if(Objects.equals(arr.getName(), "Castical")) {
 				weapons[1] = true;
 			}
 			else if(Objects.equals(arr.getName(), "Corda")) {
