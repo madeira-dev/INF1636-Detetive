@@ -23,10 +23,14 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	JCheckBox peacock = new JCheckBox("Mrs. Peacock");
 	JCheckBox plum = new JCheckBox("Prof. Plum");
 	JCheckBox green = new JCheckBox("Rev. Green");
+	JTextField[] nomes = new JTextField[6];
 
 	JButton jogar = new JButton("Jogar");
 
 	public SelecaoPersonagem() {
+		for(int i=0; i < 6; i++){
+			nomes[i] = new JTextField();
+		}
 		try {
 			img_menu = ImageIO.read(new File("imagens/Tabuleiros/CluePersonagens.png"));
 		} catch (IOException e) {
@@ -43,6 +47,10 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 		plum.setBounds(600, 350, 150, 40);
 		peacock.setBounds(600, 390, 150, 40);
 
+		for(int i=0; i < 6; i++){
+			nomes[i].setBounds(750, 190 + 40*i, 150, 40);
+			this.add(nomes[i]);
+		}
 		// nova_partida.setBounds(700,370,150,40);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(null);
@@ -73,22 +81,22 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 		Player lista_jogadores[] = new Player[6];
 
 		if (scarlett.isSelected()) {
-			Controller.add_player("Srta. Scarlett");
+			Controller.add_player("Srta. Scarlett", nomes[0].getText());
 		}
 		if (green.isSelected()) {
-			Controller.add_player("Reverendo Green");
+			Controller.add_player("Reverendo Green", nomes[0].getText());
 		}
 		if (white.isSelected()) {
-			Controller.add_player("Srta. White");
+			Controller.add_player("Srta. White", nomes[0].getText());
 		}
 		if (mustard.isSelected()) {
-			Controller.add_player("Coronel Mustard");
+			Controller.add_player("Coronel Mustard", nomes[0].getText());
 		}
 		if (plum.isSelected()) {
-			Controller.add_player("Professor Plum");
+			Controller.add_player("Professor Plum", nomes[0].getText());
 		}
 		if (peacock.isSelected()) {
-			Controller.add_player("Srta. Peacock");
+			Controller.add_player("Srta. Peacock", nomes[0].getText());
 		}
 		if (Controller.get_num_players() >= 3) {
 			JogoClue tela_jogo = new JogoClue();

@@ -144,13 +144,13 @@ public class Controller {
         return null;
     }
     // Funções usadas para configurar lógica do tabuleiro
-    public static void add_player(String character){
+    public static void add_player(String character, String name){
         for(int i = 0; i < num_players; i++){
             if(Objects.equals(players[i].getCharacter(), character)){
                 return;
             }
         }
-        players[num_players] = new Player(character);
+        players[num_players] = new Player(character, name);
         num_players++;
     }
     private static void set_neighbors(){
@@ -361,7 +361,7 @@ public class Controller {
 				set_turn(Integer.parseInt(linha));
 
 				linha = linha_arquivo.readLine();
-				current_player = new Player(linha);
+				current_player = new Player(linha, "temp");
 				set_current_player(current_player);
 
 				linha = linha_arquivo.readLine();
@@ -387,7 +387,7 @@ public class Controller {
 				while (linha != null) {
 
 
-					players[i] = new Player(linha); /* i ou turn?, estou com sono */
+					players[i] = new Player(linha, "temp"); /* i ou turn?, estou com sono */
 
 					linha = linha_arquivo.readLine();
 					x = Integer.parseInt(linha);
