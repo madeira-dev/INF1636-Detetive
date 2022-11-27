@@ -3,7 +3,7 @@ package models;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class MoveGenerator {
+class MoveGenerator {
 	Board board;
 
 	// Index do primeiro nó da iteração atual

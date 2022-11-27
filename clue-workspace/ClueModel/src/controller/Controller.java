@@ -17,7 +17,6 @@ public class Controller {
 	private static API api	= API.getInstance();
 	private static int turn;
 	private static int num_players;
-	private static MoveGenerator move_generator;
 	// ja andou, ja palpitou
 	private static boolean[] acoes;
 	private static int[] valores_dado;
