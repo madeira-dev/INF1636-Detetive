@@ -68,6 +68,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		inicia_jogo();
+		this.dispose();
 	}
 
 	public void inicia_jogo() {
@@ -90,7 +91,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 			Controller.add_player("Srta. Peacock", nomes[5].getText());
 		}
 		if (Controller.get_num_players() >= 3) {
-			JogoClue tela_jogo = new JogoClue();
+			new JogoClue();
 			Controller.init_all();
 		}
 	}
