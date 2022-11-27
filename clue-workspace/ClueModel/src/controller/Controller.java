@@ -204,7 +204,7 @@ public class Controller {
 				if (!ja_usado[val]) {
 					players[j % num_players].addCard(cards[val]);
 					players[j % num_players].setNoteOptions(cards[val], val);
-					;
+					
 
 					ja_usado[val] = true;
 					break;
@@ -351,11 +351,8 @@ public class Controller {
 				Player current_player;
 				Card[] arq_confidencial = new Card[3];
 				String[] aux;
-				Card[] personagens =  { new Card("White", "personagem"), new Card("Green", "personagem"),
-						new Card("Scarlet", "personagem"), new Card("Plum", "personagem"), new Card("Peacock", "personagem"),
-						new Card("Mustard", "personagem") };
-				Card[] armas_cartas =  { new Card("Cano", "arma"), new Card("Castical", "arma"), new Card("Corda", "arma"),
-						new Card("ChaveInglesa", "arma"), new Card("Faca", "arma"), new Card("Revolver", "arma") };
+				Card[] personagens =  Componentes.personagens_cartas();
+				Card[] armas_cartas =  Componentes.armas_cartas();
 				Card[] comodos_cartas =  Componentes.comodos_cartas();
 
 				int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;

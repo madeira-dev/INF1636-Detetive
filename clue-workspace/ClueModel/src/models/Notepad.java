@@ -66,33 +66,33 @@ class Notepad {
 		}
 		if (Objects.equals(arr.getType(), "personagem")) {
 
-			if (Objects.equals(arr.getName(), "White")) {
+			if (Objects.equals(arr.getName(), "Srta. Scarlett")) {
 				suspects[0] = true;
 			}
-			else if(Objects.equals(arr.getName(), "Green")) {
+			else if(Objects.equals(arr.getName(), "Reverendo Green")) {
 				suspects[1] = true;
-			} else if (Objects.equals(arr.getName(), "Scarlet")) {
+			} else if (Objects.equals(arr.getName(), "Srta. Peacock")) {
 				suspects[2] = true;
-			} else if (Objects.equals(arr.getName(), "Plum")) {
+			} else if (Objects.equals(arr.getName(), "Professor Plum")) {
 				suspects[3] = true;
-			} else if (Objects.equals(arr.getName(), "Peacock")) {
+			} else if (Objects.equals(arr.getName(), "Coronel Mustard")) {
 				suspects[4] = true;
-			} else if (Objects.equals(arr.getName(), "Mustard")) {
+			} else if (Objects.equals(arr.getName(), "Srta. White")) {
 				suspects[5] = true;
 			}
 
 		}
 		if (Objects.equals(arr.getType(), "arma")) {
-			if (Objects.equals(arr.getName(), "Cano")) {
+			if (Objects.equals(arr.getName(), "Corda")) {
 				weapons[0] = true;
 			}
-			else if(Objects.equals(arr.getName(), "Castical")) {
+			else if(Objects.equals(arr.getName(), "Cano")) {
 				weapons[1] = true;
-			} else if (Objects.equals(arr.getName(), "Corda")) {
+			} else if (Objects.equals(arr.getName(), "Faca")) {
 				weapons[2] = true;
 			} else if (Objects.equals(arr.getName(), "ChaveInglesa")) {
 				weapons[3] = true;
-			} else if (Objects.equals(arr.getName(), "Faca")) {
+			} else if (Objects.equals(arr.getName(), "Castical")) {
 				weapons[4] = true;
 			} else if (Objects.equals(arr.getName(), "Revolver")) {
 				weapons[5] = true;
