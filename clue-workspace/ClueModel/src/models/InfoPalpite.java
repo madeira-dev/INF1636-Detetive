@@ -18,6 +18,9 @@ public class InfoPalpite {
 	public String get_type(){
 		return cards[0].getType();
 	}
+	public String get_character(){
+		return player.get_character();
+	}
 	public String getPlayer() {
 		return player.get_name();
 	}

@@ -235,7 +235,7 @@ public class API {
         if (r == JFileChooser.APPROVE_OPTION) {
 
             try {
-                FileReader arquivo = new FileReader(j.getSelectedFile().getPath());
+                FileReader arquivo = new FileReader(new File(j.getSelectedFile().getPath()));
                 BufferedReader linha_arquivo = new BufferedReader(arquivo);
                 Player current_player;
                 String[] aux;
