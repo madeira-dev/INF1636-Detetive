@@ -130,7 +130,7 @@ public class Board {
 		cells[x][y].coloca_no_mapa();
 	}
 
-	private void set_character(String character, int x, int y) {
+	public void set_character(String character, int x, int y) {
 		cells[x][y].aloca_personagem(character);
 	}
 

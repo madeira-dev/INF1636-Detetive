@@ -81,6 +81,9 @@ class Cell {
 
 	// Checa se o espaço é válida
 	public boolean is_free() {
+		if(!Objects.equals(personagem, "")){
+			System.out.println(personagem);
+		}
 		return !fora_do_mapa && Objects.equals(personagem, "");
 	}
 

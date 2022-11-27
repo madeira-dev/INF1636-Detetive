@@ -394,7 +394,7 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 					y = Integer.parseInt(linha);
 					players[i].move(x, y); /* i ou turn?, estou com sono */
-
+					board.set_character(players[i].getCharacter(), x, y);
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
 					System.out.printf("players[%d]: %s\n Coordenadas(x,y) = (%d,%d)\n qtd_cards: %d\n",i,players[i].getCharacter(),x,y, qtd_cards);
