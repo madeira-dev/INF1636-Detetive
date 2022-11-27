@@ -120,7 +120,7 @@ public class Controller {
             // Se não, avançamos para o próximo
             temp = temp.getVizinho();
         }
-        return new InfoPalpite(temp, options);
+        return null;
     }
     // Funções usadas para configurar lógica do tabuleiro
     public static void add_player(String character){
