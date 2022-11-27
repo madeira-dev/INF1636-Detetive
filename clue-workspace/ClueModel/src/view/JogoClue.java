@@ -59,12 +59,12 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 
 		p = new MyPanel(img_tabuleiro);
 		texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())),
-				SwingConstants.CENTER);
+				SwingConstants.LEFT);
 		texto2 = new JLabel(
-				String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players()), SwingConstants.CENTER));
+				String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players())), SwingConstants.LEFT);
 
 		texto1.setBounds(700, 0, 300, 30);
-		texto2.setBounds(700, 10, 300, 40);
+		texto2.setBounds(700, 20, 300, 30);
 
 		prox.setBounds(700, 50, 400, 45);
 
@@ -176,7 +176,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			API.mudaNote();
 		} else if (e.getSource() == prox) {
 			salvar_jogo.setEnabled(true);
-			System.out.println("here\n");
 			Controller.pass_turn();
 			texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())),
 					SwingConstants.CENTER);
