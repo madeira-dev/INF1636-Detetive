@@ -73,6 +73,7 @@ public class Player implements PlayerFactory {
 		return this.character;
 	}
 
+	public String get_name(){return this.nome;}
 	@Override
 	public void addCard(Card _card) {
 		Card[] newArray = Arrays.copyOf(cardsArr, cardsArr.length + 1);

@@ -84,19 +84,19 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 			Controller.add_player("Srta. Scarlett", nomes[0].getText());
 		}
 		if (green.isSelected()) {
-			Controller.add_player("Reverendo Green", nomes[0].getText());
+			Controller.add_player("Reverendo Green", nomes[1].getText());
 		}
 		if (white.isSelected()) {
-			Controller.add_player("Srta. White", nomes[0].getText());
+			Controller.add_player("Srta. White", nomes[2].getText());
 		}
 		if (mustard.isSelected()) {
-			Controller.add_player("Coronel Mustard", nomes[0].getText());
+			Controller.add_player("Coronel Mustard", nomes[3].getText());
 		}
 		if (plum.isSelected()) {
-			Controller.add_player("Professor Plum", nomes[0].getText());
+			Controller.add_player("Professor Plum", nomes[4].getText());
 		}
 		if (peacock.isSelected()) {
-			Controller.add_player("Srta. Peacock", nomes[0].getText());
+			Controller.add_player("Srta. Peacock", nomes[5].getText());
 		}
 		if (Controller.get_num_players() >= 3) {
 			JogoClue tela_jogo = new JogoClue();

@@ -59,13 +59,13 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 
 		p = new MyPanel(img_tabuleiro);
-		texto1 = new JLabel(String.format("Jogador da vez:  %s", Controller.get_current_player().getCharacter(),
+		texto1 = new JLabel(String.format("Jogador da vez:  %s (%s)", Controller.get_current_player().getCharacter(), Controller.get_current_player().get_name(),
 				SwingConstants.CENTER));
 		texto2 = new JLabel(
-				String.format("Proximo: %s  ", Controller.get_next_player().getCharacter(), SwingConstants.CENTER));
+				String.format("Proximo: %s (%s)", Controller.get_next_player().getCharacter(), Controller.get_next_player().get_name(), SwingConstants.CENTER));
 
-		texto1.setBounds(700, 0, 200, 30);
-		texto2.setBounds(700, 10, 200, 40);
+		texto1.setBounds(700, 0, 300, 30);
+		texto2.setBounds(700, 10, 300, 40);
 
 		prox.setBounds(700, 50, 400, 45);
 
@@ -180,10 +180,10 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 			salvar_jogo.setEnabled(true);
 			System.out.println("here\n");
 			Controller.pass_turn();
-			texto1.setText(String.format("Jogador da vez:  %s", Controller.get_current_player().getCharacter(),
+			texto1.setText(String.format("Jogador da vez:  %s (%s)", Controller.get_current_player().getCharacter(), Controller.get_current_player().get_name(),
 					SwingConstants.CENTER));
 			texto2.setText(
-					String.format("Proximo: %s  ", Controller.get_next_player().getCharacter(), SwingConstants.CENTER));
+					String.format("Proximo: %s (%s)  ", Controller.get_next_player().getCharacter(), Controller.get_next_player().get_name(), SwingConstants.CENTER));
 
 			repaint();
 		}
