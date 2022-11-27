@@ -1,13 +1,14 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MoveGenerator {
 	Board board;
 
 	// Index do primeiro nó da iteração atual
 	int first;
-
+	String comodo_inicio;
 	// Index do último nó da iteração atual
 	int last;
 	boolean first_iteration;
@@ -18,6 +19,7 @@ public class MoveGenerator {
 	public MoveGenerator(Board board) {
 		this.board = board;
 		this.nodes = new MoveNode[100000];
+		this.comodo_inicio = null;
 	}
 
 	public static MoveGenerator getInstance(Board b) {
@@ -37,6 +39,7 @@ public class MoveGenerator {
 		this.last = 0;
 		this.first = 0;
 		this.first_iteration = true;
+		this.comodo_inicio = null;
 	}
 
 	// Reinicia o gerador para configurar uma nova casa de início
@@ -65,6 +68,7 @@ public class MoveGenerator {
 		// Caso não seja, não podemos sair por outra porta ou pegar passagens secretas
 		if (first_iteration) {
 			if (current_cell.is_room()) {
+				comodo_inicio = current_cell.get_room();
 				if (current_cell.has_shortcut()) {
 
 					// Caso começamos numa passagem secreta, podemos atravessar para o outro lado
@@ -97,7 +101,7 @@ public class MoveGenerator {
 			neighbors = neighbor_availability();
 			for (int j = 0; j < 4; j++) {
 				Cell c = board.get_cell(current_cell.get_x() + mov[j][0], current_cell.get_y() + mov[j][1]);
-				if (neighbors[j]) {
+				if (neighbors[j] && !Objects.equals(c.getRoom(), comodo_inicio)) {
 					// Se está livre, adicionamos à lista
 					add_node(c, current_cell);
 					if (depth == 1 || c.is_room()) {
