@@ -274,7 +274,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 		for (int[] coord : lista_quadrados) {
 			if (coord[0] == (675 - x) / 25 && coord[1] == (700 - y) / 25) {
-				Controller.get_current_player().move(coord[0], coord[1]);
+				Controller.move(coord);
 				lista_quadrados = null;
 				repaint();
 				Controller.atualiza_acoes(0);

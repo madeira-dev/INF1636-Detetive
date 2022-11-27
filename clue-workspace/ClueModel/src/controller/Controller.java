@@ -137,6 +137,9 @@ public class Controller {
             players[i].setVizinho(players[(i + 1) % num_players]);
         }
     }
+    public static void move(int[] coord){
+        board.move_player(get_current_player(), coord);
+    }
     private static void deal_cards(){
         int i = 0;
         boolean[] ja_usado = new boolean[18];

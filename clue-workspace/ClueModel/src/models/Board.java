@@ -158,7 +158,10 @@ public class Board {
 	
 	// Move jogador
 	public void move_player(Player player,int[] coord) {
+		int[] old_coord = player.get_coord();
 		player.move(coord[0], coord[1]);
+		cells[old_coord[0]][old_coord[1]].aloca_personagem("");
+		cells[coord[0]][coord[1]].aloca_personagem(player.getCharacter());
 	}
 	public Card get_room(Player p){
 		Cell c = get_cell(p.get_coord()[0], p.get_coord()[1]);
