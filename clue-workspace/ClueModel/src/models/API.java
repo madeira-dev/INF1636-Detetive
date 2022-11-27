@@ -239,6 +239,7 @@ public class API implements ObservadorIF{
         j.setMultiSelectionEnabled(false);
         int turn = Controller.get_turn();
         int r = j.showSaveDialog(null);
+        String nome_jogador;
 
         if (r == JFileChooser.APPROVE_OPTION) {
 
@@ -274,7 +275,10 @@ public class API implements ObservadorIF{
                 linha = linha_arquivo.readLine();
 
                 while (linha != null) {
-                    players[i] = new Player(linha, "temp"); /* i ou turn?, estou com sono */
+
+                	nome_jogador=linha;
+                	linha=linha_arquivo.readLine();
+                    players[i] = new Player(linha, nome_jogador); /* i ou turn?, estou com sono */
 
                     linha = linha_arquivo.readLine();
                     x = Integer.parseInt(linha);

@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -20,12 +19,9 @@ public final class Componentes {
 	}
 
 	public static Card[] personagens_cartas() {
-		Card[] personagens = { new Card("Srta. Scarlett", "personagem"),
-				new Card("Reverendo Green", "personagem"),
-				new Card("Srta. Peacock", "personagem"),
-				new Card("Professor Plum", "personagem"),
-				new Card("Coronel Mustard", "personagem"),
-				new Card("Srta. White", "personagem") };
+		Card[] personagens = { new Card("Srta. Scarlett", "personagem"), new Card("Reverendo Green", "personagem"),
+				new Card("Srta. Peacock", "personagem"), new Card("Professor Plum", "personagem"),
+				new Card("Coronel Mustard", "personagem"), new Card("Srta. White", "personagem") };
 		return personagens;
 	}
 
@@ -37,16 +33,10 @@ public final class Componentes {
 	}
 
 	public static Card[] comodos_cartas() {
-		Card[] comodos_cartas = {
-				new Card("Biblioteca", "comodo"),
-				new Card("Cozinha", "comodo"),
-				new Card("Entrada", "comodo"),
-				new Card("Escritorio", "comodo"),
-				new Card("JardimInverno", "comodo"),
-				new Card("SalaDeEstar", "comodo"),
-				new Card("SalaDeJantar", "comodo"),
-				new Card("SalaDeMusica", "comodo"),
-				new Card("SalaoDeJogos", "comodo") };
+		Card[] comodos_cartas = { new Card("Biblioteca", "comodo"), new Card("Cozinha", "comodo"),
+				new Card("Entrada", "comodo"), new Card("Escritorio", "comodo"), new Card("JardimInverno", "comodo"),
+				new Card("SalaDeEstar", "comodo"), new Card("SalaDeJantar", "comodo"),
+				new Card("SalaDeMusica", "comodo"), new Card("SalaoDeJogos", "comodo") };
 		return comodos_cartas;
 	}
 
@@ -80,24 +70,26 @@ public final class Componentes {
 		return null;
 	}
 
-	public static String nome_carta(int id, String tipo){
-		switch (tipo){
-			case "personagem":{
-				return personagens_cartas()[id].getName();
-			}
-			case "arma":{
-				return armas_cartas()[id].getName();
-			}
-			case "comodo":{
-				return comodos_cartas()[id].getName();
-			}
+	public static String nome_carta(int id, String tipo) {
+		switch (tipo) {
+		case "personagem": {
+			return personagens_cartas()[id].getName();
+		}
+		case "arma": {
+			return armas_cartas()[id].getName();
+		}
+		case "comodo": {
+			return comodos_cartas()[id].getName();
+		}
 		}
 		return null;
 	}
-	public static Card[] getArquivo_secreto(){
+
+	public static Card[] getArquivo_secreto() {
 		return arquivo_secreto;
 	}
-	public static void setArquivo_secreto(int i, Card c){
+
+	public static void setArquivo_secreto(int i, Card c) {
 		arquivo_secreto[i] = c;
 	}
 }

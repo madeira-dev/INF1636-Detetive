@@ -176,7 +176,9 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		if (e.getSource() == bloco_notas) {
 			API.mudaNote();
 		} else if (e.getSource() == prox) {
+			palpite.setEnabled(true);
 			salvar_jogo.setEnabled(true);
+			jogar_dados.setEnabled(true);
 			Controller.pass_turn();
 			texto1.setText(String.format("Jogador da vez:  %s (%s)", API.get_player_character(Controller.get_turn()), API.get_player_name(Controller.get_turn())));
 			texto2.setText(String.format("Proximo: %s (%s)", API.get_player_character((Controller.get_turn() + 1) % Controller.get_num_players()), API.get_player_name((Controller.get_turn() + 1) % Controller.get_num_players())));
@@ -185,6 +187,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 		}
 
 		else if (e.getSource() == jogar_dados) {
+			jogar_dados.setEnabled(false);
 			Controller.joga_dados();
 			salvar_jogo.setEnabled(false);
 
@@ -206,6 +209,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 			System.out.printf("%d", Controller.pega_dados()[1]);
 		} else if (e.getSource() == palpite && Controller.prepara_palpite() != null) {
+			palpite.setEnabled(false);
 			new Palpite(false, API.get_current_player_character(), API.prepara_palpite(API.get_current_player()));
 
 		}
@@ -225,6 +229,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 			int result = 0, dado1_valor = 0, dado2_valor = 0;
 			result = dados_escolha.getSelectedIndex() + 2;
 			salvar_jogo.setEnabled(false);
+			
 
 			if (result % 2 == 0) {
 				dado1_valor = result / 2;
