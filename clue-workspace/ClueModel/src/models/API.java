@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class API {
     static Board board;
-    MoveGenerator move_generator;
+    static MoveGenerator move_generator;
     static API instance;
     private static Player[] players;
     private API() {
@@ -27,7 +27,7 @@ public class API {
         }
         return instance;
     }
-    public int[][] get_casas(int x, int y, int depth){
+    public static int[][] get_casas(int x, int y, int depth){
         move_generator.reset_generator(board.get_cell(x, y));
         return move_generator.cell_to_coord(move_generator.get_moves(depth));
     }

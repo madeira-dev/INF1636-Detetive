@@ -1,20 +1,10 @@
 package controller;
 
 import models.*;
-import view.JogoClue;
-import view.Notepad;
-import view.JogoClue;
-
-import java.io.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Random;
 
-import javax.swing.JFileChooser;
 
 public class Controller {
-	private static API api	= API.getInstance();
 	private static int turn;
 	private static int num_players;
 	// ja andou, ja palpitou
@@ -56,7 +46,7 @@ public class Controller {
 	}
 
 	public static int[][] casas_disponiveis(int x, int y) {
-		return api.get_casas(x, y, valores_dado[0] + valores_dado[1]);
+		return API.get_casas(x, y, valores_dado[0] + valores_dado[1]);
 	}
 
 	// Procufra entre os jogadores alguém com o personagem. Retorna o personagem caso
