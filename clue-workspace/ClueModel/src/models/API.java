@@ -13,19 +13,11 @@ import java.util.Random;
 public class API {
     static Board board;
     static MoveGenerator move_generator;
-    static API instance;
     private static Player[] players;
-    private API() {
+    public static void init() {
         board = Board.getInstance();
         move_generator = new MoveGenerator(board);
         players = new Player[6];
-    }
-
-    public static API getInstance() {
-        if (instance == null) {
-            instance = new API();
-        }
-        return instance;
     }
     public static int[][] get_casas(int x, int y, int depth){
         move_generator.reset_generator(board.get_cell(x, y));
@@ -53,11 +45,13 @@ public class API {
         // Move o acusado para a sala
         Player acusado = get_player_by_character(cards[1]);
         if (acusado != null) {
+            assert guesser != null;
             move_player(acusado, guesser.get_coord());
         }
 
+        assert guesser != null;
         Player temp = guesser.getVizinho();
-        Card[] options = new Card[0];
+        Card[] options;
 
         // Se chegamos de novo no palpitador, encerramos o loop
         while (!Objects.equals(temp.get_character(), guesser.get_character())){
@@ -86,7 +80,6 @@ public class API {
     public static Player get_player(int i) {
         return players[i];
     }
-    public static void set_player (int i, Player p){players[i] = p;}
 
     public static void add_player(String character, String name, int num_players){
         for(int i = 0; i < num_players; i++){
@@ -160,7 +153,7 @@ public class API {
     }
     public static void mudaNote() {
         int turn = Controller.get_turn();
-        view.Notepad notes = new Notepad(players[turn].getNoteOptionsWeapons(), players[turn].getNoteOptionsSuspects(),
+        new Notepad(players[turn].getNoteOptionsWeapons(), players[turn].getNoteOptionsSuspects(),
                 players[turn].getNoteOptionsRooms());
     }
     public static void init_all() {
@@ -171,7 +164,6 @@ public class API {
     }
     public static void remove_player() {
         int counter = 0;
-        Player p = players[Controller.get_turn()];
         Player[] new_array = new Player[Controller.get_num_players() - 1];
 
         for (Player pl : players) {
@@ -198,32 +190,29 @@ public class API {
 
             try {
 
-                FileWriter escritor = new FileWriter(new File(j.getSelectedFile().getPath()));
+                FileWriter escritor = new FileWriter(j.getSelectedFile().getPath());
 
                 // System.out.printf("%d",players.length );
 
-                escritor.write(Integer.toString(turn) + "\n");
+                escritor.write(turn + "\n");
                 escritor.write(current.get_character() + "\n");
-                escritor.write(Integer.toString(num_players) + "\n");
+                escritor.write(num_players + "\n");
                 escritor.write(arquivo_confidencial[0].getName() + " " + arquivo_confidencial[1].getName() + " "
                         + arquivo_confidencial[2].getName() + "\n");
                 for (Player c : players) {
                     escritor.write(c.get_character() + "\n");
-                    escritor.write(Integer.toString(c.get_coord()[0]) + "\n");
-                    escritor.write(Integer.toString(c.get_coord()[1]) + "\n");
-                    escritor.write(Integer.toString(c.getCardsArr().length) + "\n");
+                    escritor.write(c.get_coord()[0] + "\n");
+                    escritor.write(c.get_coord()[1] + "\n");
+                    escritor.write(c.getCardsArr().length + "\n");
                     for (Card carta : c.getCardsArr()) {
                         escritor.write(carta.getType() + " " + carta.getName() + "\n");
                     }
-                    // escritor.write("Notepad Rooms:\n");
                     for (Boolean v : c.getNoteOptionsRooms()) {
                         escritor.write(v + "\n");
                     }
-                    // escritor.write("Notepad Weapons:\n");
                     for (Boolean v : c.getNoteOptionsWeapons()) {
                         escritor.write(v + "\n");
                     }
-                    // escritor.write("Notepad Suspects:\n");
                     for (Boolean v : c.getNoteOptionsSuspects()) {
                         escritor.write(v + "\n");
                     }
@@ -232,7 +221,7 @@ public class API {
                 escritor.close();
 
             } catch (IOException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -246,16 +235,15 @@ public class API {
         if (r == JFileChooser.APPROVE_OPTION) {
 
             try {
-                FileReader arquivo = new FileReader(new File(j.getSelectedFile().getPath()));
+                FileReader arquivo = new FileReader(j.getSelectedFile().getPath());
                 BufferedReader linha_arquivo = new BufferedReader(arquivo);
                 Player current_player;
-                Card[] arq_confidencial = new Card[3];
                 String[] aux;
                 Card[] personagens =  Componentes.personagens_cartas();
                 Card[] armas_cartas =  Componentes.armas_cartas();
                 Card[] comodos_cartas =  Componentes.comodos_cartas();
 
-                int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;
+                int qtd_jogadores, x, y, i = 0, qtd_cards,p;
 
                 String linha = linha_arquivo.readLine();
                 Controller.set_turn(Integer.parseInt(linha));
@@ -321,10 +309,10 @@ public class API {
                     linha = linha_arquivo.readLine();
 
                 }
-                JogoClue jogo = new JogoClue();
+                new JogoClue();
 
             } catch (IOException ex) {
-                ex.getMessage();
+                System.out.println(ex.getMessage());
             }
         }
     }
@@ -332,9 +320,7 @@ public class API {
         return get_player(Controller.get_turn());
     }
     public static String get_current_player_character(){return get_current_player().get_character();}
-    public static Player get_next_player() {
-        return API.get_player((Controller.get_turn() + 1) % Controller.get_num_players());
-    }
+
     public static int[] get_player_coord(int i){
         return players[i].get_coord();
     }
@@ -354,6 +340,7 @@ public class API {
     }
     public static void set_player_note(String name, String card, String type){
         Player p = get_player_by_character(name);
+        assert p != null;
         p.setNoteOptions(card, type);
     }
 }

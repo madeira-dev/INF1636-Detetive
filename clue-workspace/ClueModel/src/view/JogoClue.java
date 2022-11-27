@@ -32,7 +32,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	JButton salvar_jogo = new JButton("Salvar Jogo");
 	JButton jogar_dados = new JButton("Jogar Dados");
 	JButton escolher_dados = new JButton("Escolher Dados");
-	API api = API.getInstance();
 	String[] valores_dados = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
 	@SuppressWarnings("unchecked")
