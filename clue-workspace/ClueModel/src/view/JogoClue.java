@@ -43,9 +43,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	int x = sl / 2 - 1200 / 2;
 	int y = sa / 2 - 700 / 2;
 
-	boolean[] armas_bool = new boolean[6];
-	boolean[] suspeitos_bool = new boolean[6];
-	boolean[] comodos_bool = new boolean[9];
 	int[][] lista_quadrados;
 
 	public JogoClue() {
@@ -169,7 +166,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		File dado1, dado2;
@@ -210,33 +206,32 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 			System.out.printf(" ||| %d - ", Controller.pega_dados()[0]);
 			System.out.printf("%d", Controller.pega_dados()[1]);
 		} else if (e.getSource() == palpite && Controller.prepara_palpite() != null) {
-			Palpite palpite = new Palpite(false, Controller.get_current_player(), Controller.prepara_palpite());
+			new Palpite(false, Controller.get_current_player(), Controller.prepara_palpite());
 
 		}
 
 		else if (e.getSource() == acusar) {
-			Palpite palpite = new Palpite(true, Controller.get_current_player(), Controller.prepara_palpite());
+			new Palpite(true, Controller.get_current_player(), Controller.prepara_palpite());
 		}
 
 		else if (e.getSource() == mostrar_cartas) {
-			PlayerCards cartas_jogador = new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
+			new PlayerCards(Controller.get_current_player().get_card_by_type("comodo"),
 					Controller.get_current_player().get_card_by_type("arma"),
 					Controller.get_current_player().get_card_by_type("personagem"));
 
 		}
 
 		else if (e.getSource() == escolher_dados) {
-			int result = 0, dado1_valor = 0, dado2_valor = 0;
+			int result, dado1_valor, dado2_valor;
 			result = dados_escolha.getSelectedIndex() + 2;
 			salvar_jogo.setEnabled(false);
 
 			if (result % 2 == 0) {
 				dado1_valor = result / 2;
-				dado2_valor = result / 2;
 			} else {
 				dado1_valor = (result / 2) + 1;
-				dado2_valor = (result / 2);
 			}
+			dado2_valor = result / 2;
 			Controller.set_valores_dado(dado1_valor, dado2_valor);
 			// System.out.printf("%d - %d \n",dado1_valor,dado2_valor);
 			try {

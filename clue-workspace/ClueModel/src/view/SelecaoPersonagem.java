@@ -5,7 +5,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controller.Controller;
-import models.Player;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -68,18 +67,10 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Player[] lista_jogadores = new Player[6];
-		if (e.getSource() == jogar) {
-			this.dispose();
-			lista_jogadores = produzJogadores();
-
-		}
+		inicia_jogo();
 	}
 
-	public Player[] produzJogadores() {
-		int num_jogadores = 0;
-		Player lista_jogadores[] = new Player[6];
-
+	public void inicia_jogo() {
 		if (scarlett.isSelected()) {
 			Controller.add_player("Srta. Scarlett", nomes[0].getText());
 		}
@@ -102,8 +93,6 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 			JogoClue tela_jogo = new JogoClue();
 			Controller.init_all();
 		}
-
-		return lista_jogadores;
 	}
 
 	public void paint(Graphics g2d) {

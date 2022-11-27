@@ -4,16 +4,12 @@ import java.awt.*;
 import java.io.*;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageIO.*;
 import javax.swing.*;
-import models.API;
 import models.Card;
 
 public class PlayerCards extends JFrame {
 	public final int width = 900;
 	public final int height = 700;
-	public Object[] cards_arr;
-
 	File[] images_arma;
 	File[] images_comodo;
 	File[] images_personagens;
