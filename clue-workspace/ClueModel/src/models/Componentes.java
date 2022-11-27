@@ -36,10 +36,16 @@ public final class Componentes {
 	}
 
 	public static Card[] comodos_cartas() {
-		Card[] comodos_cartas = { new Card("Biblioteca", "comodo"), new Card("Cozinha", "comodo"),
-				new Card("Entrada", "comodo"), new Card("Escritorio", "comodo"), new Card("JardimInverno", "comodo"),
-				new Card("SalaDeEstar", "comodo"), new Card("SalaDeJantar", "comodo"),
-				new Card("SalaDeMusica", "comodo"), new Card("SalaoDeJogos", "comodo") };
+		Card[] comodos_cartas = {
+				new Card("Biblioteca", "comodo"),
+				new Card("Cozinha", "comodo"),
+				new Card("Entrada", "comodo"),
+				new Card("Escritorio", "comodo"),
+				new Card("JardimInverno", "comodo"),
+				new Card("SalaDeEstar", "comodo"),
+				new Card("SalaDeJantar", "comodo"),
+				new Card("SalaDeMusica", "comodo"),
+				new Card("SalaoDeJogos", "comodo") };
 		return comodos_cartas;
 	}
 
