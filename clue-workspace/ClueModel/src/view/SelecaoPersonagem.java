@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controller.Controller;
+import models.API;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -73,26 +74,32 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 
 	public void inicia_jogo() {
 		if (scarlett.isSelected()) {
-			Controller.add_player("Srta. Scarlett", nomes[0].getText());
+			API.add_player("Srta. Scarlett", nomes[0].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (green.isSelected()) {
-			Controller.add_player("Reverendo Green", nomes[1].getText());
+			API.add_player("Reverendo Green", nomes[1].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (white.isSelected()) {
-			Controller.add_player("Srta. White", nomes[2].getText());
+			API.add_player("Srta. White", nomes[2].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (mustard.isSelected()) {
-			Controller.add_player("Coronel Mustard", nomes[3].getText());
+			API.add_player("Coronel Mustard", nomes[3].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (plum.isSelected()) {
-			Controller.add_player("Professor Plum", nomes[4].getText());
+			API.add_player("Professor Plum", nomes[4].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (peacock.isSelected()) {
-			Controller.add_player("Srta. Peacock", nomes[5].getText());
+			API.add_player("Srta. Peacock", nomes[5].getText(), Controller.get_num_players());
+			Controller.alter_num_players(1);
 		}
 		if (Controller.get_num_players() >= 3) {
 			new JogoClue();
-			Controller.init_all();
+			API.init_all();
 		}
 	}
 

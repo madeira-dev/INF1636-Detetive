@@ -16,9 +16,7 @@ import javax.swing.JFileChooser;
 public class Controller {
 	private static API api	= API.getInstance();
 	private static int turn;
-	private static Player[] players;
 	private static int num_players;
-	private static Card[] arquivo_confidencial = new Card[3];
 	private static MoveGenerator move_generator;
 	// ja andou, ja palpitou
 	private static boolean[] acoes;
@@ -26,7 +24,6 @@ public class Controller {
 
 	public static void init() {
 		valores_dado = new int[2];
-		players = new Player[6];
 		acoes = new boolean[] { false, false };
 	}
 
@@ -65,163 +62,31 @@ public class Controller {
 
 	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso
 	// ache ou null caso contrário
-	public static Player get_player_by_character(String name) {
-		for (Player p : players) {
-			if (Objects.equals(p.getCharacter(), name)) {
-				return p;
-			}
-		}
-		return null;
-	}
 
 	// Palpite
 	public static Player get_current_player() {
-		return players[turn];
-	}
-
-	public static void set_current_player(Player p) {
-		players[turn] = p;
+		return API.get_player(turn);
 	}
 
 	public static Player get_next_player() {
-		return players[(turn + 1) % get_num_players()];
+		return API.get_player((turn + 1) % get_num_players());
 	}
 
-	public static Player get_player(int i) {
-		return players[i];
-	}
-
-	public static Card prepara_palpite() {
+	public static String prepara_palpite() {
 		if (acoes[1]) {
 			return null;
 		}
 		return api.prepara_palpite(get_current_player());
 	}
 
-	public static InfoPalpite guess(Player guesser, Card[] cards) {
-		// Move o acusado para a sala
-		Player acusado = get_player_by_character(cards[1].getName());
-		if (acusado != null) {
-			api.move_player(acusado, guesser.get_coord());
-		}
-
-		Player temp = guesser.getVizinho();
-		Card[] options = new Card[0];
-
-        // Se chegamos de novo no palpitador, encerramos o loop
-        while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
-            // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
-            options = temp.possui_algum(cards);
-            for(Card c: options){
-                System.out.println(c.getName());
-            }
-            // Se o jogador pode mostrar algo, encerramos
-            if(options.length != 0){
-                return new InfoPalpite(temp, options);
-            }
-            // Se não, avançamos para o próximo
-            temp = temp.getVizinho();
-        }
-        return null;
-    }
     // Funções usadas para configurar lógica do tabuleiro
-    public static void add_player(String character, String name){
-        for(int i = 0; i < num_players; i++){
-            if(Objects.equals(players[i].getCharacter(), character)){
-                return;
-            }
-        }
-        players[num_players] = new Player(character, name);
-        num_players++;
-    }
-    private static void set_neighbors(){
-        for(int i=0; i < num_players; i++){
-            players[i].setVizinho(players[(i + 1) % num_players]);
-        }
-    }
-    private static void deal_cards(){
-        int i = 0;
-        boolean[] ja_usado = new boolean[18];
-        Card[] cards = new Card[18];
-        Card[] suspeitos = Componentes.personagens_cartas();
-        Card[] armas = Componentes.armas_cartas();
-        Card[] locais = Componentes.comodos_cartas();
-
-		for (Card sus : suspeitos) {
-			if (!Objects.equals(sus.getName(), arquivo_confidencial[1].getName())) {
-				cards[i] = sus;
-				i++;
-			}
-		}
-
-		for (Card arma : armas) {
-			if (!Objects.equals(arma.getName(), arquivo_confidencial[0].getName())) {
-				cards[i] = arma;
-				i++;
-			}
-		}
-
-		for (Card local : locais) {
-			if (!Objects.equals(local.getName(), arquivo_confidencial[2].getName())) {
-				cards[i] = local;
-
-				i++;
-			}
-		}
-
-		for (int j = 0; j < 18; j++) {
-			ja_usado[j] = false;
-		}
-
-		Random result = new Random();
-
-		int val;
-		for (int j = 0; j < 18; j++) {
-			val = result.nextInt(18);
-			while (true) {
-				if (!ja_usado[val]) {
-					players[j % num_players].addCard(cards[val]);
-					players[j % num_players].setNoteOptions(cards[val], val);
-					
-
-					ja_usado[val] = true;
-					break;
-				}
-
-				else {
-					val = (val + 1) % 18;
-				}
-			}
-
-		}
-		// players[turn].printNote();
-
+	public static int get_turn(){
+		return turn;
 	}
 
-	@SuppressWarnings("unused")
-	public static void mudaNote() {
-		Notepad notes = new Notepad(players[turn].getNoteOptionsWeapons(), players[turn].getNoteOptionsSuspects(),
-				players[turn].getNoteOptionsRooms());
+	public static void alter_num_players(int n){
+		num_players += n;
 	}
-
-	private static void gera_arquivo() {
-		arquivo_confidencial = Componentes.arquivo_confidencial();
-	}
-
-	private static void seta_arquivo(Card[] cartas) {
-		arquivo_confidencial[0] = cartas[0];
-		arquivo_confidencial[1] = cartas[1];
-		arquivo_confidencial[2] = cartas[2];
-
-	}
-
-	public static void init_all() {
-		set_neighbors();
-		gera_arquivo();
-		deal_cards();
-		players = Arrays.copyOf(players, num_players);
-	}
-
 	public static void joga_dados() {
 		Random result1 = new Random();
 		Random result2 = new Random();
@@ -240,179 +105,5 @@ public class Controller {
 		return valores_dado;
 	}
 
-	public static boolean acusar(Card[] cards) {
-		for (int i = 0; i < 3; i++) {
-			if (!Objects.equals(cards[i].getName(), arquivo_confidencial[i].getName())) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public static void remove_player() {
-		int counter = 0;
-		Player p = players[turn];
-		Player[] new_array = new Player[num_players - 1];
-
-		for (Player pl : players) {
-			if (pl != get_current_player()) {
-				new_array[counter] = pl;
-				counter++;
-			}
-		}
-		num_players--;
-		players = new_array;
-	}
-
-	public static void salvaJogo() {
-		/*
-		 * bonecos escolhidos na partida bonecos vivos/mortos
-		 */
-		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
-		j.setMultiSelectionEnabled(false);
-		int r = j.showSaveDialog(null);
-
-		if (r == JFileChooser.APPROVE_OPTION) {
-
-			try {
-
-				FileWriter escritor = new FileWriter(new File(j.getSelectedFile().getPath()));
-
-				// System.out.printf("%d",players.length );
-
-				escritor.write(Integer.toString(turn) + "\n");
-				escritor.write(get_current_player().getCharacter() + "\n");
-				escritor.write(Integer.toString(players.length) + "\n");
-				escritor.write(arquivo_confidencial[0].getName() + " " + arquivo_confidencial[1].getName() + " "
-						+ arquivo_confidencial[2].getName() + "\n");
-				for (Player c : players) {
-					escritor.write(c.getCharacter() + "\n");
-					escritor.write(Integer.toString(c.get_coord()[0]) + "\n");
-					escritor.write(Integer.toString(c.get_coord()[1]) + "\n");
-					escritor.write(Integer.toString(c.getCardsArr().length) + "\n");
-					for (Card carta : c.getCardsArr()) {
-						escritor.write(carta.getType() + " " + carta.getName() + "\n");
-					}
-					// escritor.write("Notepad Rooms:\n");
-					for (Boolean v : c.getNoteOptionsRooms()) {
-						escritor.write(v + "\n");
-					}
-					// escritor.write("Notepad Weapons:\n");
-					for (Boolean v : c.getNoteOptionsWeapons()) {
-						escritor.write(v + "\n");
-					}
-					// escritor.write("Notepad Suspects:\n");
-					for (Boolean v : c.getNoteOptionsSuspects()) {
-						escritor.write(v + "\n");
-					}
-				}
-
-				escritor.close();
-
-			} catch (IOException e) {
-				e.getMessage();
-			}
-		}
-	}
-
-	public static void continuaJogo() {
-		JFileChooser j = new JFileChooser("C:\\Users\\thiag\\Desktop\\teste");
-		j.setMultiSelectionEnabled(false);
-
-		int r = j.showSaveDialog(null);
-
-		if (r == JFileChooser.APPROVE_OPTION) {
-
-			try {
-				FileReader arquivo = new FileReader(new File(j.getSelectedFile().getPath()));
-				BufferedReader linha_arquivo = new BufferedReader(arquivo);
-				Player current_player;
-				Card[] arq_confidencial = new Card[3];
-				String[] aux;
-				Card[] personagens =  Componentes.personagens_cartas();
-				Card[] armas_cartas =  Componentes.armas_cartas();
-				Card[] comodos_cartas =  Componentes.comodos_cartas();
-
-				int qtd_jogadores, x, y, i = 0, qtd_cards,p,trueOuFalse;
-
-				String linha = linha_arquivo.readLine();
-				set_turn(Integer.parseInt(linha));
-
-				linha = linha_arquivo.readLine();
-				current_player = new Player(linha, "temp");
-				set_current_player(current_player);
-
-				linha = linha_arquivo.readLine();
-				qtd_jogadores = Integer.parseInt(linha);
-				set_num_players(qtd_jogadores);
-
-				linha = linha_arquivo.readLine();
-				aux = linha.split(" ");
-
-				arquivo_confidencial[0] = new Card(aux[0], "arma");
-				arquivo_confidencial[1] = new Card(aux[1], "personagens");
-				arquivo_confidencial[2] = new Card(aux[2], "comodo");
-
-				int u = 0;
-				for(Card c : arquivo_confidencial) {
-					System.out.printf("arquvivo_confidencial[%d] -> %s\n",u,c.getName());
-					u++;
-				}
-
-				linha = linha_arquivo.readLine();
-
-				while (linha != null) {
-
-
-					players[i] = new Player(linha, "temp"); /* i ou turn?, estou com sono */
-
-					linha = linha_arquivo.readLine();
-					x = Integer.parseInt(linha);
-					linha = linha_arquivo.readLine();
-					y = Integer.parseInt(linha);
-					players[i].move(x, y); /* i ou turn?, estou com sono */
-					api.set_character(players[i].getCharacter(), x, y);
-					linha = linha_arquivo.readLine();
-					qtd_cards = Integer.parseInt(linha);
-
-					for ( p = 0; p < qtd_cards; p++) {
-						linha = linha_arquivo.readLine();
-						aux = linha.split(" ");
-						players[i].addCard(new Card(aux[1], aux[0]));
-					}
-
-					for ( p = 0; p < 9; p++) {
-						linha=linha_arquivo.readLine();
-
-						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(comodos_cartas[p],p);
-						}
-
-					}
-					for ( p = 0; p < 6; p++) {
-						linha=linha_arquivo.readLine();
-						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(armas_cartas[p],p);
-						}
-					}
-					for ( p = 0; p < 6; p++) {
-						linha=linha_arquivo.readLine();
-						if(Objects.equals(linha, "true")) {
-							players[i].setNoteOptions(personagens[p],p);
-						}
-					}
-					players[i].printNote();
-
-					i++;
-					linha = linha_arquivo.readLine();
-
-				}
-				JogoClue jogo = new JogoClue();
-
-			} catch (IOException ex) {
-				ex.getMessage();
-			}
-		}
-	}
 
 }

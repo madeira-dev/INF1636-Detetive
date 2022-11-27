@@ -1,6 +1,5 @@
 package view;
 
-import models.Card;
 import models.Player;
 
 import javax.imageio.ImageIO;
@@ -15,15 +14,15 @@ public class ShowCard extends JFrame {
     Image imagem;
 
 
-    ShowCard(Card carta, Player mostrador) throws IOException {
+    ShowCard(String nome, String folder, Player mostrador) throws IOException {
         this.setLayout(new BorderLayout());
-        if(carta == null){
+        if(nome == null){
             texto = new JLabel("Nenhum jogador pode te mostrar cartas", SwingConstants.CENTER);
             imagem = null;
         }
         else{
-            imagem = ImageIO.read(new File(String.format("imagens/%s/%s.jpg", carta.get_folder(), carta.getName())));
-            texto = new JLabel(String.format("%s te mostrou %s", mostrador.getCharacter(), carta.getName()), SwingConstants.CENTER);
+            imagem = ImageIO.read(new File(String.format("imagens/%s/%s.jpg", folder, nome)));
+            texto = new JLabel(String.format("%s te mostrou %s", mostrador.getCharacter(), nome), SwingConstants.CENTER);
         }
         texto.setBounds(0, 0, 400, 50);
         //imagem = ImageIO.read(new File(String.format("clue-workspace/ClueModel/imagens/Armas/Cano.jpg", carta.get_folder(), carta.getName())));

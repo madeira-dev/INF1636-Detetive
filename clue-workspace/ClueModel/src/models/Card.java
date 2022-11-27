@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Card implements CardFactory {
+class Card implements CardFactory {
 	private String name;
 	private String type;
 

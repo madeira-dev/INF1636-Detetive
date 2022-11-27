@@ -1,7 +1,7 @@
 package view;
 
 import controller.Controller;
-import models.Card;
+import models.API;
 import models.Componentes;
 import models.InfoPalpite;
 import models.Player;
@@ -23,10 +23,10 @@ public class Palpite extends JFrame implements ActionListener {
     JPanel[] panels;
     JButton palpite;
     Player guesser;
-    Card[] cards;
-    Card room;
+    String[] cards;
+    String room;
     boolean acusacao;
-    public Palpite(boolean acusacao, Player guesser, Card room){
+    public Palpite(boolean acusacao, Player guesser, String room){
         this.guesser = guesser;
         this.room = room;
         this.acusacao = acusacao;
@@ -60,18 +60,18 @@ public class Palpite extends JFrame implements ActionListener {
             this.add(panels[i]);
         }
         for(int i=0; i < Componentes.num_armas(); i++){
-            armas[i] = new JRadioButton(Componentes.armas_cartas()[i].getName());
+            armas[i] = new JRadioButton(Componentes.nome_carta(i, "arma"));
             this.panels[0].add(armas[i]);
             armas_group.add(armas[i]);
         }
         for(int i=0; i < Componentes.num_personagens(); i++){
-            personagens[i] = new JRadioButton(Componentes.personagens_cartas()[i].getName());
+            personagens[i] = new JRadioButton(Componentes.nome_carta(i, "personagem"));
             this.panels[1].add(personagens[i]);
             personagens_group.add(personagens[i]);
         }
         if(acusacao){
             for(int i=0; i < Componentes.num_comodos(); i++){
-                comodos[i] = new JRadioButton(Componentes.comodos_cartas()[i].getName());
+                comodos[i] = new JRadioButton(Componentes.nome_carta(i, "comodo"));
                 this.panels[2].add(comodos[i]);
                 comodos_group.add(comodos[i]);
             }
@@ -87,19 +87,19 @@ public class Palpite extends JFrame implements ActionListener {
     }
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cards = new Card[3];
+		cards = new String[3];
 		if (e.getSource() == palpite) {
 			this.dispose();
 			for (int i = 0; i < armas.length; i++) {
 				if (armas[i].isSelected()) {
-					cards[0] = Componentes.armas_cartas()[i];
+					cards[0] = Componentes.nome_carta(i, "arma");
 					// System.out.printf("\ncards[0]-> %s", cards[0].getName());
 					break;
 				}
 			}
 			for (int i = 0; i < personagens.length; i++) {
 				if (personagens[i].isSelected()) {
-					cards[1] = Componentes.personagens_cartas()[i];
+					cards[1] = Componentes.nome_carta(i, "personagem");
 					// System.out.printf("\\ncards[1]-> %s", cards[1].getName());
 					break;
 				}
@@ -108,7 +108,7 @@ public class Palpite extends JFrame implements ActionListener {
 				this.dispose();
 				for (int i = 0; i < comodos.length; i++) {
 					if (comodos[i].isSelected()) {
-						cards[2] = Componentes.comodos_cartas()[i];
+						cards[2] = Componentes.nome_carta(2,"comodo");
 						break;
 					}
 				}
@@ -116,18 +116,19 @@ public class Palpite extends JFrame implements ActionListener {
 				cards[2] = room;
 			}
 			if (acusacao) {
-				boolean r = Controller.acusar(cards);
+				boolean r = API.acusar(cards);
 				FimDeJogo f = new FimDeJogo(r, guesser.getCharacter());
 				if (!r) {
-					Controller.remove_player();
+					API.remove_player();
+                    Controller.alter_num_players(-1);
 				}
 			} else {
-				InfoPalpite info = Controller.guess(guesser, cards);
+				InfoPalpite info = API.guess(guesser, cards);
 				/* pode nao estar certo */
-				guesser.setNoteOptions(info.getCards()[0], 0);
+				guesser.setNoteOptions(info.get_name(), info.get_type());
 
 				try {
-					ShowCard s = new ShowCard(info.getCards()[0], info.getPlayer());
+					ShowCard s = new ShowCard(info.get_name(), info.get_folder(), info.getPlayer());
 				} catch (IOException ex) {
 					throw new RuntimeException(ex);
 				}

@@ -42,7 +42,7 @@ public class Player implements PlayerFactory {
 		}
 	}
 
-	public void setNoteOptions(Card arr,int index) {note.setTrue(arr, index);}
+	public void setNoteOptions(String card, String type) {note.setTrue(card, type);}
 
 	public Boolean[] getNoteOptionsWeapons() {return note.getWeapons();}
 	public Boolean[] getNoteOptionsRooms() {return note.getRooms();}
@@ -53,12 +53,12 @@ public class Player implements PlayerFactory {
 	@Override
 	public Card[] getCardsArr() { return cardsArr; }
 
-	public Card[] get_card_by_type(String type) {
+	public String[] get_card_by_type(String type) {
 		int counter = 0;
-		Card[] cards = new Card[cardsArr.length];
+		String[] cards = new String[cardsArr.length];
 		for (int i = 0; i < cardsArr.length; i++) {
 			if (Objects.equals(cardsArr[i].getType(), type)) {
-				cards[counter] = cardsArr[i];
+				cards[counter] = cardsArr[i].getName();
 				counter++;
 			}
 		}
@@ -80,11 +80,11 @@ public class Player implements PlayerFactory {
 		cardsArr = newArray;
 	}
 
-	public Card[] possui_algum(Card[] cards) {
+	public Card[] possui_algum(String[] cards) {
 		Card[] possui = new Card[0];
 		for (Card c : cardsArr) {
-			for (Card card : cards) {
-				if (Objects.equals(c.getName(), card.getName())) {
+			for (String card : cards) {
+				if (Objects.equals(c.getName(), card)) {
 					possui = Arrays.copyOf(possui, possui.length + 1);
 					possui[possui.length - 1] = c;
 				}
