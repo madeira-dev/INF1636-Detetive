@@ -9,8 +9,6 @@ import controller.Controller;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 class MenuClue extends JFrame implements ActionListener {
@@ -19,7 +17,6 @@ class MenuClue extends JFrame implements ActionListener {
 	JPanel p;
 	JButton continuar = new JButton("Continuar");
 	JButton nova_partida = new JButton("Nova Partida");
-	JFileChooser j = new JFileChooser();
 
 	public MenuClue() {
 		try {
@@ -50,7 +47,7 @@ class MenuClue extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nova_partida) {
 			this.dispose();
-			SelecaoPersonagem tela_personagem = new SelecaoPersonagem();
+			new SelecaoPersonagem();
 		} else if (e.getSource() == continuar) {
 			Controller.continuaJogo();
 		}

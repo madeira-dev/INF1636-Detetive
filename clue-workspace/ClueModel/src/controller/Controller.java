@@ -129,8 +129,6 @@ public class Controller {
         while (!Objects.equals(temp.getCharacter(), guesser.getCharacter())){
             // Cartas que o jogador respondendo na vez possui dentre as 3 do palpite
             options = temp.possui_algum(cards);
-            // Debug
-            System.out.printf("\n%s pode mostrar\n", temp.getCharacter());
             for(Card c: options){
                 System.out.println(c.getName());
             }
@@ -375,7 +373,6 @@ public class Controller {
 				arquivo_confidencial[1] = new Card(aux[1], "personagens");
 				arquivo_confidencial[2] = new Card(aux[2], "comodo");
 
-				System.out.printf("turno: %d\ncurrent_player: %s\nqtd_jogadores: %d\n", turn,get_current_player().getCharacter(),qtd_jogadores);
 				int u = 0;
 				for(Card c : arquivo_confidencial) {
 					System.out.printf("arquvivo_confidencial[%d] -> %s\n",u,c.getName());
@@ -397,13 +394,11 @@ public class Controller {
 					board.set_character(players[i].getCharacter(), x, y);
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
-					System.out.printf("players[%d]: %s\n Coordenadas(x,y) = (%d,%d)\n qtd_cards: %d\n",i,players[i].getCharacter(),x,y, qtd_cards);
 
 					for ( p = 0; p < qtd_cards; p++) {
 						linha = linha_arquivo.readLine();
 						aux = linha.split(" ");
 						players[i].addCard(new Card(aux[1], aux[0]));
-						System.out.printf("Personagem: %s tem a carta-> %s\n",players[i].getCharacter(),players[i].getCardsArr()[p].getName() );
 					}
 
 					for ( p = 0; p < 9; p++) {

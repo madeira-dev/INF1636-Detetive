@@ -5,7 +5,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controller.Controller;
-import models.Player;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -68,42 +67,33 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Player[] lista_jogadores = new Player[6];
-		if (e.getSource() == jogar) {
-			this.dispose();
-			lista_jogadores = produzJogadores();
-
-		}
+		inicia_jogo();
+		this.dispose();
 	}
 
-	public Player[] produzJogadores() {
-		int num_jogadores = 0;
-		Player lista_jogadores[] = new Player[6];
-
+	public void inicia_jogo() {
 		if (scarlett.isSelected()) {
 			Controller.add_player("Srta. Scarlett", nomes[0].getText());
 		}
 		if (green.isSelected()) {
-			Controller.add_player("Reverendo Green", nomes[0].getText());
+			Controller.add_player("Reverendo Green", nomes[1].getText());
 		}
 		if (white.isSelected()) {
-			Controller.add_player("Srta. White", nomes[0].getText());
+			Controller.add_player("Srta. White", nomes[2].getText());
 		}
 		if (mustard.isSelected()) {
-			Controller.add_player("Coronel Mustard", nomes[0].getText());
+			Controller.add_player("Coronel Mustard", nomes[3].getText());
 		}
 		if (plum.isSelected()) {
-			Controller.add_player("Professor Plum", nomes[0].getText());
+			Controller.add_player("Professor Plum", nomes[4].getText());
 		}
 		if (peacock.isSelected()) {
-			Controller.add_player("Srta. Peacock", nomes[0].getText());
+			Controller.add_player("Srta. Peacock", nomes[5].getText());
 		}
 		if (Controller.get_num_players() >= 3) {
-			JogoClue tela_jogo = new JogoClue();
+			new JogoClue();
 			Controller.init_all();
 		}
-
-		return lista_jogadores;
 	}
 
 	public void paint(Graphics g2d) {
