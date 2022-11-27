@@ -14,41 +14,25 @@ import java.util.Random;
 import javax.swing.JFileChooser;
 
 public class Controller {
-	private static Board board;
+	private static API api	= API.getInstance();
 	private static int turn;
 	private static Player[] players;
 	private static int num_players;
 	private static Card[] arquivo_confidencial = new Card[3];
-
-	public static int get_turn() {
-		return turn;
-	}
-
-	public static void set_turn(int turno) {
-		turn = turno;
-	}
-
-	private static Controller instance = null;
 	private static MoveGenerator move_generator;
 	// ja andou, ja palpitou
 	private static boolean[] acoes;
 	private static int[] valores_dado;
 
-	public static Controller getInstance() {
-		if (instance == null) {
-			instance = new Controller();
-		}
-		return instance;
-	}
-
-	private Controller() {
-		board = Board.getInstance();
+	public static void init() {
 		valores_dado = new int[2];
 		players = new Player[6];
-		move_generator = new MoveGenerator(board);
 		acoes = new boolean[] { false, false };
 	}
 
+	public static void set_turn(int turno) {
+		turn = turno;
+	}
 	public static int get_num_players() {
 		return num_players;
 	}
@@ -76,8 +60,7 @@ public class Controller {
 	}
 
 	public static int[][] casas_disponiveis(int x, int y) {
-		move_generator.reset_generator(board.get_cell(x, y));
-		return move_generator.cell_to_coord(move_generator.get_moves(valores_dado[0] + valores_dado[1]));
+		return api.get_casas(x, y, valores_dado[0] + valores_dado[1]);
 	}
 
 	// Procura entre os jogadores alguém com o personagem. Retorna o personagem caso
@@ -112,14 +95,14 @@ public class Controller {
 		if (acoes[1]) {
 			return null;
 		}
-		return board.get_room(get_current_player());
+		return api.prepara_palpite(get_current_player());
 	}
 
 	public static InfoPalpite guess(Player guesser, Card[] cards) {
 		// Move o acusado para a sala
 		Player acusado = get_player_by_character(cards[1].getName());
 		if (acusado != null) {
-			board.move_player(acusado, guesser.get_coord());
+			api.move_player(acusado, guesser.get_coord());
 		}
 
 		Player temp = guesser.getVizinho();
@@ -155,9 +138,6 @@ public class Controller {
         for(int i=0; i < num_players; i++){
             players[i].setVizinho(players[(i + 1) % num_players]);
         }
-    }
-    public static void move(int[] coord){
-        board.move_player(get_current_player(), coord);
     }
     private static void deal_cards(){
         int i = 0;
@@ -391,7 +371,7 @@ public class Controller {
 					linha = linha_arquivo.readLine();
 					y = Integer.parseInt(linha);
 					players[i].move(x, y); /* i ou turn?, estou com sono */
-					board.set_character(players[i].getCharacter(), x, y);
+					api.set_character(players[i].getCharacter(), x, y);
 					linha = linha_arquivo.readLine();
 					qtd_cards = Integer.parseInt(linha);
 

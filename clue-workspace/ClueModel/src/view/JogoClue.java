@@ -11,6 +11,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
+import models.API;
 
 // I'm really sorry for the code below, but the deadline is close
 public class JogoClue extends JFrame implements ActionListener, MouseListener {
@@ -30,7 +31,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	JButton salvar_jogo = new JButton("Salvar Jogo");
 	JButton jogar_dados = new JButton("Jogar Dados");
 	JButton escolher_dados = new JButton("Escolher Dados");
-
+	API api = API.getInstance();
 	String[] valores_dados = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
 	@SuppressWarnings("unchecked")
@@ -267,7 +268,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 		for (int[] coord : lista_quadrados) {
 			if (coord[0] == (675 - x) / 25 && coord[1] == (700 - y) / 25) {
-				Controller.move(coord);
+				api.move_player(Controller.get_current_player(), coord);
 				lista_quadrados = null;
 				repaint();
 				Controller.atualiza_acoes(0);

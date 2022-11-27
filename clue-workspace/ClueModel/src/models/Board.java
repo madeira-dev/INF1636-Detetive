@@ -1,12 +1,7 @@
 package models;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Random;
-import models.API;
-
 // Implementação lógica do tabuleiro (Precisa ser conectado a uma interface gráfica!!)
-public class Board {
+class Board {
 	private Cell[][] cells;
 	private final int width;
 	private final int height;

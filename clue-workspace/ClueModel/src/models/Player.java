@@ -11,8 +11,6 @@ public class Player implements PlayerFactory {
 	private int[] coord;
 	private Notepad note = new Notepad();
 	private Card[] cardsArr = new Card[0];
-	public API player_api = new API();
-
 	public Player (String character, String nome) {
 		this.nome = nome;
 		this.character = character;
@@ -110,9 +108,5 @@ public class Player implements PlayerFactory {
 	public void move(int x, int y) {
 		coord[0] = x;
 		coord[1] = y;
-	}
-
-	public void set_api_cards_arr(Card[] cards_arr) {
-		player_api.setPlayerCardsArray(cards_arr);
 	}
 }
