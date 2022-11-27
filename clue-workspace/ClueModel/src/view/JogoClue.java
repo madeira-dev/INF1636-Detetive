@@ -51,7 +51,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 	public JogoClue() {
 		try {
 			File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
-			// File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
 			File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
 			img_tabuleiro = ImageIO.read(tabuleiro);
 			img_casa_valida = ImageIO.read(casa_valida);
@@ -60,7 +59,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener {
 		}
 
 		p = new MyPanel(img_tabuleiro);
-
 		texto1 = new JLabel(String.format("Jogador da vez:  %s", Controller.get_current_player().getCharacter(),
 				SwingConstants.CENTER));
 		texto2 = new JLabel(

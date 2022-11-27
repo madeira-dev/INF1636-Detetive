@@ -12,8 +12,8 @@ public class Main {
 		m.set_generator(start);
 
 		Cell[] moves = m.get_moves(2);
-		for(Cell move:moves){
-			if(move == null){
+		for (Cell move : moves) {
+			if (move == null) {
 				break;
 			}
 			move.print_coord();
