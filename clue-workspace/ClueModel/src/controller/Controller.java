@@ -5,12 +5,14 @@ import java.util.Random;
 
 public class Controller {
 	private static int turn;
+	private static API api;
 	private static int num_players;
 	private static boolean[] acoes;
 	private static int[] valores_dado;
 	public static void init() {
 		valores_dado = new int[2];
 		acoes = new boolean[] { false, false };
+		api = API.getInstance();
 	}
 	public static void set_turn(int turno) {
 		turn = turno;

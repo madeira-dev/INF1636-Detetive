@@ -32,7 +32,10 @@ public class API implements ObservadorIF{
         return move_generator.cell_to_coord(move_generator.get_moves(depth));
     }
     public static String prepara_palpite(Player p) {
-        return board.get_room(p).getName();
+        if(board.get_room(p) != null){
+            return board.get_room(p).getName();
+        }
+        return null;
     }
     public static void move_player(Player p, int[] coord){
         board.move_player(p, coord);

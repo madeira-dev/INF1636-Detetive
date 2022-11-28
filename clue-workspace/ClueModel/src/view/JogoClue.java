@@ -49,6 +49,7 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 	int[][] lista_quadrados;
 
 	public JogoClue() {
+		add_obs(API.getInstance());
 		try {
 			File tabuleiro = new File("imagens/Tabuleiros/Tabuleiro.jpg");
 			File casa_valida = new File("imagens/Tabuleiros/quadrado_laranja.png");
