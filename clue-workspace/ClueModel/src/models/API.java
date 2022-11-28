@@ -287,6 +287,7 @@ public class API implements ObservadorIF{
                     linha = linha_arquivo.readLine();
                     y = Integer.parseInt(linha);
                     set_character(players[i].get_character(), x, y);
+                    move_player(players[i], new int[]{x, y});
                     linha = linha_arquivo.readLine();
                     qtd_cards = Integer.parseInt(linha);
 
