@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-class MenuClue extends JFrame implements ActionListener {
+public class MenuClue extends JFrame implements ActionListener {
 
 	Image img_menu;
 	JPanel p;
