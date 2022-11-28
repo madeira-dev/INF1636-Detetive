@@ -98,7 +98,7 @@ public final class Componentes {
 	}
 
 	public static Card[] getArquivo_secreto() {
-		return new Card[]{armas_cartas()[1], personagens_cartas()[5], comodos_cartas()[1]};
+		return arquivo_secreto;
 	}
 
 	public static void setArquivo_secreto(int i, Card c) {

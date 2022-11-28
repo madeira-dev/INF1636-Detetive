@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import controller.Controller;
 import models.API;
+import models.Componentes;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -47,6 +48,7 @@ class MenuClue extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nova_partida) {
+			Componentes.arquivo_confidencial();
 			this.dispose();
 			new SelecaoPersonagem();
 		} else if (e.getSource() == continuar) {

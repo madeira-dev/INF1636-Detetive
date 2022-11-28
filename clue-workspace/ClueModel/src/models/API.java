@@ -272,6 +272,11 @@ public class API implements ObservadorIF{
                 Componentes.setArquivo_secreto(0, new Card(aux[0], "arma"));
                 Componentes.setArquivo_secreto(1, new Card(aux[1] + " " + aux[2], "personagem"));
                 Componentes.setArquivo_secreto(2, new Card(aux[3], "comodo"));
+
+                System.out.println(Componentes.getArquivo_secreto()[0].getName());
+                System.out.println(Componentes.getArquivo_secreto()[1].getName());
+                System.out.println(Componentes.getArquivo_secreto()[2].getName());
+
                 i = 0;
                 while (linha != null) {
 
