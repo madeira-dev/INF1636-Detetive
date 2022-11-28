@@ -19,24 +19,36 @@ public final class Componentes {
 	}
 
 	public static Card[] personagens_cartas() {
-		Card[] personagens = { new Card("Srta. Scarlett", "personagem"), new Card("Reverendo Green", "personagem"),
-				new Card("Srta. Peacock", "personagem"), new Card("Professor Plum", "personagem"),
-				new Card("Coronel Mustard", "personagem"), new Card("Srta. White", "personagem") };
+		Card[] personagens = { new Card("Srta. Scarlett", "personagem"),
+				new Card("Reverendo Green", "personagem"),
+				new Card("Srta. Peacock", "personagem"),
+				new Card("Professor Plum", "personagem"),
+				new Card("Coronel Mustard", "personagem"),
+				new Card("Srta. White", "personagem") };
 		return personagens;
 	}
 
 	public static Card[] armas_cartas() {
-		Card[] armas_cartas = { new Card("Corda", "arma"), new Card("Cano", "arma"), new Card("Faca", "arma"),
-				new Card("ChaveInglesa", "arma"), new Card("Castical", "arma"), new Card("Revolver", "arma") };
+		Card[] armas_cartas = { new Card("Corda", "arma"),
+								new Card("Cano", "arma"),
+								new Card("Faca", "arma"),
+								new Card("ChaveInglesa", "arma"),
+								new Card("Castical", "arma"),
+								new Card("Revolver", "arma") };
 
 		return armas_cartas;
 	}
 
 	public static Card[] comodos_cartas() {
-		Card[] comodos_cartas = { new Card("Biblioteca", "comodo"), new Card("Cozinha", "comodo"),
-				new Card("Entrada", "comodo"), new Card("Escritorio", "comodo"), new Card("JardimInverno", "comodo"),
-				new Card("SalaDeEstar", "comodo"), new Card("SalaDeJantar", "comodo"),
-				new Card("SalaDeMusica", "comodo"), new Card("SalaoDeJogos", "comodo") };
+		Card[] comodos_cartas = { new Card("Biblioteca", "comodo"),
+				new Card("Cozinha", "comodo"),
+				new Card("Entrada", "comodo"),
+				new Card("Escritorio", "comodo"),
+				new Card("JardimInverno", "comodo"),
+				new Card("SalaDeEstar", "comodo"),
+				new Card("SalaDeJantar", "comodo"),
+				new Card("SalaDeMusica", "comodo"),
+				new Card("SalaoDeJogos", "comodo") };
 		return comodos_cartas;
 	}
 

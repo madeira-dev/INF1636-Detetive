@@ -24,19 +24,19 @@ public class Notepad extends JFrame implements ActionListener {
 		this.setTitle("Bloco de Notas");
 		this.setBounds(1000, 500, 600, 450);
 
-		armas_arr[0] = new JCheckBox("Cano de Chumbo");
-		armas_arr[1] = new JCheckBox("Castiçal");
-		armas_arr[2] = new JCheckBox("Corda");
+		armas_arr[1] = new JCheckBox("Cano de Chumbo");
+		armas_arr[4] = new JCheckBox("Castiçal");
+		armas_arr[0] = new JCheckBox("Corda");
 		armas_arr[3] = new JCheckBox("Chave Inglesa");
-		armas_arr[4] = new JCheckBox("Faca");
+		armas_arr[2] = new JCheckBox("Faca");
 		armas_arr[5] = new JCheckBox("Revolver");
 
-		suspeitos_arr[0] = new JCheckBox("Mrs. White");
+		suspeitos_arr[5] = new JCheckBox("Mrs. White");
 		suspeitos_arr[1] = new JCheckBox("Rev. Green");
-		suspeitos_arr[2] = new JCheckBox("Mrs. Scarlett");
+		suspeitos_arr[0] = new JCheckBox("Mrs. Scarlett");
 		suspeitos_arr[3] = new JCheckBox("Prof. Plum");
-		suspeitos_arr[4] = new JCheckBox("Mrs. Peacock");
-		suspeitos_arr[5] = new JCheckBox("Cor. Mustard");
+		suspeitos_arr[2] = new JCheckBox("Mrs. Peacock");
+		suspeitos_arr[4] = new JCheckBox("Cor. Mustard");
 
 		comodos_arr[0] = new JCheckBox("Biblioteca");
 		comodos_arr[1] = new JCheckBox("Cozinha");
