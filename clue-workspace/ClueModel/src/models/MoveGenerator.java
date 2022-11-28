@@ -81,8 +81,10 @@ class MoveGenerator {
 				temp = get_coord_room(nodes[0].get_room());
 
 				for (int[] coord : temp) {
-					add_node(board.get_cell(coord[0], coord[1]), current_cell);
-					old_last++;
+					if(board.get_cell(coord[0], coord[1]).is_free()){
+						add_node(board.get_cell(coord[0], coord[1]), current_cell);
+						old_last++;
+					}
 				}
 			}
 		}

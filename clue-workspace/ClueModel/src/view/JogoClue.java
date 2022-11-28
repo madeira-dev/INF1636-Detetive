@@ -302,7 +302,6 @@ public class JogoClue extends JFrame implements ActionListener, MouseListener, O
 
 	}
 
-	@Override
 	public void add_obs(ObservadorIF obs) {
 		ob = obs;
 	}

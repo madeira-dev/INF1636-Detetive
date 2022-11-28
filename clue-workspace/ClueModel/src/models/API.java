@@ -167,10 +167,12 @@ public class API implements ObservadorIF{
         new Notepad(players[turn].getNoteOptionsWeapons(), players[turn].getNoteOptionsSuspects(),
                 players[turn].getNoteOptionsRooms());
     }
-    public static void init_all() {
+    public static void init_all(boolean novo_jogo) {
         int num_players = Controller.get_num_players();
         set_neighbors(num_players);
-        deal_cards();
+        if(!novo_jogo){
+            deal_cards();
+        }
         players = Arrays.copyOf(players, num_players);
     }
     public static void remove_player() {
@@ -206,12 +208,12 @@ public class API implements ObservadorIF{
                 // System.out.printf("%d",players.length );
 
                 escritor.write(turn + "\n");
-                escritor.write(current.get_character() + "\n");
                 escritor.write(num_players + "\n");
                 escritor.write(arquivo_confidencial[0].getName() + " " + arquivo_confidencial[1].getName() + " "
                         + arquivo_confidencial[2].getName() + "\n");
                 for (Player c : players) {
                     escritor.write(c.get_character() + "\n");
+                    escritor.write((c.get_name()) + "\n");
                     escritor.write(c.get_coord()[0] + "\n");
                     escritor.write(c.get_coord()[1] + "\n");
                     escritor.write(c.getCardsArr().length + "\n");
@@ -242,7 +244,7 @@ public class API implements ObservadorIF{
         j.setMultiSelectionEnabled(false);
         int turn = Controller.get_turn();
         int r = j.showSaveDialog(null);
-        String nome_jogador;
+        String nome_jogador, nome_personagem;
 
         if (r == JFileChooser.APPROVE_OPTION) {
 
@@ -255,14 +257,10 @@ public class API implements ObservadorIF{
                 Card[] armas_cartas =  Componentes.armas_cartas();
                 Card[] comodos_cartas =  Componentes.comodos_cartas();
 
-                int qtd_jogadores, x, y, i = 0, qtd_cards,p;
+                int qtd_jogadores, x, y, i, qtd_cards,p;
 
                 String linha = linha_arquivo.readLine();
                 Controller.set_turn(Integer.parseInt(linha));
-
-                linha = linha_arquivo.readLine();
-                current_player = new Player(linha, "temp");
-                players[turn] = current_player;
 
                 linha = linha_arquivo.readLine();
                 qtd_jogadores = Integer.parseInt(linha);
@@ -272,22 +270,22 @@ public class API implements ObservadorIF{
                 aux = linha.split(" ");
 
                 Componentes.setArquivo_secreto(0, new Card(aux[0], "arma"));
-                Componentes.setArquivo_secreto(1, new Card(aux[1], "personagens"));
-                Componentes.setArquivo_secreto(2, new Card(aux[2], "comodo"));
-
-                linha = linha_arquivo.readLine();
-
+                Componentes.setArquivo_secreto(1, new Card(aux[1] + " " + aux[2], "personagens"));
+                Componentes.setArquivo_secreto(2, new Card(aux[3], "comodo"));
+                i = 0;
                 while (linha != null) {
 
-                	nome_jogador=linha;
-                	linha=linha_arquivo.readLine();
-                    players[i] = new Player(linha, nome_jogador); /* i ou turn?, estou com sono */
+                	nome_personagem=linha_arquivo.readLine();
+                    if(nome_personagem == null){
+                        break;
+                    }
+                	nome_jogador=linha_arquivo.readLine();
+                    players[i] = new Player(nome_personagem, nome_jogador); /* i ou turn?, estou com sono */
 
                     linha = linha_arquivo.readLine();
                     x = Integer.parseInt(linha);
                     linha = linha_arquivo.readLine();
                     y = Integer.parseInt(linha);
-                    players[i].move(x, y); /* i ou turn?, estou com sono */
                     set_character(players[i].get_character(), x, y);
                     linha = linha_arquivo.readLine();
                     qtd_cards = Integer.parseInt(linha);
@@ -295,7 +293,12 @@ public class API implements ObservadorIF{
                     for ( p = 0; p < qtd_cards; p++) {
                         linha = linha_arquivo.readLine();
                         aux = linha.split(" ");
-                        players[i].addCard(new Card(aux[1], aux[0]));
+                        if(Objects.equals(aux[0], "personagem")){
+                            players[i].addCard(new Card(aux[1] + " " + aux[2], aux[0]));
+                        }
+                        else{
+                            players[i].addCard(new Card(aux[1], aux[0]));
+                        }
                     }
 
                     for ( p = 0; p < 9; p++) {
@@ -319,11 +322,9 @@ public class API implements ObservadorIF{
                         }
                     }
                     players[i].printNote();
-
                     i++;
-                    linha = linha_arquivo.readLine();
-
                 }
+                API.init_all(true);
                 new JogoClue();
 
             } catch (IOException ex) {

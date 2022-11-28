@@ -106,7 +106,7 @@ public class Palpite extends JFrame implements ActionListener {
 				this.dispose();
 				for (int i = 0; i < comodos.length; i++) {
 					if (comodos[i].isSelected()) {
-						cards[2] = Componentes.nome_carta(2,"comodo");
+						cards[2] = Componentes.nome_carta(i,"comodo");
 						break;
 					}
 				}

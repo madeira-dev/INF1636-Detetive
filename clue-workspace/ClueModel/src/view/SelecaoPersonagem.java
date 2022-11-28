@@ -132,7 +132,7 @@ public class SelecaoPersonagem extends JFrame implements ActionListener {
 		}
 		if (Controller.get_num_players() >= 3) {
 			new JogoClue();
-			API.init_all();
+			API.init_all(false);
 		}
 	}
 
